@@ -22,7 +22,7 @@ public class MainMenu : UIScreen
 
     public void StartGame()
     {
-        GameManager.Instance.StartNewGame();
+        GameManager.Instance.LoadNewGame();
     }
 
     public void QuitGame()

@@ -8,7 +8,6 @@ public abstract class UIScreen : MonoBehaviour
 
     public virtual void Activate(bool active)
     {
-        Debug.Log("Activating " + gameObject.name + " screen: " + active + "; already? " + this.active);
         if (this.active != active)
         {
             this.active = active;

@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     public UIManager ui;
     public FadeToColor fade;
-    public float timeScale;
     public string sceneToLoad;
 
     private bool gameJustStarted = true;
@@ -48,6 +47,23 @@ public class GameManager : MonoBehaviour
     public GameState State { get; private set; }
 
     public SceneTransition Transition { get; private set; }
+
+    public bool GamePaused { get; private set; }
+
+    public float DeltaTime
+    {
+        get
+        {
+            if (GamePaused)
+            {
+                return 0f;
+            }
+            else
+            {
+                return Time.deltaTime;
+            }
+        }
+    }
 
     // Start is called before the first frame update
     private void Awake()
@@ -130,6 +146,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadNewGame()
+    {
+        State = GameState.Map;
+        LoadScene(GameState.Map);
+    }
+
+    public void LoadBattleScene()
+    {
+        State = GameState.Battle;
+        LoadScene(GameState.Battle);
+    }
+
+    public void LoadMapScene()
+    {
+        State = GameState.Map;
+        LoadScene(GameState.Map);
+    }
+
     private void UpdateSceneTransition()
     {
         if (Transition == SceneTransition.ExitingScene && fade.FadedOut)
@@ -169,16 +203,21 @@ public class GameManager : MonoBehaviour
 
     #endregion SceneManagement
 
-    public void StartNewGame()
+    private void StartNewGame()
     {
-        State = GameState.Map;
-        LoadScene(GameState.Map);
+        // TODO: Add new game starting stuff here.
+
+        ReturnToMapScene();
     }
 
-    public void StartBattle()
+    private void StartBattle()
     {
-        State = GameState.Battle;
-        LoadScene(GameState.Battle);
+        // TODO: Add battle starting stuff here.
+    }
+
+    private void ReturnToMapScene()
+    {
+        // TODO: Add map scene starting stuff here.
     }
 
     public void ReturnToMainMenu()
@@ -187,8 +226,6 @@ public class GameManager : MonoBehaviour
         LoadScene(GameState.MainMenu);
     }
 
-    public bool GamePaused { get; private set; }
-
     public void PauseGame(bool pause)
     {
         if (GamePaused != pause)
@@ -196,12 +233,10 @@ public class GameManager : MonoBehaviour
             GamePaused = pause;
             if (GamePaused)
             {
-                timeScale = 0f;
                 ui.pauseMenu.Activate(true);
             }
             else
             {
-                timeScale = Time.timeScale;
                 ui.pauseMenu.Activate(false);
             }
         }

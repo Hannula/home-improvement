@@ -28,7 +28,7 @@ public class PauseMenu : UIScreen
 
     public void RestartGame()
     {
-        GameManager.Instance.StartNewGame();
+        GameManager.Instance.LoadNewGame();
     }
 
     public void ReturnToMainMenu()

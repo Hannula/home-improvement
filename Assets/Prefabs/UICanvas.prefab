@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 873763902}
+      - m_Target: {fileID: 1392153806881529595}
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873763901}
-  - component: {fileID: 873763902}
+  - component: {fileID: 1392153806881529595}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -379,14 +379,14 @@ RectTransform:
   m_Children:
   - {fileID: 6777952}
   m_Father: {fileID: 2924821164349775846}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &873763902
+--- !u!114 &1392153806881529595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 873763900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d7353eeff8b224ba6d795de9166e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f0ce4c932d14924f9099f0e919ffcdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 873763902}
+      - m_Target: {fileID: 1392153806881529595}
         m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 873763902}
+      - m_Target: {fileID: 1392153806881529595}
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
@@ -814,8 +814,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2924821164349775846}
-  - component: {fileID: 3943797276531984598}
-  - component: {fileID: 3601274857906572665}
+  - component: {fileID: 2921814359997771963}
+  - component: {fileID: 1226639940375453742}
   - component: {fileID: 2924821164349775845}
   - component: {fileID: 2924821164349775844}
   - component: {fileID: 2924821164349775387}
@@ -837,8 +837,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 873763901}
   - {fileID: 3917076802705973815}
+  - {fileID: 873763901}
   - {fileID: 8363011380040445638}
   - {fileID: 2924821164066629676}
   m_Father: {fileID: 0}
@@ -849,7 +849,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &3943797276531984598
+--- !u!114 &2921814359997771963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -858,13 +858,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2924821164349775386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6a9ffe1a2dd754d9a95497e9e0742e, type: 3}
+  m_Script: {fileID: 11500000, guid: 13249c677e1191b488f9181a1127d07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 129436829627779879}
-  pauseMenu: {fileID: 873763902}
+  mainMenu: {fileID: 6155968617822412164}
+  pauseMenu: {fileID: 1392153806881529595}
   eventDialog: {fileID: 0}
---- !u!114 &3601274857906572665
+--- !u!114 &1226639940375453742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2924821164349775386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62524590e84e404e946ec99ec37bbe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a25f7bc4bac72c4b8b6b09493f853eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   screenCoverImage: {fileID: 329828775538159052}
@@ -950,7 +950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3917076802705973815}
-  - component: {fileID: 129436829627779879}
+  - component: {fileID: 6155968617822412164}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -971,14 +971,14 @@ RectTransform:
   m_Children:
   - {fileID: 4327377495285398311}
   m_Father: {fileID: 2924821164349775846}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &129436829627779879
+--- !u!114 &6155968617822412164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3381346695451901662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d029f783fc1e74f9406973b1ba663f, type: 3}
+  m_Script: {fileID: 11500000, guid: da22ccc02b1e489458508b18bf1e7757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129436829627779879}
+      - m_Target: {fileID: 6155968617822412164}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129436829627779879}
+      - m_Target: {fileID: 6155968617822412164}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
