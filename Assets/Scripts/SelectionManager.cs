@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectionManger : MonoBehaviour
+public class SelectionManager : MonoBehaviour
 {
     public LayerMask SelectedItemsLayer;
     private SelectableItem selectedItem;
     private SelectableItem hoveringItem;
-    void Start()
-    {
-        
-    }
 
     void FixedUpdate()
     {
