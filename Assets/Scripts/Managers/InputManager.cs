@@ -13,23 +13,36 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        GameInput();
+        if (GameManager.Instance.State == GameManager.GameState.MainMenu)
+        {
+            MainMenuInput();
+        }
+        else
+        {
+            GameInput();
+        }
+
         DebugInput();
+    }
+
+    private void MainMenuInput()
+    {
+        
     }
 
     private void GameInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
+            GameManager.Instance.PauseGame(!GameManager.Instance.GamePaused);
         }
     }
 
     private void DebugInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.PauseGame(!GameManager.Instance.GamePaused);
+            //GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
         }
     }
 }

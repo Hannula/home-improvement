@@ -9,20 +9,19 @@ public class SelectableItem : MonoBehaviour
     public bool HoveringOver;
 
     // Everytime item is clicked
-    public void OnClick()
+    public virtual void OnClick()
     {
 
     }
 
     // Only when selected the first time
-    public void OnSelect()
+    public virtual void OnSelect()
     {
 
     }
 
-    public void OnUnselect()
+    public virtual void OnUnselect()
     {
 
     }
-
 }
