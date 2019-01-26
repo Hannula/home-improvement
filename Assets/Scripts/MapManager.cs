@@ -65,6 +65,7 @@ public class MapManager : MonoBehaviour
                 var obj = Instantiate(nodePrefab, node.Position, Quaternion.identity);
                 NodeGameObjects.Add(obj.gameObject);
                 NodeMapping.Add(node, obj.gameObject);
+                obj.gameObject.GetComponent<SelectableNode>().setNode(node);
             }
         }
 
