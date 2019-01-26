@@ -58,6 +58,14 @@ public class GameManager : MonoBehaviour
 
     public bool GamePaused { get; private set; }
 
+    public bool ActiveGame
+    {
+        get
+        {
+            return !GamePaused && Transition == SceneTransition.InScene;
+        }
+    }
+    
     public float DeltaTime
     {
         get
@@ -91,6 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
+        PlayerHome = HomeData.GenerateRandom(2, 3, 15);
         State = GameState.MainMenu;
         Transition = SceneTransition.InScene;
         InitScene();
@@ -239,13 +248,12 @@ public class GameManager : MonoBehaviour
     private void StartNewGame()
     {
         Debug.Log("New game started");
-        PlayerHome = HomeData.GenerateRandom(2,3,15);
         Inventory = new List<HomeUpgrade>(20);
         for(int i = 0; i < 20; i++)
         {
             Inventory.Add(null);
         }
-        home.Init();
+
         GoToMapScene();
         gameRunning = true;
     }
