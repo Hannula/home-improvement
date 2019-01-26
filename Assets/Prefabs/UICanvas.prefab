@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  description: {fileID: 0}
+  description: {fileID: 3941926256956258967}
   buttons: []
 --- !u!1 &206868455
 GameObject:
