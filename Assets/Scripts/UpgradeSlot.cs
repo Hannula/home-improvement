@@ -20,6 +20,8 @@ public class UpgradeSlot : SelectableItem
     private bool previouslyHovered;
     private InventoryManager inventoryManager;
 
+    private AudioSource buildSound;
+
     public void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
@@ -78,6 +80,15 @@ public class UpgradeSlot : SelectableItem
         if (ParentFloor != null)
         {
             ParentFloor.FloorData.HomeUpgrades[ParentFloorSlotIndex] = upgrade;
+            if (upgrade != null)
+            {
+                if (buildSound != null && buildSound.isPlaying)
+                {
+                    buildSound.Stop();
+                }
+
+                buildSound = SFXPlayer.Instance.Play(Sound.Repair);
+            }
         }
         else
         {

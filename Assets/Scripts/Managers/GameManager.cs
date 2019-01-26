@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public Home home;
     public HomeData PlayerHome;
     public List<HomeUpgrade> Inventory;
+    public BattleSkillHandler battleSkillHandler;
 
     private bool gameJustStarted = true;
     private bool gameRunning;
@@ -224,6 +225,9 @@ public class GameManager : MonoBehaviour
             }
             case GameState.Battle:
             {
+                battleSkillHandler = FindObjectOfType<BattleSkillHandler>();
+                ui.ActivateBattleSkills(true);
+                battleSkillHandler.Init();
                 MusicPlayer.Instance.Play(1);
                 break;
             }

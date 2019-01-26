@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public PauseMenu pauseMenu;
     public EventDialog eventDialog;
     public GameOverScreen gameOverScreen;
+    public GameObject battleSkills;
 
     private EventManager eventManager;
 
@@ -39,6 +40,11 @@ public class UIManager : MonoBehaviour
         eventDialog.ShowResults(confirmText);
     }
 
+    public void ActivateBattleSkills(bool active)
+    {
+        battleSkills.SetActive(active);
+    }
+
     public void CloseDialogs()
     {
         eventManager.EndEvent(true);
@@ -55,6 +61,7 @@ public class UIManager : MonoBehaviour
         mainMenu.Activate(false);
         pauseMenu.Activate(false);
         CloseDialogs();
+        ActivateBattleSkills(false);
         gameOverScreen.Activate(false);
     }
 }
