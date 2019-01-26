@@ -29,13 +29,18 @@ public class MapManager : MonoBehaviour
 
     public Transform HomeIconPrefab;
     public GameObject HomeIcon;
+    public Sprite HomeIconDrivingSprite;
+    private Sprite HomeIconIdleSprite;
 
     private Transform homeTarget;
     public bool HomeMoving = false;
     private EventManager eventManager;
+    private GameObject homeHolder;
 
     void Start()
     {
+        homeHolder = new GameObject();
+        homeHolder.name = "HomeHolder";
         eventManager = FindObjectOfType<EventManager>();
 
         var mapTexture = GameObject.Find("MapArea").GetComponent<SpriteRenderer>().sprite.texture;
@@ -45,9 +50,6 @@ public class MapManager : MonoBehaviour
 
         var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
         mapWidth = screenWidth - homeAreaWidthPixels;
-        Debug.Log(mapWidth);
-
-        // Debug.Log(mapWidth);
 
         mapGenerator.Generate();
         Nodes = mapGenerator.AllNodes;
@@ -66,7 +68,7 @@ public class MapManager : MonoBehaviour
                 offset = rand.Next(1) == 1 ? offset : -offset;
                 var go = GameObject.Find("MapArea").transform;
 
-                float xPosition = i * areaWidth + areaWidth / 2 + offset;
+                float xPosition = i * areaWidth + areaWidth / 2 + offset + 20;
 
                 offset = rand.Next(16, 32);
                 offset = rand.Next(1) == 1 ? offset : -offset;
@@ -88,6 +90,8 @@ public class MapManager : MonoBehaviour
                 NodeMapping.Add(node, homeGo.gameObject);
                 GoToNodeMapping.Add(homeGo.gameObject, node);
                 homeGo.gameObject.GetComponent<SelectableNode>().setNode(node);
+                homeGo.SetParent(homeHolder.transform);
+                homeGo.name = "HomeNode";
             }
         }
 
@@ -275,12 +279,16 @@ public class MapManager : MonoBehaviour
         currentNode = node;
         homeTarget = NodeMapping[node].transform;
         drawNodeCircles();
+        var sprite = HomeIcon.GetComponent<SpriteRenderer>().sprite;
+        HomeIconIdleSprite = sprite;
+        sprite = HomeIconDrivingSprite;
         HomeMoving = true;
     }
 
     public void ArrivedToNode(Transform t)
     {
         AdvanceDangerZone();
+        HomeIcon.GetComponent<SpriteRenderer>().sprite = HomeIconIdleSprite;
         eventManager.StartEvent(NodeMapping.Where(kvp => kvp.Value == t.gameObject).Select(kvp => kvp.Key).First());
     }
 
