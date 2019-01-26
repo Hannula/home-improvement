@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public FadeToColor fade;
     public string sceneToLoad;
 
+    public HomeData PlayerHome;
+
     private bool gameJustStarted = true;
 
     public GameState State { get; private set; }
@@ -79,6 +81,11 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         Init();
+    }
+
+    private void Start()
+    {
+        PlayerHome = new HomeData(new FloorData(5), new FloorData(5));
     }
 
     private void Init()
@@ -206,7 +213,6 @@ public class GameManager : MonoBehaviour
     private void StartNewGame()
     {
         // TODO: Add new game starting stuff here.
-
         ReturnToMapScene();
     }
 
