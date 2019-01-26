@@ -1312,7 +1312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 66.666664, y: -30}
+  m_AnchoredPosition: {x: 66.66667, y: -30}
   m_SizeDelta: {x: 114.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5668653016562878367
@@ -1367,6 +1367,7 @@ MonoBehaviour:
   onCooldown: 0
   cooldownTime: 1
   skillType: 0
+  cooldownBar: {fileID: 0}
 --- !u!114 &2602370442666299522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,7 +2241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -30}
+  m_AnchoredPosition: {x: 200.00003, y: -30}
   m_SizeDelta: {x: 114.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2975638820338048070
@@ -2295,6 +2296,7 @@ MonoBehaviour:
   onCooldown: 0
   cooldownTime: 1
   skillType: 1
+  cooldownBar: {fileID: 0}
 --- !u!114 &3085446296226095807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2385,7 +2387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 333.3333, y: -30}
+  m_AnchoredPosition: {x: 333.33337, y: -30}
   m_SizeDelta: {x: 114.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5373724270711617225
@@ -2440,6 +2442,7 @@ MonoBehaviour:
   onCooldown: 0
   cooldownTime: 1
   skillType: 2
+  cooldownBar: {fileID: 0}
 --- !u!114 &2840907042078496957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2879,7 +2882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -227.56}
+  m_AnchoredPosition: {x: 0, y: -182.8}
   m_SizeDelta: {x: 400, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424357214603096734

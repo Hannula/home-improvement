@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ProgressBar : MonoBehaviour
 {
-    public float progress = 1f;
+    [SerializeField, Range(0f, 1f)]
+    private float progress = 1f;
+
     public float minScale;
     public float maxScale;
     public bool horizontal = true;
@@ -21,41 +23,32 @@ public class ProgressBar : MonoBehaviour
         barSpriteRend = bar.GetComponent<SpriteRenderer>();
         defaultScale = bar.transform.localScale;
 
-        Debug.Log(barSpriteRend.size.x);
         startPosition = bar.transform.position;
         if (horizontal)
         {
-            startPosition.x += (reverse? 0.5f : -0.5f) * barSpriteRend.size.x;
+            startPosition.x += (reverse? 0.5f : -0.5f) * barSpriteRend.bounds.size.x;
         }
         else
         {
-            startPosition.y += (reverse ? 0.5f : -0.5f) * barSpriteRend.size.y;
+            startPosition.y += (reverse ? 0.5f : -0.5f) * barSpriteRend.bounds.size.y;
         }
+
+        SetProgress(progress);
     }
 
-    private Vector3 GetDifferenceFromCurrPosToStartPos()
+    private Vector3 GetDifferenceFromStartToCurrPos()
     {
         if (horizontal)
         {
-            return new Vector3((reverse ? 0.5f : -0.5f) * barSpriteRend.size.x, 0, 0);
+            return new Vector3((reverse ? -0.5f : 0.5f) * barSpriteRend.bounds.size.x, 0, 0);
         }
         else
         {
-            return new Vector3(0, (reverse ? 0.5f : -0.5f) * barSpriteRend.size.y, 0);
+            return new Vector3(0, (reverse ? -0.5f : 0.5f) * barSpriteRend.bounds.size.y, 0);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // testing
-        if (progress < 1.0f)
-        {
-            SetProgress(progress + 0.2f * GameManager.Instance.DeltaTime);
-        }
-    }
-
-    private void SetProgress(float value)
+    public void SetProgress(float value)
     {
         progress = Mathf.Clamp01(value);
         if (horizontal)
@@ -69,6 +62,6 @@ public class ProgressBar : MonoBehaviour
             bar.transform.localScale = newScale;
         }
 
-        bar.transform.position = startPosition;// + GetDifferenceFromCurrPosToStartPos();
+        bar.transform.position = startPosition + GetDifferenceFromStartToCurrPos();
     }
 }

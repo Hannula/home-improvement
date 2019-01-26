@@ -8,6 +8,7 @@ public class BattleSkill : MonoBehaviour
     public bool onCooldown;
     public float cooldownTime = 1f;
     public BattleSkillHandler.SkillType skillType;
+    public ProgressBar cooldownBar;
 
     private Button button;
     private float elapsedCooldown;
@@ -27,14 +28,20 @@ public class BattleSkill : MonoBehaviour
                 onCooldown = false;
                 button.interactable = true;
             }
+
+            cooldownBar.SetProgress(elapsedCooldown / cooldownTime);
         }
     }
 
     public void Activate()
     {
-        elapsedCooldown = 0f;
-        onCooldown = true;
-        button.interactable = false;
+        if (cooldownTime > 0f)
+        {
+            elapsedCooldown = 0f;
+            onCooldown = true;
+            button.interactable = false;
+        }
+
         GameManager.Instance.battleSkillHandler.ActivateSkill(skillType);
 
         // TODO: The skill does something.
