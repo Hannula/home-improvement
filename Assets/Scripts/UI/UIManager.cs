@@ -20,10 +20,13 @@ public class UIManager : MonoBehaviour
         // TODO
     }
 
-    public void ShowEventDialog()
+    public void ShowEventDialog(bool show)
     {
         // TODO: Event class with event info.
         // Display the event.
+
+        // Testing
+        eventDialog.Activate(show);
     }
 
     public void ShowResultDialog()
