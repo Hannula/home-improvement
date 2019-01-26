@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1225037262355785515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2927436300826072985}
+  - component: {fileID: 4460236889645491577}
+  m_Layer: 0
+  m_Name: ContentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2927436300826072985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225037262355785515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1567137, y: 0.58619684, z: -9.99707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4460236889645491577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225037262355785515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f864b8cf4f7e4424fb254692c1e48f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Upgrades:
+  - Image: {fileID: 21300000, guid: 4520878d19d8e674aa8474d9458d7cff, type: 3}
+    Name: Toilet Seat
+  - Image: {fileID: 21300000, guid: db70d07d7e9d2024b85c377edbac0efb, type: 3}
+    Name: Bunk Bed
+  - Image: {fileID: 21300000, guid: 5241a96f142b5824d80747b846bd9a33, type: 3}
+    Name: Standing Lamp
+  - Image: {fileID: 21300000, guid: 79e2286eb7607794680e54fcb4ddb360, type: 3}
+    Name: Bathtub
+  - Image: {fileID: 21300000, guid: c8a9752c4cf362642a8b802d5d4566ae, type: 3}
+    Name: Bed
+  FloorTypes:
+  - Name: Bathroom
+    BackgroundImage: {fileID: 21300000, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
+    BaseHealth: 5
+    Tier: 1
+  - Name: Living Room
+    BackgroundImage: {fileID: 21300002, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
+    BaseHealth: 3
+    Tier: 1
