@@ -31,7 +31,7 @@ public class SelectableNode : SelectableItem
         }
         else
         {
-            Debug.LogError("This node does not contain any data.");
+            Debug.Log("Unreachable Node.");
         }
     }
 
