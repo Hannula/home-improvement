@@ -30,6 +30,12 @@ public class UpgradeSlot : SelectableItem
         if (HomeUpgrade != null && HomeUpgrade.UpgradeData != null)
         {
             ImageSpriteRenderer.sprite = HomeUpgrade.UpgradeData.Image;
+
+            ImageSpriteRenderer.color = HomeUpgrade.GetColor();
+            if (ImageSpriteRenderer.color.a == 0)
+            {
+                ImageSpriteRenderer.color = Color.white;
+            }
         }
         else
         {

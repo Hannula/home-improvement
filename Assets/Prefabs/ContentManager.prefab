@@ -96,6 +96,159 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+  Modifiers:
+  - Name: Awesome
+    BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 4
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Fragrant
+    BlendColor: {r: 1, g: 0.72066885, b: 0.6084906, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 4
+      StenchRemovalBonus: 1
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Plastic
+    BlendColor: {r: 0.7783019, g: 0.9707525, b: 1, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -1
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Nice Wooden
+    BlendColor: {r: 0.6037736, g: 0.3227056, b: 0.20790316, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 1
+        Bonus: -2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Soothing
+    BlendColor: {r: 1, g: 1, b: 1, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 1
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Nice
+    BlendColor: {r: 1, g: 1, b: 1, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 4
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Soundproof
+    BlendColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -2
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 4
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Antique
+    BlendColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: -3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Nifty
+    BlendColor: {r: 0.7429245, g: 0.990566, b: 0.9719001, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0.5
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Tough
+    BlendColor: {r: 0.8113208, g: 0.66187704, b: 0.60083663, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -1
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 2
+      - DamageType: 1
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Absorbent
+    BlendColor: {r: 0.88724667, g: 0.9245283, b: 0.31835172, a: 0}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 1
+      StenchRemovalBonus: 1
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 3
+      - DamageType: 4
+        Bonus: 1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
   FloorTypes:
   - Name: Bathroom
     BackgroundImage: {fileID: 21300000, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
