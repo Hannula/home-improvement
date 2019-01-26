@@ -8,4 +8,5 @@ public class ModifierData
     public string Name;
     public Color BlendColor;
     public int Tier;
+    public BonusModule BonusModule;
 }

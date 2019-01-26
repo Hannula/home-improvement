@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Floor : MonoBehaviour
+public class Floor : SelectableItem
 {
+
     public SpriteRenderer RoofSprite;
     public bool IsGroundFloor { get { return Index == 0; } }
     public int Index;
@@ -11,11 +12,16 @@ public class Floor : MonoBehaviour
     public Floor FloorUpper;
     public SpriteRenderer BackgroundImage;
     public SpriteRenderer WallImage;
+    public SpriteRenderer BorderImage;
     public UpgradeSlot[] UpgradeSlots;
     public FloorData FloorData;
     public float Height;
     public float FallSpeed = 4f;
     public float TargetY;
+
+    public Color SelectedColor;
+    public Color EmptyColor;
+    public Color HoverColor;
 
     public bool DestroyThis;
 
@@ -25,6 +31,8 @@ public class Floor : MonoBehaviour
         for(int i = 0; i < FloorData.HomeUpgrades.Length; i++)
         {
             UpgradeSlots[i].HomeUpgrade = FloorData.HomeUpgrades[i];
+            UpgradeSlots[i].ParentFloor = this;
+            UpgradeSlots[i].ParentFloorSlotIndex = i;
         }
     }
 
@@ -60,6 +68,23 @@ public class Floor : MonoBehaviour
         }
         BackgroundImage.sortingOrder = Index;
         WallImage.sortingOrder = Index;
+
+
+
+        if (Selected)
+        {
+            BorderImage.color = SelectedColor;
+        }
+        else if (HoveringOver)
+        {
+            BorderImage.color = HoverColor;
+        }
+        else
+        {
+            BorderImage.color = EmptyColor;
+        }
+
+
     }
 
     public void DestroyFloor()
