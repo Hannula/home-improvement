@@ -20,6 +20,11 @@ public class Home : MonoBehaviour
         }
     }
 
+    public void Init(HomeData homeData)
+    {
+        this.homeData = homeData;
+    }
+
     public void Start()
     {
         if (homeData != null)
