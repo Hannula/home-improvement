@@ -15,6 +15,7 @@ namespace data
         public int Area;
         public bool Exit = false;
         public Event Event = new Event();
+        public Vector3 Position = new Vector3();
     }
 
     public class Event
@@ -96,7 +97,6 @@ public class MapGenerator
             addToAreaToNodeMapping(node.Area, node);
             lastNode.Neighbours.Add(node);
             node.Neighbours.Add(lastNode);
-            areaIter++;
             AllNodes.Add(node);
             // Debug.Log("Adding node to area:" + node.Area);
             // Last one, combine with goal node
@@ -105,6 +105,8 @@ public class MapGenerator
                 node.Neighbours.Add(goal);
                 goal.Neighbours.Add(node);
             }
+
+            areaIter++;
         }
 
         while (AllNodes.Count != NodeCount)
@@ -122,7 +124,6 @@ public class MapGenerator
                 var nodesInRight = AreaToNodeMapping[randomNumber + 1];
                 toSkip = rand.Next(0, nodesInRight.Count());
                 var connectToRight = nodesInRight.Skip(toSkip).Take(1).First();
-                // Debug.Log(nodesInRight);
 
                 var node = GenerateRandomNode();
                 node.id = nodeIDCounter++;
