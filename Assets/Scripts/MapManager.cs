@@ -185,6 +185,7 @@ public class MapManager : MonoBehaviour
 
         linerenderer.positionCount = segments + 1;
         linerenderer.useWorldSpace = false;
+        linerenderer.sortingLayerName = "Lines";
 
         float x;
         float y;
