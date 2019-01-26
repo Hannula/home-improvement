@@ -25,9 +25,12 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         var mapTexture = GameObject.Find("MapArea").GetComponent<SpriteRenderer>().sprite.texture;
-        var homeAreaTexture = GameObject.Find("HomeArea").GetComponent<SpriteRenderer>().sprite.texture;
+        var homeAreaTexture = GameObject.Find("HomePanel").GetComponent<SpriteRenderer>().size.x;
         mapWidth = mapTexture.width;
         mapHeight = mapTexture.height;
+
+        // mapWidth = screenWidth - (homeAreaTexture * 32) as int;
+        Debug.Log(homeAreaTexture);
 
         mapGenerator.Generate();
         Nodes = mapGenerator.AllNodes;
@@ -53,7 +56,7 @@ public class MapManager : MonoBehaviour
                 float yPosition = mapHeight / nodesInThisArea.Count() / 2 * areaNodeCounter + offset;
 
 
-                xPosition = xPosition - mapWidth/2 + homeAreaTexture.width/2;
+                xPosition = xPosition - mapWidth/2 + homeAreaTexture;
                 yPosition = yPosition - mapHeight/2/2;
 
                 // Pixel space to screen space
