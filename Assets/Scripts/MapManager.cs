@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
     public Transform nodePrefab;
 
     private System.Random rand = new System.Random();
+    public Material lineMaterial;
 
     public int screenWidth = 640;
 
@@ -93,16 +94,23 @@ public class MapManager : MonoBehaviour
     {
         
     }
-    public int segments = 50;
-    public int radius = 5;
+    public int segments = 25;
+    public int radius = 2;
 
     private void drawCircle(GameObject go)
     {
         int segments = 50;
-        int radius = 5;
-        /*
-        var linerenderer = go.AddComponent<LineRenderer>();
-        
+        float radius = 0.5f;
+
+
+        var s = new GameObject();
+        s.transform.position = go.transform.position;
+        var linerenderer = s.AddComponent<LineRenderer>();
+        linerenderer.startColor = Color.white;
+        linerenderer.endColor = Color.white;
+        linerenderer.widthMultiplier = 0.07f;
+        linerenderer.material = lineMaterial;
+
         linerenderer.positionCount = segments + 1;
         linerenderer.useWorldSpace = false;
 
@@ -115,11 +123,11 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < (segments + 1); i++)
         {
             x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-            z = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
 
-            linerenderer.SetPosition(i, new Vector3(x, 0, z));
+            linerenderer.SetPosition(i, new Vector3(x, y, 0));
 
             angle += (360f / segments);
-        }*/
+        }
     }
 }
