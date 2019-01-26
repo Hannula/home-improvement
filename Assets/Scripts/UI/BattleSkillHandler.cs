@@ -65,7 +65,6 @@ public class BattleSkillHandler : MonoBehaviour
 
     private void ActivateFleeSkill()
     {
-        // TODO
-        Debug.Log("Player used Flee! It's not very effective...");
+        GameManager.Instance.LoadMapScene();
     }
 }

@@ -11,12 +11,18 @@ public class Home : MonoBehaviour
 
     public HomeData homeData;
 
-    public void Init()
+    public void Awake()
     {
+        Debug.Log("HOME INIT");
         if (PlayerHome)
         {
             homeData = GameManager.Instance.PlayerHome;
         }
+    }
+
+    public void Init(HomeData homeData)
+    {
+        this.homeData = homeData;
     }
 
     public void Start()

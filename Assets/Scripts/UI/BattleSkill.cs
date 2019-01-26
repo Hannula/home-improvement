@@ -16,11 +16,12 @@ public class BattleSkill : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
+        PutSkillOnCooldown();
     }
 
     public void UpdateSkill()
     {
-        if (onCooldown)
+        if (onCooldown && GameManager.Instance.ActiveGame)
         {
             elapsedCooldown += GameManager.Instance.DeltaTime;
             if (elapsedCooldown >= cooldownTime)
@@ -35,16 +36,19 @@ public class BattleSkill : MonoBehaviour
 
     public void Activate()
     {
+        PutSkillOnCooldown();
+        GameManager.Instance.battleSkillHandler.ActivateSkill(skillType);
+    }
+
+    public void PutSkillOnCooldown()
+    {
         if (cooldownTime > 0f)
         {
             elapsedCooldown = 0f;
             onCooldown = true;
             button.interactable = false;
+            cooldownBar.SetProgress(0f);
         }
-
-        GameManager.Instance.battleSkillHandler.ActivateSkill(skillType);
-
-        // TODO: The skill does something.
     }
 
     public void ResetSkill()
