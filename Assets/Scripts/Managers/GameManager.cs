@@ -39,8 +39,10 @@ public class GameManager : MonoBehaviour
     }
 
     public UIManager ui;
+    public EventManager eventManager;
     public FadeToColor fade;
     public string sceneToLoad;
+    public int score;
 
     public HomeData PlayerHome;
 
@@ -205,6 +207,11 @@ public class GameManager : MonoBehaviour
                 ui.mainMenu.Activate(true);
                 break;
             }
+            case GameState.Map:
+            {
+                eventManager = new GameObject("EventManager").AddComponent<EventManager>();
+                break;
+            }
         }
     }
 
@@ -230,6 +237,11 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.MainMenu;
         LoadScene(GameState.MainMenu);
+    }
+
+    public void EndGame(bool win)
+    {
+        ui.EndGame(win);
     }
 
     public void PauseGame(bool pause)

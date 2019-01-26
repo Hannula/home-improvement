@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public MainMenu mainMenu;
     public PauseMenu pauseMenu;
     public EventDialog eventDialog;
+    public GameOverScreen gameOverScreen;
 
     // Start is called before the first frame update
     private void Start()
@@ -22,11 +23,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowEventDialog(data.Event actionEvent)
     {
-        // TODO: Event class with event info.
-        // Display the event.
-
-        // Testing
-        eventDialog.SetupDialog(actionEvent);
+        eventDialog.ShowDialog(actionEvent);
         eventDialog.Activate(true);
     }
 
@@ -36,9 +33,22 @@ public class UIManager : MonoBehaviour
         // Display the result by using the EventDialog
     }
 
-    public void CloseMenus()
+    public void CloseDialogs()
+    {
+        eventDialog.Close();
+        //resultDialog.Close();
+    }
+
+    public void EndGame(bool win)
+    {
+        gameOverScreen.EndGame(win);
+    }
+
+    public void CloseScreens()
     {
         mainMenu.Activate(false);
         pauseMenu.Activate(false);
+        CloseDialogs();
+        gameOverScreen.Activate(false);
     }
 }

@@ -44,5 +44,9 @@ public class InputManager : MonoBehaviour
         {
             //GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
         }
+        else if (Input.GetKeyDown(KeyCode.End))
+        {
+            GameManager.Instance.EndGame(false);
+        }
     }
 }

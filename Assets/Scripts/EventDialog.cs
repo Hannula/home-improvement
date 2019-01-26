@@ -13,7 +13,7 @@ public class EventDialog : UIScreen
 
     public Text description;
     public EventButton[] buttons;
-    private data.Event actionEvent;
+    private Event actionEvent;
 
     // Start is called before the first frame update
     private void Start()
@@ -27,15 +27,22 @@ public class EventDialog : UIScreen
         
     }
 
-    public void SetupDialog(data.Event actionEvent)
+    public void ShowDialog(Event actionEvent)
     {
-        //Activate(true);
-        this.actionEvent = actionEvent;
-        description.text = actionEvent.Description;
-        DisplayButtons();
+        if (actionEvent != null)
+        {
+            this.actionEvent = actionEvent;
+            description.text = actionEvent.Description;
+            DisplayButtons();
+            Activate(true);
+        }
+        else
+        {
+            Debug.LogError("Event is null.");
+        }
     }
 
-    public void DisplayButtons()
+    private void DisplayButtons()
     {
         List<string> buttonNames = actionEvent.Choises.Keys.ToList();
         for (int i = 0; i < buttons.Length; i++)
@@ -50,5 +57,11 @@ public class EventDialog : UIScreen
                 buttons[i].Activate(false);
             }
         }
+    }
+
+    public void Close()
+    {
+        actionEvent = null;
+        Activate(false);
     }
 }
