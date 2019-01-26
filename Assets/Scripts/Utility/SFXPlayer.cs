@@ -10,23 +10,30 @@ using UnityEngine;
 // In our game, another Singleton object called GameManager handles
 // audio settings. You need to adjust this script a bit to fit your game.
 
-    /// <summary>
-    /// The sound effects' names
-    /// </summary>
-    public enum Sound
-    {
-        // NOTE:
-        // Sound clips must be assigned to SFXPlayer
-        // in this specific order for the right sound
-        // to be played at the right time
+/// <summary>
+/// The sound effects' names
+/// </summary>
+public enum Sound
+{
+    // NOTE:
+    // Sound clips must be assigned to SFXPlayer
+    // in this specific order for the right sound
+    // to be played at the right time
 
-        Alarm = 0,
-        GetRekt1 = 1,
-        GetRekt2 = 2,
-        Repair = 3,
-        Splat1 = 4,
-        Splat2 = 5
-    }
+    Alarm = 0,
+    GetRekt1 = 1,
+    GetRekt2 = 2,
+    Repair = 3,
+    Splat1 = 4,
+    Splat2 = 5,
+    Explosion1 = 6,
+    Explosion2 = 7,
+    Explosion3 = 8,
+    Explosion4 = 9,
+    Fireball1 = 10,
+    Fireball2 = 11,
+    Water = 12
+}
 
 public class SFXPlayer : MonoBehaviour
 {
@@ -184,11 +191,6 @@ public class SFXPlayer : MonoBehaviour
             // Returns any finished AudioSource to the pool to be used again
             ReturnFinishedAudioSrcsToPool();
         }
-    }
-
-    public void EmptyAudioSrcPool()
-    {
-        audioSrcPool.Clear();
     }
 
     /// <summary>

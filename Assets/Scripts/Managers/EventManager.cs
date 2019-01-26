@@ -46,7 +46,7 @@ public class EventManager : MonoBehaviour
                 eventActive = true;
                 currentNode = node;
                 ui.ShowEventDialog(node.Event);
-                SFXPlayer.Instance.Play(Sound.GetRekt2); // testing
+                SFXPlayer.Instance.Play(Sound.Alarm);
             }
         }
         else
