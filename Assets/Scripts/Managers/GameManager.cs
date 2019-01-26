@@ -42,7 +42,19 @@ public class GameManager : MonoBehaviour
     public EventManager eventManager;
     public FadeToColor fade;
     public string sceneToLoad;
+    public float gameSpeedModifier = 1f;
     public int score;
+
+    // Testing
+    public bool a;
+    public bool b;
+    public bool c;
+    public bool d;
+    public bool e;
+    public bool f;
+    public bool g;
+    public bool h;
+    public bool i;
 
     public Home home;
     public HomeData PlayerHome;
@@ -77,6 +89,21 @@ public class GameManager : MonoBehaviour
             else
             {
                 return Time.deltaTime;
+            }
+        }
+    }
+
+    public float DeltaTimeVariable
+    {
+        get
+        {
+            if (GamePaused)
+            {
+                return 0f;
+            }
+            else
+            {
+                return Time.deltaTime * gameSpeedModifier;
             }
         }
     }
@@ -122,6 +149,55 @@ public class GameManager : MonoBehaviour
         {
             UpdateSceneTransition();
         }
+        else
+        {
+            // Testing
+            if (a)
+            {
+                SFXPlayer.Instance.Play(Sound.Explosion1);
+                a = false;
+            }
+            if (b)
+            {
+                SFXPlayer.Instance.Play(Sound.Explosion2);
+                b = false;
+            }
+            if (c)
+            {
+                SFXPlayer.Instance.Play(Sound.Explosion3);
+                c = false;
+            }
+            if (d)
+            {
+                SFXPlayer.Instance.Play(Sound.Explosion4);
+                d = false;
+            }
+            if (e)
+            {
+                SFXPlayer.Instance.Play(Sound.Fireball1);
+                e = false;
+            }
+            if (f)
+            {
+                SFXPlayer.Instance.Play(Sound.Fireball2);
+                f = false;
+            }
+            if (g)
+            {
+                SFXPlayer.Instance.Play(Sound.Water);
+                g = false;
+            }
+            if (h)
+            {
+                SFXPlayer.Instance.Play(Sound.Splat1);
+                h = false;
+            }
+            if (i)
+            {
+                SFXPlayer.Instance.Play(Sound.Splat2);
+                i = false;
+            }
+        }
     }
 
     #region SceneManagement
@@ -134,7 +210,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        SFXPlayer.Instance.EmptyAudioSrcPool();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -208,10 +283,9 @@ public class GameManager : MonoBehaviour
 
         Transition = SceneTransition.EnteringScene;
         InitScene();
-        //ui.CloseMenus();
         fade.StartFadeIn(false);
 
-        //SFXPlayer.Instance.InitAudioSrcPool();
+        SFXPlayer.Instance.InitAudioSrcPool();
 
         switch (State)
         {
