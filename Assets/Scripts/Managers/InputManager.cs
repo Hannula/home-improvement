@@ -13,7 +13,16 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        GameInput();
         DebugInput();
+    }
+
+    private void GameInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
+        }
     }
 
     private void DebugInput()
