@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using data;
+
+using Event = data.Event;
 
 public class EventDialog : UIScreen
 {
