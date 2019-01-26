@@ -20,7 +20,7 @@ namespace data
 
     public class Event
     {
-        public string Description = "You encountered enemy!";
+        public string Description = "[DEFAULT]";
         public Dictionary<string, Action> Choises = new Dictionary<string, Action>();
     }
 

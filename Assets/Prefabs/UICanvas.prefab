@@ -1337,8 +1337,8 @@ MonoBehaviour:
   screenCoverImage: {fileID: 329828775538159052}
   _color: {r: 0, g: 0, b: 0, a: 1}
   _altColor: {r: 1, g: 0, b: 0, a: 1}
-  _fadeOutTime: 0.5
-  _fadeInTime: 0.5
+  _fadeOutTime: 0.25
+  _fadeInTime: 0.25
 --- !u!223 &2924821164349775845
 Canvas:
   m_ObjectHideFlags: 0

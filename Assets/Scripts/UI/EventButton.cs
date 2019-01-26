@@ -38,7 +38,8 @@ public class EventButton : MonoBehaviour
             {
                 case Action.Fight:
                 {
-                    // TODO: Start fighting.
+                    GameManager.Instance.LoadBattleScene();
+                    GameManager.Instance.eventManager.EndEvent(true);
                     break;
                 }
                 case Action.Loot:

@@ -11,7 +11,7 @@ public class Home : MonoBehaviour
 
     public HomeData homeData;
 
-    public void Awake()
+    public void Init()
     {
         if (PlayerHome)
         {
