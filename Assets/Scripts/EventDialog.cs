@@ -13,7 +13,7 @@ public class EventDialog : UIScreen
 
     public Text description;
     public EventButton[] buttons;
-    private Event actionEvent;
+    private data.Event actionEvent;
 
     // Start is called before the first frame update
     private void Start()
@@ -27,7 +27,7 @@ public class EventDialog : UIScreen
         
     }
 
-    public void SetupDialog(Event actionEvent)
+    public void SetupDialog(data.Event actionEvent)
     {
         //Activate(true);
         this.actionEvent = actionEvent;
