@@ -34,7 +34,8 @@ public class SelectionManager : MonoBehaviour
 
     public void Update()
     {
-        if (!GameManager.Instance.GamePaused
+        if (GameManager.Instance.ActiveGame
+            && !GameManager.Instance.eventManager.eventActive
             && Input.GetButtonDown("MouseLeftClick"))
         {
             SelectableItem previousSelected = selectedItem;
