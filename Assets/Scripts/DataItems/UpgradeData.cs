@@ -11,6 +11,8 @@ public class UpgradeData {
     public TargetingModule TargetingModule;
     public BonusModule BonusModule;
 
+    public List<StatBonus> BaseDamage;
+
     public Color GetColor()
     {
         Color col = Color.white;

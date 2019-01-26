@@ -322,8 +322,9 @@ public class GameManager : MonoBehaviour
     private void StartNewGame()
     {
         Debug.Log("New game started");
-        PlayerHome = HomeData.GenerateRandom(2, 3, 15);
+        PlayerHome = HomeData.GenerateRandom(2,3,50);
         home.Init(PlayerHome);
+
         Inventory = new List<HomeUpgrade>(20);
         for(int i = 0; i < 20; i++)
         {
