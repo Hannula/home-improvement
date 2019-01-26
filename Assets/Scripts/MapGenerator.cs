@@ -142,7 +142,8 @@ public class MapGenerator
 
     private void addToAreaToNodeMapping(int area, Node node)
     {
-        if (!AreaToNodeMapping.TryGetValue(area, out List<Node> list))
+        List<Node> list = new List<Node>();
+        if (!AreaToNodeMapping.TryGetValue(area, out list))
         {
             list = new List<Node>();
             AreaToNodeMapping.Add(area, list);
