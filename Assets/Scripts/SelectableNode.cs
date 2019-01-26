@@ -23,7 +23,14 @@ public class SelectableNode : SelectableItem
     // Only when selected the first time
     public override void OnSelect()
     {
-        eventManager.StartEvent(node);
+        if (node != null)
+        {
+            eventManager.StartEvent(node);
+        }
+        else
+        {
+            Debug.LogError("This node does not contain any data.");
+        }
     }
 
     public override void OnUnselect()

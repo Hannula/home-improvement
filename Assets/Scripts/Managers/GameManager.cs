@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public UIManager ui;
     public FadeToColor fade;
     public string sceneToLoad;
+    public int score;
 
     public HomeData PlayerHome;
 
@@ -230,6 +231,11 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.MainMenu;
         LoadScene(GameState.MainMenu);
+    }
+
+    public void EndGame(bool win)
+    {
+        ui.EndGame(win);
     }
 
     public void PauseGame(bool pause)
