@@ -22,13 +22,6 @@ public class FloorData
         Health = health;
         Resistances = new Dictionary<DamageTypes, int>();
         Type = Utilities.UtilityFunctions.GetRandomElement(ContentManager.Instance.FloorTypes);
-        for (int i = 0; i < 4; i++)
-        {
-            if (Random.Range(0, 10) < 8)
-            {
-                HomeUpgrades[i] = new HomeUpgrade(Utilities.UtilityFunctions.GetRandomElement(ContentManager.Instance.Upgrades));
-            }
-        }
         UpdateStats();
     }
 

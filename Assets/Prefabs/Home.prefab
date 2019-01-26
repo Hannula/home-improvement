@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ed9a888b90df4f861e1c6525cba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHome: 0
+  PlayerHome: 1
   FloorPrefab: {fileID: 4479014734007828470, guid: 5d0079b7487bf004b91e55e2ce0702cf,
     type: 3}
   Floors: []

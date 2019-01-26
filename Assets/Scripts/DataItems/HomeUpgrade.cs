@@ -14,6 +14,13 @@ public class HomeUpgrade
         UpdateBonuses();
     }
 
+    public HomeUpgrade(UpgradeData upgrade, ModifierData mod)
+    {
+        UpgradeData = upgrade;
+        ModifierData = mod;
+        UpdateBonuses();
+    }
+
     public void UpdateBonuses()
     {
         if (ModifierData != null)

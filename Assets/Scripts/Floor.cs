@@ -31,6 +31,8 @@ public class Floor : SelectableItem
         for(int i = 0; i < FloorData.HomeUpgrades.Length; i++)
         {
             UpgradeSlots[i].HomeUpgrade = FloorData.HomeUpgrades[i];
+            UpgradeSlots[i].ParentFloor = this;
+            UpgradeSlots[i].ParentFloorSlotIndex = i;
         }
     }
 
