@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorData
 {
-    public Sprite BackgroundImage;
+    public FloorType Type;
     public int Health;
     public Dictionary<DamageTypes, int> Resistances;
 
@@ -12,6 +12,7 @@ public class FloorData
     {
         Health = health;
         Resistances = new Dictionary<DamageTypes, int>();
+        Type = Utilities.UtilityFunctions.GetRandomElement(ContentManager.Instance.FloorTypes);
     }
 
     public void SetResistance(DamageTypes damageType, int resistance)

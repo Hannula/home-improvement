@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    public Sprite BackgroundImage;
+    public SpriteRenderer BackgroundImage;
     public List<Transform> FurnitureSlots;
+    public FloorData Data;
 
     void Start()
     {
-        
+        BackgroundImage.sprite = Data.Type.BackgroundImage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
