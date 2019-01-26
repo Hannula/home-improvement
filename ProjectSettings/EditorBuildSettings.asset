@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 28a88a892a7a1c34fac320177faf5aff
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity
-    guid: f932ae784dd53e245a1a36a8dc76d32d
+    guid: 49d83d1344679eb47b561e2d9e004c57
   - enabled: 1
     path: Assets/Scenes/LauriScene.unity
     guid: b125bedb5ec3ee64a8fdf47174f3c56e
