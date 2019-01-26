@@ -32,7 +32,8 @@ public class InputManager : MonoBehaviour
 
     private void GameInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) &&
+            !GameManager.Instance.eventManager.eventActive)
         {
             GameManager.Instance.PauseGame(!GameManager.Instance.GamePaused);
         }
@@ -40,9 +41,9 @@ public class InputManager : MonoBehaviour
 
     private void DebugInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Home))
         {
-            //GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
+            GameManager.Instance.eventManager.EndEvent(true);
         }
         else if (Input.GetKeyDown(KeyCode.End))
         {
