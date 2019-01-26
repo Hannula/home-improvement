@@ -9,10 +9,12 @@ public class UIManager : MonoBehaviour
     public EventDialog eventDialog;
     public GameOverScreen gameOverScreen;
 
+    private EventManager eventManager;
+
     // Start is called before the first frame update
     private void Start()
     {
-        // TODO
+        eventDialog.Init();
     }
 
     // Update is called once per frame
@@ -21,21 +23,25 @@ public class UIManager : MonoBehaviour
         // TODO
     }
 
+    public void SetEventManager(EventManager eventManager)
+    {
+        this.eventManager = eventManager;
+    }
+
     public void ShowEventDialog(data.Event actionEvent)
     {
-        eventDialog.ShowDialog(actionEvent);
-        eventDialog.Activate(true);
+        eventDialog.ShowEvent(actionEvent);
     }
 
     public void ShowResultDialog()
     {
-        // TODO: Result class with result info.
-        // Display the result by using the EventDialog
+        string confirmText = "OK";
+        eventDialog.ShowResults(confirmText);
     }
 
     public void CloseDialogs()
     {
-        eventDialog.Close();
+        eventManager.EndEvent(true);
         //resultDialog.Close();
     }
 

@@ -45,7 +45,7 @@ public class SelectionManager : MonoBehaviour
             }
             if (hoveringItem)
             {
-                if (previousSelected == hoveringItem)
+                if (previousSelected != hoveringItem)
                 {
                     hoveringItem.OnSelect();
                 }

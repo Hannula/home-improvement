@@ -15,10 +15,13 @@ public class EventDialog : UIScreen
     public EventButton[] buttons;
     private Event actionEvent;
 
-    // Start is called before the first frame update
-    private void Start()
+    public void Init()
     {
         buttons = GetComponentsInChildren<EventButton>();
+        foreach (EventButton button in buttons)
+        {
+            button.Init();
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class EventDialog : UIScreen
         
     }
 
-    public void ShowDialog(Event actionEvent)
+    public void ShowEvent(Event actionEvent)
     {
         if (actionEvent != null)
         {
@@ -38,7 +41,21 @@ public class EventDialog : UIScreen
         }
         else
         {
-            Debug.LogError("Event is null.");
+            Debug.LogError("Can't show event, it is null.");
+        }
+    }
+
+    public void ShowResults(string confirmText)
+    {
+        if (actionEvent != null)
+        {
+            description.text = actionEvent.Description;
+            DisplayConfirmButton(confirmText);
+            Activate(true);
+        }
+        else
+        {
+            Debug.LogError("Can't show results, Event is null.");
         }
     }
 
@@ -49,7 +66,23 @@ public class EventDialog : UIScreen
         {
             if (i < buttonNames.Count)
             {
-                buttons[i].title = buttonNames[i];
+                buttons[i].InitEvent(buttonNames[i], actionEvent.Choises[buttonNames[i]]);
+                buttons[i].Activate(true);
+            }
+            else
+            {
+                buttons[i].Activate(false);
+            }
+        }
+    }
+
+    private void DisplayConfirmButton(string buttonText)
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (i == 0)
+            {
+                buttons[i].InitResults(buttonText);
                 buttons[i].Activate(true);
             }
             else
