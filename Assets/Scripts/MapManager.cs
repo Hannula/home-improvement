@@ -22,6 +22,8 @@ public class MapManager : MonoBehaviour
 
     public int screenWidth = 640;
 
+    public Node currentNode;
+
     void Start()
     {
         var mapTexture = GameObject.Find("MapArea").GetComponent<SpriteRenderer>().sprite.texture;
@@ -29,8 +31,10 @@ public class MapManager : MonoBehaviour
         mapWidth = mapTexture.width;
         mapHeight = mapTexture.height;
 
-        // mapWidth = screenWidth - (homeAreaTexture * 32) as int;
-        Debug.Log(homeAreaTexture);
+        var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
+        mapWidth = screenWidth - homeAreaWidthPixels;
+
+        Debug.Log(mapWidth);
 
         mapGenerator.Generate();
         Nodes = mapGenerator.AllNodes;
@@ -45,7 +49,7 @@ public class MapManager : MonoBehaviour
             foreach (var node in nodesInThisArea)
             {
                 areaNodeCounter += 1;
-                var offset = rand.Next(16, 32);
+                var offset = rand.Next(16, 24);
                 offset = rand.Next(1) == 1 ? offset : -offset;
                 var go = GameObject.Find("MapArea").transform;
 
@@ -56,7 +60,7 @@ public class MapManager : MonoBehaviour
                 float yPosition = mapHeight / nodesInThisArea.Count() / 2 * areaNodeCounter + offset;
 
 
-                xPosition = xPosition - mapWidth/2 + homeAreaTexture;
+                xPosition = xPosition - mapWidth/2 + homeAreaWidthPixels/2;
                 yPosition = yPosition - mapHeight/2/2;
 
                 // Pixel space to screen space
@@ -73,16 +77,29 @@ public class MapManager : MonoBehaviour
             }
         }
 
+        currentNode = mapGenerator.HomeNode;
+
+
         foreach (var kvp in NodeMapping)
         {
-            var linerenderer = kvp.Value.GetComponent<LineRenderer>();
             var neighbourPositions = kvp.Key.Neighbours.Select(n => n.Position).ToArray();
-            linerenderer.SetPositions(neighbourPositions);
-            linerenderer.startColor = Color.white;
-            linerenderer.endColor = Color.white;
+            foreach (var pos in neighbourPositions)
+            {
+                var s = new GameObject();
+                s.transform.position = kvp.Value.transform.position;
+                lineObjects.Add(s);
+                var linerenderer = s.AddComponent<LineRenderer>();
+                linerenderer.startColor = Color.white;
+                linerenderer.endColor = Color.white;
+                linerenderer.widthMultiplier = 0.04f;
+                linerenderer.material = lineMaterial;
+                linerenderer.SetPosition(0, kvp.Value.transform.position);
+                linerenderer.SetPosition(1, pos);
+                Debug.Log(pos);
+            }
 
-            linerenderer.widthMultiplier = 0.07f;
             drawCircle(kvp.Value);
+            Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
         }
 
         foreach (var node in Nodes)
@@ -90,6 +107,7 @@ public class MapManager : MonoBehaviour
             //Debug.Log(string.Format("NodeId: {0}, NodeArea:{1}, Connecting to: {2}", node.id, node.Area, string.Join(", ", node.Neighbours.Select(n => string.Format("Id:{0} Area:{1}", n.id, n.Area)))));
 
         }
+
     }
 
     // Update is called once per frame
@@ -97,21 +115,30 @@ public class MapManager : MonoBehaviour
     {
         
     }
-    public int segments = 25;
-    public int radius = 2;
+
+    private List<GameObject> lineObjects = new List<GameObject>();
 
     private void drawCircle(GameObject go)
     {
-        int segments = 50;
-        float radius = 0.5f;
+        int segments = 25;
+        float radius = 0.25f;
 
+        
 
         var s = new GameObject();
         s.transform.position = go.transform.position;
+        lineObjects.Add(s);
         var linerenderer = s.AddComponent<LineRenderer>();
-        linerenderer.startColor = Color.white;
-        linerenderer.endColor = Color.white;
-        linerenderer.widthMultiplier = 0.07f;
+        linerenderer.startColor = Color.red;
+        linerenderer.endColor = Color.red;
+        linerenderer.widthMultiplier = 0.04f;
+
+        if (go == NodeMapping[currentNode])
+        {
+            radius = 0.4f;
+            linerenderer.widthMultiplier = 0.07f;
+        }
+
         linerenderer.material = lineMaterial;
 
         linerenderer.positionCount = segments + 1;

@@ -66,7 +66,7 @@ public class MapGenerator
             throw new System.Exception($"Too many nodes: {nodesInTheMiddle}, Think more Count of areas in MapGenerator");
         }
 
-        var nodeIDCounter = 0;
+        var nodeIDCounter = 1;
 
         var home = new Node();
         home.Area = 1;
@@ -98,6 +98,10 @@ public class MapGenerator
             lastNode.Neighbours.Add(node);
             node.Neighbours.Add(lastNode);
             AllNodes.Add(node);
+            Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} ", node.id, node.Area, lastNode.id, lastNode.Area));
+
+            lastNode = node;
+
             // Debug.Log("Adding node to area:" + node.Area);
             // Last one, combine with goal node
             if (areaIter + 1 == totalCountOfAreas)
@@ -125,6 +129,7 @@ public class MapGenerator
                 toSkip = rand.Next(0, nodesInRight.Count());
                 var connectToRight = nodesInRight.Skip(toSkip).Take(1).First();
 
+
                 var node = GenerateRandomNode();
                 node.id = nodeIDCounter++;
                 node.Area = randomNumber;
@@ -135,6 +140,8 @@ public class MapGenerator
 
                 node.Neighbours.Add(connectToRight);
                 connectToRight.Neighbours.Add(node);
+
+                Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} And connecting from right id: {4}, Area: {5}", node.id, node.Area, connectToLeft.id, connectToLeft.Area, connectToRight.id, connectToRight.Area));
 
                 AllNodes.Add(node);
             }
