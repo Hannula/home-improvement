@@ -166,7 +166,8 @@ public class SFXPlayer : MonoBehaviour
     /// <returns>an AudioSource</returns>
     private AudioSource CreateNewAudioSrc()
     {
-        AudioSource audioSrc = new GameObject().AddComponent<AudioSource>();
+        AudioSource audioSrc = new GameObject("AudioSource").
+            AddComponent<AudioSource>();
         audioSrc.playOnAwake = false;
         audioSrc.transform.position = transform.position;
         audioSrcPool.Add(audioSrc);
