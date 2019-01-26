@@ -8,6 +8,8 @@ public class ContentManager : MonoBehaviour
 
     public List<UpgradeData> Upgrades;
 
+    public List<ModifierData> Modifiers;
+
     public List<FloorType> FloorTypes;
 
     void Awake()

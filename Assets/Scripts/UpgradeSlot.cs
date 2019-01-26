@@ -14,6 +14,14 @@ public class UpgradeSlot : SelectableItem
     public Color HoverColor;
     public Color FilledColor;
 
+    private bool previouslyHovered;
+    private InventoryManager inventoryManager;
+
+    public void Start()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
+
     public void Update()
     {
         if (HomeUpgrade != null && HomeUpgrade.UpgradeData != null)
@@ -31,11 +39,29 @@ public class UpgradeSlot : SelectableItem
         }
         if (HoveringOver)
         {
+            if (previouslyHovered == false)
+            {
+                ShowInfo();
+            }
             BackgroundSpriteRenderer.color = HoverColor;
+            previouslyHovered = true;
+        }
+        else
+        {
+            previouslyHovered = false;
         }
         if (Selected)
         {
             BackgroundSpriteRenderer.color = SelectedColor;
+        }
+
+    }
+
+    public void ShowInfo()
+    {
+        if (inventoryManager && HomeUpgrade != null)
+        {
+            inventoryManager.SetItemInfo(HomeUpgrade.GetName(), HomeUpgrade.GetDescription());
         }
     }
 
