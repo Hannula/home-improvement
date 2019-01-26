@@ -45,6 +45,7 @@ public class MapManager : MonoBehaviour
 
         var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
         mapWidth = screenWidth - homeAreaWidthPixels;
+        Debug.Log(mapWidth);
 
         // Debug.Log(mapWidth);
 
