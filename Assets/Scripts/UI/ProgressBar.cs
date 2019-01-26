@@ -7,6 +7,8 @@ public class ProgressBar : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float progress = 1f;
 
+    public Color fullColor = new Color(0.13f, 0.73f, 0.14f);
+    public Color notFullColor = new Color(0.72f, 0.14f, 0.14f);
     public float minScale;
     public float maxScale;
     public bool horizontal = true;
@@ -26,7 +28,7 @@ public class ProgressBar : MonoBehaviour
         startPosition = bar.transform.position;
         if (horizontal)
         {
-            startPosition.x += (reverse? 0.5f : -0.5f) * barSpriteRend.bounds.size.x;
+            startPosition.x += (reverse ? 0.5f : -0.5f) * barSpriteRend.bounds.size.x;
         }
         else
         {
@@ -63,5 +65,14 @@ public class ProgressBar : MonoBehaviour
         }
 
         bar.transform.position = startPosition + GetDifferenceFromStartToCurrPos();
+
+        if (progress == 1f)
+        {
+            barSpriteRend.color = fullColor;
+        }
+        else
+        {
+            barSpriteRend.color = notFullColor;
+        }
     }
 }
