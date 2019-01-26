@@ -24,7 +24,10 @@ public class HomeData
         List<FloorData> floorDataList = new List<FloorData>();
         for(int i = 0; i < floors; i++)
         {
-            FloorData floorData = new FloorData(25);
+            FloorData floorData = new FloorData(
+                ContentManager.Instance.GetRandomFloorType(Random.Range((int)1, (int)maxTier)),
+                ContentManager.Instance.GetRandomWallType(Random.Range((int)1, (int)maxTier))
+                );
             for (int j = 0; j < 4; j++)
             {
                 if (Random.Range(0, 100) < roomChance)

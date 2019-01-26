@@ -66,45 +66,41 @@ public class HomeUpgrade
         string desc = "";
         if (UpgradeData.IsWeapon)
         {
-            desc += "<color=#ffffff>" + UpgradeData.TargetingModule.ReloadTime + "s Reload Time</color>, ";
+            desc += "<color=#ffffff>" + UpgradeData.TargetingModule.ReloadTime + "s Reload</color>, ";
             switch (UpgradeData.TargetingModule.TargetingType)
             {
-                case TargetTypes.Same: {
-                        desc += "<color=#14ff14> Target current floor, </color>, ";
-                        break;
-                    }
-                case TargetTypes.Bottom:
+                    case TargetTypes.Bottom:
                     {
-                        desc += "<color=#14ff14> Target bottom floor, </color>, ";
+                        desc += "<color=#14ff14> Target bottom floor</color>, ";
                         break;
                     }
                 case TargetTypes.Top:
                     {
-                        desc += "<color=#14ff14> Target top floor, </color>, ";
+                        desc += "<color=#14ff14> Target top floor</color>, ";
                         break;
                     }
             }
-            string floorsText = "<color=#214aff>Shoots at floors</color> <color=#ffffff>";
+            string floorsText = "<color=#214aff>Shoots at floors</color> <color=#ffffff>[";
             foreach(int i in UpgradeData.TargetingModule.Targets)
             {
                 floorsText += i + " ";
             }
             if (UpgradeData.TargetingModule.Targets.Count > 0)
             {
-                desc += floorsText + "</color>, ";
+                desc += floorsText + "]</color>, ";
             }
 
-            string randomFloorsText = "<color=#214aff>Shoots randomly at floors</color> <color=#ffe36b>";
+            string randomFloorsText = "<color=#214aff>Shoots</color> <color=#ffffff>" + UpgradeData.TargetingModule.RandomHits + "</color> <color=#214aff> times  randomly at floors</color> <color=#ffe36b>[";
             foreach (int i in UpgradeData.TargetingModule.RandomTargets)
             {
                 randomFloorsText += i + " ";
             }
             if (UpgradeData.TargetingModule.RandomTargets.Count > 0)
             {
-                desc += randomFloorsText + "</color>, ";
+                desc += randomFloorsText + "]</color>, ";
             }
 
-            desc += "<color=#214aff>" + UpgradeData.TargetingModule.HitChance + " Hit %</color>, ";
+            desc += "<color=#ffffff>" + UpgradeData.TargetingModule.HitChance + "</color> <color=#214aff>Hit %</color>, ";
             desc += "\n";
         }
 

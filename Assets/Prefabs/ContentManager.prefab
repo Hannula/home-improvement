@@ -64,11 +64,40 @@ MonoBehaviour:
         Bonus: 2
       - DamageType: 4
         Bonus: -1
+      GlobalDamageBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 3
+      Bonus: 4
+  - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Get Rekt Horn
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 12
+      TargetingType: 1
+      Targets: ffffffff0000000001000000
+      RandomTargets: ffffffff01000000
+      RandomHits: 1
+      CanMiss: 1
+      HitChance: 75
+    BonusModule:
+      ComfortBonus: -2
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 2
+      Bonus: 5
   - Image: {fileID: 21300000, guid: db70d07d7e9d2024b85c377edbac0efb, type: 3}
     Name: Bunk Bed
     Tier: 1
@@ -96,9 +125,10 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    BaseDamage: []
   Modifiers:
   - Name: Awesome
-    BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 0}
+    BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 4
@@ -110,7 +140,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Fragrant
-    BlendColor: {r: 1, g: 0.72066885, b: 0.6084906, a: 0}
+    BlendColor: {r: 1, g: 0.72066885, b: 0.6084906, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 4
@@ -124,7 +154,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Plastic
-    BlendColor: {r: 0.7783019, g: 0.9707525, b: 1, a: 0}
+    BlendColor: {r: 0.7961797, g: 0.8207547, b: 0.70848167, a: 0.9098039}
     Tier: 1
     BonusModule:
       ComfortBonus: -1
@@ -138,7 +168,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Nice Wooden
-    BlendColor: {r: 0.6037736, g: 0.3227056, b: 0.20790316, a: 0}
+    BlendColor: {r: 0.6037736, g: 0.3227056, b: 0.20790316, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 5
@@ -152,7 +182,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Soothing
-    BlendColor: {r: 1, g: 1, b: 1, a: 0}
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 1
@@ -166,7 +196,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Nice
-    BlendColor: {r: 1, g: 1, b: 1, a: 0}
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 4
@@ -192,7 +222,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Antique
-    BlendColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 0}
+    BlendColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 5
@@ -206,7 +236,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Nifty
-    BlendColor: {r: 0.7429245, g: 0.990566, b: 0.9719001, a: 0}
+    BlendColor: {r: 0.79552335, g: 0.9528302, b: 0.9405406, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 0
@@ -218,7 +248,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Tough
-    BlendColor: {r: 0.8113208, g: 0.66187704, b: 0.60083663, a: 0}
+    BlendColor: {r: 0.8113208, g: 0.66187704, b: 0.60083663, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: -1
@@ -234,7 +264,7 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Absorbent
-    BlendColor: {r: 0.88724667, g: 0.9245283, b: 0.31835172, a: 0}
+    BlendColor: {r: 0.88724667, g: 0.9245283, b: 0.31835172, a: 1}
     Tier: 1
     BonusModule:
       ComfortBonus: 1
@@ -249,16 +279,141 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+  - Name: Glass
+    BlendColor: {r: 0.5707102, g: 0.8892025, b: 0.8962264, a: 0.7764706}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 1
+      StenchRemovalBonus: 1
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 3
+      - DamageType: 4
+        Bonus: 1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  WallTypes:
+  - Name: Concrete Wall
+    BackgroundImage: {fileID: 21300000, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 20
+    ComfortBonus: -10
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 4
+      - DamageType: 1
+        Bonus: 3
+      - DamageType: 3
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 1
+  - Name: Wooden Wall
+    BackgroundImage: {fileID: 21300002, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 5
+    ComfortBonus: 15
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 2
+      - DamageType: 1
+        Bonus: -1
+      - DamageType: 2
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 1
+  - Name: Brick Wall
+    BackgroundImage: {fileID: 21300004, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 15
+    ComfortBonus: 0
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 3
+      - DamageType: 1
+        Bonus: 4
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 1
+  - Name: Stone Wall
+    BackgroundImage: {fileID: 21300006, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 30
+    ComfortBonus: 10
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 5
+      - DamageType: 3
+        Bonus: 2
+      - DamageType: 2
+        Bonus: -2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 1
   FloorTypes:
   - Name: Bathroom
     BackgroundImage: {fileID: 21300000, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
-    BaseHealth: 5
+    BaseHealth: 50
+    BaseComfort: 20
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
     Tier: 1
   - Name: Living Room
     BackgroundImage: {fileID: 21300002, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
-    BaseHealth: 3
+    BaseHealth: 35
+    BaseComfort: 35
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
     Tier: 1
   - Name: Granny Room
     BackgroundImage: {fileID: 21300004, guid: 5aef02f256cec2b4d848f9d0c4b74b9a, type: 3}
-    BaseHealth: 2
+    BaseHealth: 20
+    BaseComfort: 50
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
     Tier: 1

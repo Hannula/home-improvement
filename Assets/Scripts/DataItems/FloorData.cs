@@ -5,6 +5,7 @@ using UnityEngine;
 public class FloorData
 {
     public FloorType Type;
+    public WallType WallType;
     public int Health;
     public HomeUpgrade[] HomeUpgrades;
     public Dictionary<DamageTypes, int> Resistances;
@@ -16,22 +17,23 @@ public class FloorData
     public int GlobalRandomHitsBonus;
     public List<int> GlobalRandomHits;
 
-    public FloorData(int health)
+    public FloorData(FloorType floorType, WallType wallType)
     {
         HomeUpgrades = new HomeUpgrade[4];
-        Health = health;
+        Type = floorType;
+        WallType = wallType;
+        Health = floorType.BaseHealth + wallType.HealthBonus;
         Resistances = new Dictionary<DamageTypes, int>();
-        Type = Utilities.UtilityFunctions.GetRandomElement(ContentManager.Instance.FloorTypes);
         UpdateStats();
     }
 
     public void UpdateStats()
     {
-        Comfort = 0;
-        StenchRemovalBonus = 0;
-        GlobalReloadSpeedBonus = 0;
-        GlobalHitChanceBonus = 0;
-        GlobalRandomHitsBonus = 0;
+        Comfort = Type.BaseComfort + WallType.ComfortBonus + Type.Bonuses.ComfortBonus + WallType.Bonuses.ComfortBonus; ;
+        StenchRemovalBonus = Type.Bonuses.StenchRemovalBonus + WallType.Bonuses.StenchRemovalBonus;
+        GlobalReloadSpeedBonus = Type.Bonuses.GlobalReloadSpeedBonus + WallType.Bonuses.GlobalReloadSpeedBonus;
+        GlobalHitChanceBonus =  Type.Bonuses.GlobalHitChanceBonus + WallType.Bonuses.GlobalHitChanceBonus; ;
+        GlobalRandomHitsBonus =  Type.Bonuses.GlobalRandomHitsBonus + WallType.Bonuses.GlobalRandomHitsBonus; ;
         GlobalRandomHits = new List<int>();
 
         Resistances.Clear();
