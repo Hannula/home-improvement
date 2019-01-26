@@ -40,24 +40,25 @@ public class MapGenerator
     public Node HomeNode;
     public Node GoalNode;
 
-    public int NodeCount = 10;
+    public int NodeCount;
     public int totalCountOfAreas = 0;
 
     private System.Random rand = new System.Random();
 
     public void Generate()
     {
+        NodeCount = rand.Next(8, 16);
         // Remove start and end
         var nodesInTheMiddle = NodeCount - 2;
         if (nodesInTheMiddle <= 2)
         {
             totalCountOfAreas = 3;
         }
-        else if (nodesInTheMiddle > 2 && nodesInTheMiddle <= 5)
+        else if (nodesInTheMiddle > 2 && nodesInTheMiddle <= 6)
         {
             totalCountOfAreas = 4;
         }
-        else if (nodesInTheMiddle > 5 && nodesInTheMiddle <= 9)
+        else if (nodesInTheMiddle > 6 && nodesInTheMiddle <= 16)
         {
             totalCountOfAreas = 5;
         }
@@ -118,7 +119,7 @@ public class MapGenerator
             var areaCounts = AllNodes.Select(s => s).ToList();
             var randomNumber = rand.Next(2, totalCountOfAreas);
 
-            if (AreaToNodeMapping[randomNumber].Count() < 3)
+            if (AreaToNodeMapping[randomNumber].Count() < 5)
             {
                 // Find node in area left to this node and choose random of them to connect to
                 var nodesInLeft = AreaToNodeMapping[randomNumber - 1];
