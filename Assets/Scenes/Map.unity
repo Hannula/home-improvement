@@ -322,6 +322,7 @@ MonoBehaviour:
   NodeGameObjects: []
   nodePrefab: {fileID: 3408359815356989544, guid: c5d6da33d2548be468c5357ce1be4a0b,
     type: 3}
+  lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   screenWidth: 640
   segments: 50
   radius: 5
