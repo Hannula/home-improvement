@@ -216,6 +216,18 @@ public class GameManager : MonoBehaviour
         ReturnToMapScene();
     }
 
+    public void StartEvent(data.Event actionEvent)
+    {
+        if (State == GameState.Map)
+        {
+            ui.ShowEventDialog(actionEvent);
+        }
+        else
+        {
+            Debug.LogError("Events can only happen in the Map screen.");
+        }
+    }
+
     private void StartBattle()
     {
         // TODO: Add battle starting stuff here.

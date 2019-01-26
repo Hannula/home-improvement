@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
+            //GameManager.Instance.ui.ShowEventDialog(!GameManager.Instance.ui.eventDialog.active);
         }
     }
 
