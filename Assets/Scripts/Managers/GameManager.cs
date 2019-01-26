@@ -44,9 +44,11 @@ public class GameManager : MonoBehaviour
     public string sceneToLoad;
     public int score;
 
+    public Home home;
     public HomeData PlayerHome;
 
     private bool gameJustStarted = true;
+    private bool gameRunning;
 
     public GameState State { get; private set; }
 
@@ -85,11 +87,6 @@ public class GameManager : MonoBehaviour
         Init();
     }
 
-    private void Start()
-    {
-        PlayerHome = new HomeData(new FloorData(5), new FloorData(5), new FloorData(5), new FloorData(5));
-    }
-
     private void Init()
     {
         State = GameState.MainMenu;
@@ -104,6 +101,7 @@ public class GameManager : MonoBehaviour
     {
         ui = FindObjectOfType<UIManager>();
         fade = FindObjectOfType<FadeToColor>();
+        home = FindObjectOfType<Home>();
     }
 
     // Update is called once per frame
@@ -125,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        SFXPlayer.Instance.EmptyAudioSrcPool();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -157,6 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNewGame()
     {
+        gameRunning = false;
         State = GameState.Map;
         LoadScene(GameState.Map);
     }
@@ -200,16 +200,30 @@ public class GameManager : MonoBehaviour
         //ui.CloseMenus();
         fade.StartFadeIn(false);
 
+        //SFXPlayer.Instance.InitAudioSrcPool();
+
         switch (State)
         {
             case GameState.MainMenu:
             {
                 ui.mainMenu.Activate(true);
+                MusicPlayer.Instance.Play(1);
                 break;
             }
             case GameState.Map:
             {
+                if (!gameRunning)
+                {
+                    StartNewGame();
+                }
+
                 eventManager = new GameObject("EventManager").AddComponent<EventManager>();
+                MusicPlayer.Instance.Play(1);
+                break;
+            }
+            case GameState.Battle:
+            {
+                MusicPlayer.Instance.Play(0);
                 break;
             }
         }
@@ -219,8 +233,11 @@ public class GameManager : MonoBehaviour
 
     private void StartNewGame()
     {
-        // TODO: Add new game starting stuff here.
-        ReturnToMapScene();
+        Debug.Log("New game started");
+        PlayerHome = new HomeData(new FloorData(5), new FloorData(5), new FloorData(5), new FloorData(5));
+        home.Init();
+        GoToMapScene();
+        gameRunning = true;
     }
 
     private void StartBattle()
@@ -228,7 +245,7 @@ public class GameManager : MonoBehaviour
         // TODO: Add battle starting stuff here.
     }
 
-    private void ReturnToMapScene()
+    private void GoToMapScene()
     {
         // TODO: Add map scene starting stuff here.
     }
@@ -241,6 +258,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(bool win)
     {
+        gameRunning = false;
         ui.EndGame(win);
     }
 
