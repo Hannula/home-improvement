@@ -1,36 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class MapGenerator
 {
-    public List<Node> AllNodes;
+    public List<Node> AllNodes = new List<Node>();
     public Node HomeNode;
     public Node GoalNode;
 
     public int NodeCount = 10;
 
-    private Random rand;
+    private System.Random rand = new System.Random();
 
-    public MapGenerator()
+    public void Generate()
     {
+        // Remove start and end
         var nodesInTheMiddle = NodeCount - 2;
         int totalCountOfAreas;
         if (nodesInTheMiddle <= 2)
         {
             totalCountOfAreas = 3;
         }
-        else if (nodesInTheMiddle > 2 && nodesInTheMiddle <= 5)
+        else if (nodesInTheMiddle > 2 | nodesInTheMiddle <= 5)
         {
             totalCountOfAreas = 4;
         }
-        else if (nodesInTheMiddle < 5 && nodesInTheMiddle <= 9)
+        else if (nodesInTheMiddle < 5 | nodesInTheMiddle <= 9)
         {
             totalCountOfAreas = 5;
         }
         else
         {
-            throw new System.Exception("Too many nodes, Think more Count of areas in MapGenerator");
+            throw new System.Exception($"Too many nodes: {nodesInTheMiddle}, Think more Count of areas in MapGenerator");
         }
 
         var home = new Node();
@@ -38,12 +40,14 @@ public class MapGenerator
         var choices = new Dictionary<string, Action>() { { "OK", Action.None } };
         home.Event = new Event() { Description = "You returned home", Choises = choices };
         AllNodes.Add(home);
+        HomeNode = home;
 
         var goal = new Node();
         goal.Area = totalCountOfAreas;
         choices = new Dictionary<string, Action>() { { "OK", Action.Advance } };
         home.Event = new Event() { Description = "You can continue to next area", Choises = choices };
         AllNodes.Add(goal);
+        GoalNode = goal;
 
         // Create rest of the nodes
         var areaIter = 2;
@@ -75,11 +79,13 @@ public class MapGenerator
                 // Find node in area left to this node and choose random of them to connect to
                 var nodesInLeft = areaCounts.Where(x => x.Equals(randomNumber - 1));
                 int toSkip = rand.Next(0, nodesInLeft.Count());
+                Debug.Log(toSkip);
                 var connectToLeft = nodesInLeft.Skip(toSkip).Take(1).First();
 
                 var nodesInRight = areaCounts.Where(x => x.Equals(randomNumber - 1));
                 toSkip = rand.Next(0, nodesInRight.Count());
                 var connectToRight = nodesInLeft.Skip(toSkip).Take(1).First();
+                Debug.Log(nodesInRight);
 
                 var node = GenerateRandomNode();
                 node.Area = randomNumber;
@@ -120,16 +126,16 @@ public class MapGenerator
 
 public class Node
 {
-    public List<Node> Neighbours;
+    public List<Node> Neighbours = new List<Node>();
     public int Area;
     public bool Exit = false;
-    public Event Event;
+    public Event Event = new Event();
 }
 
 public class Event
 {
     public string Description = "You encountered enemy!";
-    public Dictionary<string, Action> Choises;
+    public Dictionary<string, Action> Choises = new Dictionary<string, Action>();
 }
 
 public enum Action

@@ -7,7 +7,7 @@ public class MapManager : MonoBehaviour
 {
     public int mapWidth;
     public MapGenerator mapGenerator = new MapGenerator();
-    public List<Node> Nodes;
+    public List<Node> Nodes = new List<Node>();
 
     public Transform nodePrefab;
 
@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     {
         mapWidth = GameObject.Find("MapArea").GetComponent<SpriteRenderer>().sprite.texture.width;
 
-
+        mapGenerator.Generate();
         Nodes = mapGenerator.AllNodes;
     }
 
