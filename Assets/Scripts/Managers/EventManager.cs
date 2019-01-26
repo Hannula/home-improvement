@@ -34,7 +34,7 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+
     }
 
     public void StartEvent(Node node)
@@ -64,7 +64,7 @@ public class EventManager : MonoBehaviour
         {
             Debug.LogError("Event results can only be viewed in the Map screen.");
         }
-        
+
     }
 
     public void EndEvent(bool skipConfirm)
