@@ -8,10 +8,12 @@ public class SelectableNode : SelectableItem
     public Node node;
 
     private EventManager eventManager;
+    private MapManager mapManager;
 
     private void Start()
     {
         eventManager = FindObjectOfType<EventManager>();
+        mapManager = FindObjectOfType<MapManager>();
     }
 
     // Everytime item is clicked
@@ -23,9 +25,9 @@ public class SelectableNode : SelectableItem
     // Only when selected the first time
     public override void OnSelect()
     {
-        if (node != null)
+        if (!mapManager.HomeMoving && node != null && mapManager.allowedNodesToMoveTo().Contains(node))
         {
-            eventManager.StartEvent(node);
+            mapManager.MoveToNode(node);
         }
         else
         {

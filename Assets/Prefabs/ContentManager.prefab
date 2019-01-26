@@ -47,27 +47,55 @@ MonoBehaviour:
   - Image: {fileID: 21300000, guid: 4520878d19d8e674aa8474d9458d7cff, type: 3}
     Name: Toilet Seat
     Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 8
+      TargetingType: 1
+      Targets: 00000000
+      RandomTargets: ffffffff01000000
+      RandomHits: 1
+      CanMiss: 1
+      HitChance: 75
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 2
+      - DamageType: 4
+        Bonus: -1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
   - Image: {fileID: 21300000, guid: db70d07d7e9d2024b85c377edbac0efb, type: 3}
     Name: Bunk Bed
-    Tier: 2
-  - Image: {fileID: 21300000, guid: 5241a96f142b5824d80747b846bd9a33, type: 3}
-    Name: Standing Lamp
     Tier: 1
-  - Image: {fileID: 21300000, guid: 79e2286eb7607794680e54fcb4ddb360, type: 3}
-    Name: Bathtub
-    Tier: 1
-  - Image: {fileID: 21300000, guid: c8a9752c4cf362642a8b802d5d4566ae, type: 3}
-    Name: Bed
-    Tier: 1
-  - Image: {fileID: 21300006, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
-    Name: Wooden Bed
-    Tier: 1
-  - Image: {fileID: 21300004, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
-    Name: Wooden Table
-    Tier: 4
-  - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
-    Name: Get Rekt Horn
-    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 8
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 50
+    BonusModule:
+      ComfortBonus: 2
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 3
+      - DamageType: 2
+        Bonus: 2
+      - DamageType: 1
+        Bonus: -2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
   FloorTypes:
   - Name: Bathroom
     BackgroundImage: {fileID: 21300000, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}

@@ -41,6 +41,9 @@ TagManager:
   - name: Bottom
     uniqueID: 3655340887
     locked: 0
+  - name: Lines
+    uniqueID: 616278675
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

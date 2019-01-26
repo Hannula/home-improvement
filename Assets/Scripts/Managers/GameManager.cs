@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public Home home;
     public HomeData PlayerHome;
+    public List<HomeUpgrade> Inventory;
     public BattleSkillHandler battleSkillHandler;
 
     private bool gameJustStarted = true;
@@ -238,7 +239,12 @@ public class GameManager : MonoBehaviour
     private void StartNewGame()
     {
         Debug.Log("New game started");
-        PlayerHome = new HomeData(new FloorData(5), new FloorData(5), new FloorData(5), new FloorData(5));
+        PlayerHome = HomeData.GenerateRandom(2,3,15);
+        Inventory = new List<HomeUpgrade>(20);
+        for(int i = 0; i < 20; i++)
+        {
+            Inventory.Add(null);
+        }
         home.Init();
         GoToMapScene();
         gameRunning = true;

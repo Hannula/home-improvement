@@ -1,14 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
+using Utilities;
 public class ContentManager : MonoBehaviour
 {
     public static ContentManager Instance;
 
     public List<UpgradeData> Upgrades;
 
+    public List<ModifierData> Modifiers;
+
     public List<FloorType> FloorTypes;
+
+    public UpgradeData GetRandomUpgradeData(int tier)
+    {
+        List<UpgradeData> tierUpgrades = Upgrades.Where(x => x.Tier == tier).ToList();
+        if (tierUpgrades.Count <= 0)
+        {
+            return null;
+        }
+        return UtilityFunctions.GetRandomElement(tierUpgrades);
+    }
+
+    public ModifierData GetRandomModifierData(int tier)
+    {
+        List<ModifierData> tierUpgrades = Modifiers.Where(x => x.Tier == tier).ToList();
+        if (tierUpgrades.Count <= 0)
+        {
+            return null;
+        }
+        return UtilityFunctions.GetRandomElement(tierUpgrades);
+    }
+
+
+    public HomeUpgrade GetRandomHomeUpgrade(int furnitureTier, int modifierTier)
+    {
+        return new HomeUpgrade(GetRandomUpgradeData(furnitureTier), GetRandomModifierData(modifierTier));
+    }
 
     void Awake()
     {

@@ -98,7 +98,7 @@ public class MapGenerator
             lastNode.Neighbours.Add(node);
             node.Neighbours.Add(lastNode);
             AllNodes.Add(node);
-            Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} ", node.id, node.Area, lastNode.id, lastNode.Area));
+            // Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} ", node.id, node.Area, lastNode.id, lastNode.Area));
 
             lastNode = node;
 
@@ -141,7 +141,7 @@ public class MapGenerator
                 node.Neighbours.Add(connectToRight);
                 connectToRight.Neighbours.Add(node);
 
-                Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} And connecting from right id: {4}, Area: {5}", node.id, node.Area, connectToLeft.id, connectToLeft.Area, connectToRight.id, connectToRight.Area));
+                // Debug.Log(string.Format("This node ID: {0}, Area: {1}, Connecting from left to id: {2}, Area: {3} And connecting from right id: {4}, Area: {5}", node.id, node.Area, connectToLeft.id, connectToLeft.Area, connectToRight.id, connectToRight.Area));
 
                 AllNodes.Add(node);
             }
