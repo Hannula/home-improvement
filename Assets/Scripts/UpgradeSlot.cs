@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class UpgradeSlot : SelectableItem
 {
-    public bool IsEmpty { get { return true; } }
+    public bool IsEmpty { get { return HomeUpgrade == null; } }
+    public HomeUpgrade HomeUpgrade;
+    public SpriteRenderer BackgroundSpriteRenderer;
+    public SpriteRenderer ImageSpriteRenderer;
 
-    public SpriteRenderer SpriteRenderer;
     public Color SelectedColor;
     public Color EmptyColor;
     public Color HoverColor;
@@ -14,21 +16,26 @@ public class UpgradeSlot : SelectableItem
 
     public void Update()
     {
+        if (HomeUpgrade != null && HomeUpgrade.UpgradeData != null)
+        {
+            ImageSpriteRenderer.sprite = HomeUpgrade.UpgradeData.Image;
+        }
+
         if (IsEmpty)
         {
-            SpriteRenderer.color = EmptyColor;
+            BackgroundSpriteRenderer.color = EmptyColor;
         }
         if (!IsEmpty)
         {
-            SpriteRenderer.color = FilledColor;
+            BackgroundSpriteRenderer.color = FilledColor;
         }
         if (HoveringOver)
         {
-            SpriteRenderer.color = HoverColor;
+            BackgroundSpriteRenderer.color = HoverColor;
         }
         if (Selected)
         {
-            SpriteRenderer.color = SelectedColor;
+            BackgroundSpriteRenderer.color = SelectedColor;
         }
     }
 

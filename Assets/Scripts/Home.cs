@@ -28,7 +28,7 @@ public class Home : MonoBehaviour
             {
                 FloorData fd = homeData.Floors[i];
                 Floor floor = GameObject.Instantiate(FloorPrefab, transform).GetComponent<Floor>();
-                floor.Data = fd;
+                floor.FloorData = fd;
                 floor.Index = i;
                 floor.FloorLower = prevFloor;
                 Floors.Add(floor);

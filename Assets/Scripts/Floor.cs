@@ -11,17 +11,21 @@ public class Floor : MonoBehaviour
     public Floor FloorUpper;
     public SpriteRenderer BackgroundImage;
     public SpriteRenderer WallImage;
-    public List<Transform> FurnitureSlots;
-    public FloorData Data;
+    public UpgradeSlot[] UpgradeSlots;
+    public FloorData FloorData;
     public float Height;
     public float FallSpeed = 4f;
     public float TargetY;
 
-    public bool Destroy;
+    public bool DestroyThis;
 
     void Start()
     {
-        BackgroundImage.sprite = Data.Type.BackgroundImage;
+        BackgroundImage.sprite = FloorData.Type.BackgroundImage;
+        for(int i = 0; i < FloorData.HomeUpgrades.Length; i++)
+        {
+            UpgradeSlots[i].HomeUpgrade = FloorData.HomeUpgrades[i];
+        }
     }
 
     public void Update()
@@ -50,7 +54,7 @@ public class Floor : MonoBehaviour
         {
             RoofSprite.transform.localPosition = transform.localPosition + Vector3.up * (Height + 0.25f);
         }
-        if (Destroy)
+        if (DestroyThis)
         {
             DestroyFloor();
         }
