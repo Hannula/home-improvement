@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using data;
 
+using Event = data.Event;
+
 public class EventDialog : UIScreen
 {
     // TODO: MapGenerator has Nodes which have Events. Use those to display correct dialog.

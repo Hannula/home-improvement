@@ -38,14 +38,15 @@ public class MapManager : MonoBehaviour
             foreach (var node in nodesInThisArea)
             {
                 areaNodeCounter += 1;
-                var offset = rand.Next(2, 10);
+                var offset = rand.Next(16, 32);
                 offset = rand.Next(1) == 1 ? offset : -offset;
+                var go = GameObject.Find("MapArea").transform;
+
                 float xPosition = i * areaWidth + areaWidth / 2 + offset;
                 float yPosition = mapHeight / nodesInThisArea.Count() / 2 * areaNodeCounter + offset;
 
-                var go = GameObject.Find("MapArea").transform;
 
-                xPosition = xPosition - mapWidth/2 + homeAreaTexture.width;
+                xPosition = xPosition - mapWidth/2 + homeAreaTexture.width/2;
                 yPosition = yPosition - mapHeight/2/2;
 
                 // Pixel space to screen space
@@ -54,8 +55,10 @@ public class MapManager : MonoBehaviour
 
                 //Debug.Log($"x:{xPosition}, y:{yPosition}");
 
-                var obj = Instantiate(nodePrefab, new Vector3(xPosition, yPosition, 0), Quaternion.identity);
+                var obj = Instantiate(nodePrefab, new Vector3(xPosition, yPosition, 0), Quaternion.identity);                
             }
+
+            
         }
 
         foreach (var node in Nodes)
