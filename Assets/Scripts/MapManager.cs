@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
         var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
         mapWidth = screenWidth - homeAreaWidthPixels;
 
-        Debug.Log(mapWidth);
+        // Debug.Log(mapWidth);
 
         mapGenerator.Generate();
         Nodes = mapGenerator.AllNodes;
@@ -95,11 +95,11 @@ public class MapManager : MonoBehaviour
                 linerenderer.material = lineMaterial;
                 linerenderer.SetPosition(0, kvp.Value.transform.position);
                 linerenderer.SetPosition(1, pos);
-                Debug.Log(pos);
+                // Debug.Log(pos);
             }
 
-            drawCircle(kvp.Value);
-            Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
+            drawCircle(kvp.Value, 25, 0.25f);
+            // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
         }
 
         foreach (var node in Nodes)
@@ -110,21 +110,23 @@ public class MapManager : MonoBehaviour
 
     }
 
+
+    private float secondsPassed = 0;
     // Update is called once per frame
     void Update()
     {
-        
+        secondsPassed += GameManager.Instance.DeltaTime;
+        if (secondsPassed > 5)
+        {
+            secondsPassed = 0;
+            AdvanceDangerZone();
+        }
     }
 
     private List<GameObject> lineObjects = new List<GameObject>();
 
-    private void drawCircle(GameObject go)
+    private void drawCircle(GameObject go, int segments, float radius)
     {
-        int segments = 25;
-        float radius = 0.25f;
-
-        
-
         var s = new GameObject();
         s.transform.position = go.transform.position;
         lineObjects.Add(s);
@@ -135,8 +137,8 @@ public class MapManager : MonoBehaviour
 
         if (go == NodeMapping[currentNode])
         {
-            radius = 0.4f;
-            linerenderer.widthMultiplier = 0.07f;
+            radius = 2 * radius;
+            linerenderer.widthMultiplier = 2* linerenderer.widthMultiplier;
         }
 
         linerenderer.material = lineMaterial;
@@ -159,5 +161,31 @@ public class MapManager : MonoBehaviour
 
             angle += (360f / segments);
         }
+    }
+
+    public List<GameObject> allowedNodeToMoveTo()
+    {
+        var list = new List< GameObject > ();
+        foreach (var n in currentNode.Neighbours)
+        {
+            list.Add(NodeMapping[n]);
+        }
+
+        return list;
+    }
+
+    private GameObject dangerZoneGameObject;
+    private int advance = 0;
+    public void AdvanceDangerZone()
+    {
+        Debug.Log("Advancing!");
+        advance = advance + 1;
+        if (advance == 1)
+        {
+            dangerZoneGameObject = new GameObject();
+            dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);
+        }
+         
+        drawCircle(dangerZoneGameObject, 25, 8.5f + advance);
     }
 }
