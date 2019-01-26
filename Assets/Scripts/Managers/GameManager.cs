@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerHome = new HomeData(new FloorData(5), new FloorData(5), new FloorData(5), new FloorData(5));
+        PlayerHome = new HomeData(new FloorData(5), new FloorData(5), new FloorData(5));
     }
 
     private void Init()
