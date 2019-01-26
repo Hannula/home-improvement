@@ -63,3 +63,7 @@ MonoBehaviour:
     BackgroundImage: {fileID: 21300002, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
     BaseHealth: 3
     Tier: 1
+  - Name: Granny Room
+    BackgroundImage: {fileID: 21300004, guid: 5aef02f256cec2b4d848f9d0c4b74b9a, type: 3}
+    BaseHealth: 2
+    Tier: 1

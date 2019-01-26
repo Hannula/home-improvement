@@ -7,6 +7,7 @@ public class Home : MonoBehaviour
     public bool PlayerHome;
     public GameObject FloorPrefab;
     public List<Floor> Floors;
+    public SpriteRenderer RoofSprite;
 
     public HomeData homeData;
 
@@ -15,7 +16,6 @@ public class Home : MonoBehaviour
         if (PlayerHome)
         {
             homeData = GameManager.Instance.PlayerHome;
-            Debug.Log("Player Home!");
         }
     }
 
@@ -23,13 +23,25 @@ public class Home : MonoBehaviour
     {
         if (homeData != null)
         {
-            Debug.Log("Home Data found!");
-            foreach (FloorData fd in homeData.Floors)
+            Floor prevFloor = null;
+            for (int i = 0; i < homeData.Floors.Count; i++)
             {
+                FloorData fd = homeData.Floors[i];
                 Floor floor = GameObject.Instantiate(FloorPrefab, transform).GetComponent<Floor>();
                 floor.Data = fd;
+                floor.Index = i;
+                floor.FloorLower = prevFloor;
                 Floors.Add(floor);
+
+                if (prevFloor != null)
+                {
+                    prevFloor.FloorUpper = floor;
+                }
+
+                prevFloor = floor;
+
             }
+            prevFloor.RoofSprite = RoofSprite;
         }
     }
 

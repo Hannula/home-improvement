@@ -111,8 +111,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626b9050cba606a4382c216d11ebb3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoofSprite: {fileID: 0}
+  Index: 0
+  FloorLower: {fileID: 0}
+  FloorUpper: {fileID: 0}
   BackgroundImage: {fileID: 8963481942259216941}
+  WallImage: {fileID: 5328986430072717365}
   FurnitureSlots: []
+  Height: 1.75
+  FallSpeed: 10
+  TargetY: 0
+  Destroy: 0
 --- !u!1 &7305139399854292426
 GameObject:
   m_ObjectHideFlags: 0
