@@ -11,6 +11,9 @@ public class MapManager : MonoBehaviour
     public int mapHeight;
     public MapGenerator mapGenerator = new MapGenerator();
     public List<data.Node> Nodes = new List<Node>();
+    public List<GameObject> NodeGameObjects = new List<GameObject>();
+
+    public Dictionary<data.Node, GameObject> NodeMapping = new Dictionary<Node, GameObject>();
 
     public Transform nodePrefab;
 
@@ -43,6 +46,9 @@ public class MapManager : MonoBehaviour
                 var go = GameObject.Find("MapArea").transform;
 
                 float xPosition = i * areaWidth + areaWidth / 2 + offset;
+
+                offset = rand.Next(16, 32);
+                offset = rand.Next(1) == 1 ? offset : -offset;
                 float yPosition = mapHeight / nodesInThisArea.Count() / 2 * areaNodeCounter + offset;
 
 
@@ -52,13 +58,27 @@ public class MapManager : MonoBehaviour
                 // Pixel space to screen space
                 xPosition = xPosition / 32;
                 yPosition = yPosition / 32;
+                node.Position = new Vector3(xPosition, yPosition, 0);
 
                 //Debug.Log($"x:{xPosition}, y:{yPosition}");
 
-                var obj = Instantiate(nodePrefab, new Vector3(xPosition, yPosition, 0), Quaternion.identity);                
+                var obj = Instantiate(nodePrefab, node.Position, Quaternion.identity);
+                NodeGameObjects.Add(obj.gameObject);
+                NodeMapping.Add(node, obj.gameObject);
+                obj.gameObject.GetComponent<SelectableNode>().setNode(node);
             }
+        }
 
-            
+        foreach (var kvp in NodeMapping)
+        {
+            var linerenderer = kvp.Value.GetComponent<LineRenderer>();
+            var neighbourPositions = kvp.Key.Neighbours.Select(n => n.Position).ToArray();
+            linerenderer.SetPositions(neighbourPositions);
+            linerenderer.startColor = Color.white;
+            linerenderer.endColor = Color.white;
+
+            linerenderer.widthMultiplier = 0.07f;
+            drawCircle(kvp.Value);
         }
 
         foreach (var node in Nodes)
@@ -72,5 +92,34 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public int segments = 50;
+    public int radius = 5;
+
+    private void drawCircle(GameObject go)
+    {
+        int segments = 50;
+        int radius = 5;
+        /*
+        var linerenderer = go.AddComponent<LineRenderer>();
+        
+        linerenderer.positionCount = segments + 1;
+        linerenderer.useWorldSpace = false;
+
+        float x;
+        float y;
+        float z;
+
+        float angle = 20f;
+
+        for (int i = 0; i < (segments + 1); i++)
+        {
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+            z = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+
+            linerenderer.SetPosition(i, new Vector3(x, 0, z));
+
+            angle += (360f / segments);
+        }*/
     }
 }
