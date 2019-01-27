@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1451875602569369829}
   - component: {fileID: 3554611312692790827}
+  - component: {fileID: 3466739643813800271}
   m_Layer: 0
   m_Name: Wheels
   m_TagString: Untagged
@@ -197,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
-  m_Sprite: {fileID: 21300024, guid: 5aef02f256cec2b4d848f9d0c4b74b9a, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 0c01d7557f4404b4ca09ef4da74c2f0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -208,3 +209,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3466739643813800271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679979267165308219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9159311b5fecd147939d3054e0a6b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images:
+  - {fileID: 21300024, guid: 0c01d7557f4404b4ca09ef4da74c2f0b, type: 3}
+  - {fileID: 21300026, guid: 0c01d7557f4404b4ca09ef4da74c2f0b, type: 3}
+  imageDuration: 0.1

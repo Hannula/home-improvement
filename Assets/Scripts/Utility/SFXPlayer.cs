@@ -32,7 +32,20 @@ public enum Sound
     Explosion4 = 9,
     Fireball1 = 10,
     Fireball2 = 11,
-    Water = 12
+    Water = 12,
+    Mamma = 13,
+    Hop1 = 14,
+    Hop2 = 15,
+    Hop3 = 16,
+    Intro1 = 17,
+    Intro2 = 18,
+    Rise = 19,
+    Drop = 20,
+    BlaBla = 21,
+    IuIu = 22,
+    Fanfare = 23,
+    Asdfghj = 24,
+    None
 }
 
 public class SFXPlayer : MonoBehaviour

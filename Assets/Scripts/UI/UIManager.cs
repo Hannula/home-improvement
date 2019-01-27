@@ -29,17 +29,6 @@ public class UIManager : MonoBehaviour
         this.eventManager = eventManager;
     }
 
-    public void ShowEventDialog(data.Event actionEvent)
-    {
-        eventDialog.ShowEvent(actionEvent);
-    }
-
-    public void ShowResultDialog()
-    {
-        string confirmText = "OK";
-        eventDialog.ShowResults(confirmText);
-    }
-
     public void ActivateBattleSkills(bool active)
     {
         battleSkills.SetActive(active);
@@ -47,8 +36,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseDialogs()
     {
-        eventManager.EndEvent(true);
-        //resultDialog.Close();
+        eventManager.EndEventWithoutResults();
     }
 
     public void EndGame(bool win)

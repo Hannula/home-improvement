@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using data;
-
-using Event = data.Event;
 
 public class EventDialog : UIScreen
 {
@@ -13,7 +10,7 @@ public class EventDialog : UIScreen
 
     public Text description;
     public EventButton[] buttons;
-    private Event actionEvent;
+    private EventType actionEvent;
 
     public void Init()
     {
@@ -24,18 +21,19 @@ public class EventDialog : UIScreen
         }
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
-    public void ShowEvent(Event actionEvent)
+    public void ShowEvent(EventType actionEvent, string gain)
     {
         if (actionEvent != null)
         {
             this.actionEvent = actionEvent;
-            description.text = actionEvent.Description;
+            if (gain != null && gain.Length > 0)
+            {
+                description.text = string.Format(actionEvent.Description, gain);
+            }
+            else
+            {
+                description.text = actionEvent.Description;
+            }
             DisplayButtons();
             Activate(true);
         }
@@ -45,28 +43,35 @@ public class EventDialog : UIScreen
         }
     }
 
-    public void ShowResults(string confirmText)
+    public void ShowResults(string resultText, string gainOrLose, string confirmText)
     {
         if (actionEvent != null)
         {
-            description.text = actionEvent.Description;
+            if (gainOrLose != null && gainOrLose.Length > 0)
+            {
+                description.text = string.Format(resultText, gainOrLose);
+            }
+            else
+            {
+                description.text = resultText;
+            }
+
             DisplayConfirmButton(confirmText);
             Activate(true);
         }
         else
         {
-            Debug.LogError("Can't show results, Event is null.");
+            Debug.LogError("Can't show results, event is null.");
         }
     }
 
     private void DisplayButtons()
     {
-        List<string> buttonNames = actionEvent.Choises.Keys.ToList();
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (i < buttonNames.Count)
+            if (i < actionEvent.Choices.Count)
             {
-                buttons[i].InitEvent(buttonNames[i], actionEvent.Choises[buttonNames[i]]);
+                buttons[i].InitEvent(actionEvent, i);
                 buttons[i].Activate(true);
             }
             else

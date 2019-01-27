@@ -11,9 +11,13 @@ public class Home : MonoBehaviour
 
     public HomeData homeData;
 
+    private float deathSoundDelay = 1f;
+    private bool dead;
+    private bool exiting;
+    private AudioSource deathSound;
+
     public void Awake()
     {
-        Debug.Log("HOME INIT");
         if (PlayerHome)
         {
             homeData = GameManager.Instance.PlayerHome;
@@ -32,7 +36,7 @@ public class Home : MonoBehaviour
 
     public void Start()
     {
-        if (homeData != null)
+        if(homeData != null)
         {
             Floor prevFloor = null;
             for (int i = 0; i < homeData.Floors.Count; i++)
@@ -57,4 +61,87 @@ public class Home : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!exiting && Floors.Count == 0)
+        {
+            Die();
+        }
+
+        if (exiting && !deathSound.isPlaying &&
+            GameManager.Instance.gameRunning)
+        {
+            LeaveBattle();
+        }
+    }
+
+    private void Die()
+    {
+        if (!dead)
+        {
+            MusicPlayer.Instance.StartFadeOut();
+        }
+
+        dead = true;
+
+        if (deathSoundDelay > 0f)
+        {
+            deathSoundDelay -= GameManager.Instance.DeltaTime;
+            return;
+        }
+
+        exiting = true;
+        if (PlayerHome)
+        {
+            deathSound = SFXPlayer.Instance.Play(Sound.Asdfghj);
+        }
+        else
+        {
+            deathSound = SFXPlayer.Instance.Play(Sound.GetRekt2);
+        }
+    }
+
+    private void LeaveBattle()
+    {
+        if (PlayerHome)
+        {
+            GameManager.Instance.EndGame(false);
+        }
+        else
+        {
+            GameManager.Instance.LoadMapScene();
+        }
+    }
+
+    public void UpdateHome()
+    {
+        if (homeData != null)
+        {
+            Floor prevFloor = null;
+            foreach(Floor f in Floors)
+            {
+                Destroy(f.gameObject);
+            }
+            Floors.Clear();
+
+            for (int i = 0; i < homeData.Floors.Count; i++)
+            {
+                FloorData fd = homeData.Floors[i];
+                Floor floor = GameObject.Instantiate(FloorPrefab, transform).GetComponent<Floor>();
+                floor.FloorData = fd;
+                floor.Index = i;
+                floor.FloorLower = prevFloor;
+                Floors.Add(floor);
+
+                if (prevFloor != null)
+                {
+                    prevFloor.FloorUpper = floor;
+                }
+
+                prevFloor = floor;
+
+            }
+            prevFloor.RoofSprite = RoofSprite;
+        }
+    }
 }
