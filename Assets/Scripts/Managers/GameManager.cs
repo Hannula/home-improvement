@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviour
             case GameState.MainMenu:
             {
                 ui.mainMenu.Activate(true);
-                MusicPlayer.Instance.Play(0);
+                MusicPlayer.Instance.Play(0, true);
                 break;
             }
             case GameState.Map:
@@ -304,7 +304,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 eventManager = new GameObject("EventManager").AddComponent<EventManager>();
-                MusicPlayer.Instance.Play(0);
+                MusicPlayer.Instance.Play(0, true);
                 break;
             }
             case GameState.Battle:
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
                 battleSkillHandler = FindObjectOfType<BattleSkillHandler>();
                 ui.ActivateBattleSkills(true);
                 battleSkillHandler.Init();
-                MusicPlayer.Instance.Play(1);
+                MusicPlayer.Instance.Play(1, true);
                 break;
             }
         }

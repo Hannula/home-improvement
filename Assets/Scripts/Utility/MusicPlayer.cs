@@ -85,6 +85,7 @@ public class MusicPlayer : MonoBehaviour
     private float oldProgress;
     private float waitStartTime;
     private float elapsedFadeTime;
+    private bool loop;
 
     public bool IsPlaying
     {
@@ -235,8 +236,13 @@ public class MusicPlayer : MonoBehaviour
             //Debug.Log("[MusicPlayer]: Next track starts");
 
             Reset();
-            NextTrack();
-            Play();
+
+            if (!loop)
+            {
+                NextTrack();
+            }
+
+            Play(loop);
         }
         // Otherwise prints debug info
         //else
@@ -259,16 +265,16 @@ public class MusicPlayer : MonoBehaviour
     /// <summary>
     /// Starts playing the currently selected track.
     /// </summary>
-    public void Play()
+    public void Play(bool loop = false)
     {
-        Play(currentTrack);
+        Play(currentTrack, loop);
     }
 
     /// <summary>
     /// Starts playing a certain track.
     /// </summary>
     /// <param name="trackNum">the track's number in the rack list</param>
-    public void Play(int trackNum)
+    public void Play(int trackNum, bool loop = false)
     {
         if (trackNum >= 0 &&
             trackNum < tracks.Count)
@@ -286,7 +292,7 @@ public class MusicPlayer : MonoBehaviour
             currentTrack = trackNum;
             audioSrc.clip = tracks[currentTrack];
             audioSrc.Play();
-            //Debug.Log("[MusicPlayer] Playing track " + currentTrack);
+            this.loop = loop;
         }
     }
 
