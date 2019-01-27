@@ -117,7 +117,7 @@ public class UpgradeSlot : SelectableItem
     {
         if (GameManager.Instance.State != GameManager.GameState.Battle && inventoryManager && HomeUpgrade != null)
         {
-            inventoryManager.SetItemInfo(HomeUpgrade.GetName(), HomeUpgrade.GetDescription());
+            inventoryManager.SetItemInfo("<color=" + HomeUpgrade.ModifierData.GetRarityColor() + ">" + HomeUpgrade.GetName() + "</color>", HomeUpgrade.GetDescription());
         }
     }
 

@@ -8,6 +8,7 @@ public class Floor : SelectableItem
 
     public GameObject ProjectilePrefab;
     public TextMesh HealthTex;
+    public TextMesh ComfortText;
     public SpriteRenderer RoofSprite;
     public bool IsGroundFloor { get { return Index == 0; } }
     public int Index;
@@ -28,6 +29,9 @@ public class Floor : SelectableItem
     public Color SelectedColor;
     public Color EmptyColor;
     public Color HoverColor;
+    public int StenchLevel;
+    public ParticleSystem PsysStench;
+    private float StenchTimer;
 
     public bool DestroyThis;
 
@@ -40,13 +44,34 @@ public class Floor : SelectableItem
             UpgradeSlots[i].HomeUpgrade = FloorData.HomeUpgrades[i];
             UpgradeSlots[i].ParentFloor = this;
             UpgradeSlots[i].ParentFloorSlotIndex = i;
+            FloorData.ResetComfort();
         }
     }
 
     public void Update()
     {
-        Cooldown += GameManager.Instance.DeltaTime;
+        Cooldown += GameManager.Instance.DeltaTime * FloorData.Comfort / FloorData.BaseComfort ;
         ReloadBar.SetProgress(Cooldown / FloorData.MaxCooldown);
+        StenchLevel = FloorData.StenchLevel;
+        if (StenchLevel > 0)
+        {
+            ParticleSystem.EmissionModule em = PsysStench.emission;
+            em.enabled = true;
+            em.rate = 2 * StenchLevel;
+
+            StenchTimer += GameManager.Instance.DeltaTime;
+            if (StenchTimer > 8)
+            {
+                
+                FloorData.StenchLevel -= Mathf.Max(0, FloorData.StenchRemovalBonus);
+                FloorData.Comfort -= 1;
+            }
+        }
+        else
+        {
+            ParticleSystem.EmissionModule em = PsysStench.emission;
+            em.enabled = true;
+        }
         if ( Cooldown > FloorData.MaxCooldown)
         {
             Fire();
@@ -102,6 +127,7 @@ public class Floor : SelectableItem
             DestroyFloor();
         }
         HealthTex.text = FloorData.Health.ToString();
+        ComfortText.text = FloorData.Comfort.ToString();
 
 
     }
