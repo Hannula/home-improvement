@@ -192,6 +192,22 @@ public class MapGenerator
 
         return node;
     }
+
+
+
+
+    public void InitializeWithLoadedData(List<Node> nodes)
+    {
+        AllNodes = nodes;
+        foreach (var node in nodes)
+        {
+            addToAreaToNodeMapping(node.Area, node);
+        }
+        totalCountOfAreas = nodes.Select(s => s.Area).Distinct().Count();
+        HomeNode = nodes.Where(n => n.id == 1).First();
+        GoalNode = nodes.Where(n => n.id == nodes.Count()).First();
+        NodeCount = nodes.Count;
+    }
 }
 
 

@@ -377,4 +377,19 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    #region savingMap
+
+    private SaveDataPackage saveData = new SaveDataPackage();
+    public void SaveMapState(SaveDataPackage saveData)
+    {
+        this.saveData = saveData;
+    }
+
+    public SaveDataPackage LoadMapState()
+    {
+        return saveData;
+    }
+
+    #endregion
 }

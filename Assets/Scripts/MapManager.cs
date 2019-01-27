@@ -37,9 +37,11 @@ public class MapManager : MonoBehaviour
     private EventManager eventManager;
     private GameObject homeHolder;
     private GameObject lineHolder;
+    private bool loadedSaveData;
 
     void Start()
     {
+        loadedSaveData = false;
         homeHolder = new GameObject();
         homeHolder.name = "HomeHolder";
         lineHolder = new GameObject();
@@ -54,8 +56,23 @@ public class MapManager : MonoBehaviour
         var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
         mapWidth = screenWidth - homeAreaWidthPixels;
 
-        mapGenerator.Generate();
-        Nodes = mapGenerator.AllNodes;
+        var savedData = GameManager.Instance.LoadMapState();
+        if (savedData.Nodes.Count() != 0)
+        {
+            mapGenerator.InitializeWithLoadedData(savedData.Nodes);
+            Nodes = savedData.Nodes;
+            advance = savedData.DangerZoneAdvance;
+            LootedNodes = savedData.LootedNodes;
+            DangeredNodes = savedData.DangeredNodes;
+            loadedSaveData = true;
+            currentNode = savedData.CurrentNode;
+            // NodeGameObjects = savedData.NodeGameObjects;
+        }
+        else
+        {
+            mapGenerator.Generate();
+            Nodes = mapGenerator.AllNodes;
+        }
 
         int areaWidth = mapWidth / mapGenerator.totalCountOfAreas;
 
@@ -98,8 +115,10 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        currentNode = mapGenerator.HomeNode;
-
+        if(!loadedSaveData)
+        {
+            currentNode = mapGenerator.HomeNode;
+        }
 
         foreach (var kvp in NodeMapping)
         {
@@ -131,9 +150,15 @@ public class MapManager : MonoBehaviour
 
         drawNodeCircles();
 
-        var obj = Instantiate(HomeIconPrefab, mapGenerator.HomeNode.Position, Quaternion.identity);
+        var obj = Instantiate(HomeIconPrefab, currentNode.Position, Quaternion.identity);
         HomeIcon = obj.gameObject;
         homeTarget = obj.transform;
+
+        if (loadedSaveData)
+        {
+            advance -= 1;
+            AdvanceDangerZone();
+        }
     }
 
 
@@ -239,7 +264,7 @@ public class MapManager : MonoBehaviour
     {
         // Debug.Log("Advancing!");
         advance = advance + 1;
-        if (advance == 1)
+        if (advance == 1 | loadedSaveData)
         {
             dangerZoneGameObject = new GameObject();
             dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);
@@ -295,6 +320,15 @@ public class MapManager : MonoBehaviour
     {
         AdvanceDangerZone();
         HomeIcon.GetComponent<SpriteRenderer>().sprite = HomeIconIdleSprite;
+        GameManager.Instance.SaveMapState(new SaveDataPackage()
+        {
+            CurrentNode = currentNode,
+            DangeredNodes = DangeredNodes,
+            LootedNodes = LootedNodes,
+            NodeGameObjects = NodeGameObjects,
+            DangerZoneAdvance = advance,
+            Nodes = Nodes
+        });
         eventManager.StartEvent(NodeMapping.Where(kvp => kvp.Value == t.gameObject).Select(kvp => kvp.Key).First());
     }
 
@@ -312,4 +346,5 @@ public class MapManager : MonoBehaviour
             // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
         }
     }
+
 }
