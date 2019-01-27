@@ -286,7 +286,7 @@ public class MusicPlayer : MonoBehaviour
             currentTrack = trackNum;
             audioSrc.clip = tracks[currentTrack];
             audioSrc.Play();
-            Debug.Log("[MusicPlayer] Playing track " + currentTrack);
+            //Debug.Log("[MusicPlayer] Playing track " + currentTrack);
         }
     }
 

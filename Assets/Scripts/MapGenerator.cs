@@ -14,7 +14,7 @@ namespace data
         public List<Node> Neighbours = new List<Node>();
         public int Area;
         public bool Exit = false;
-        public Event Event = new Event();
+        public EventType Event = new EventType();
         public Vector3 Position = new Vector3();
     }
 
@@ -27,7 +27,7 @@ namespace data
     public enum Action
     {
         Fight,
-        Loot,
+        Gain,
         Advance,
         None
     }
@@ -73,8 +73,7 @@ public class MapGenerator
         home.Area = 1;
         home.id = nodeIDCounter++;
         addToAreaToNodeMapping(1, home);
-        var choices = new Dictionary<string, Action>() { { "OK", Action.None } };
-        home.Event = new Event() { Description = "You returned home", Choises = choices };
+        home.Event = ContentManager_Events.Instance.GetHomeEvent();
         AllNodes.Add(home);
         HomeNode = home;
 
@@ -82,8 +81,7 @@ public class MapGenerator
         goal.Area = totalCountOfAreas;
         goal.id = NodeCount;
         addToAreaToNodeMapping(goal.Area, goal);
-        choices = new Dictionary<string, Action>() { { "OK", Action.Advance } };
-        home.Event = new Event() { Description = "You can continue to next area", Choises = choices };
+        goal.Event = ContentManager_Events.Instance.GetGoalEvent();
         AllNodes.Add(goal);
         GoalNode = goal;
 
@@ -165,19 +163,20 @@ public class MapGenerator
     public Node GenerateRandomNode()
     {
         var node = new Node();
-        var randomNumber = rand.Next(2);
-        Dictionary<string, Action> choices = new Dictionary<string, Action>();
-        if (randomNumber == 0)
-        {
-            choices.Add("Yes", Action.Loot);
-            choices.Add("No", Action.None);
-            node.Event = new Event(){ Description = "Do you want to loot old castle?", Choises = choices };
-        }
-        else
-        {
-            choices.Add("FIGHT", Action.Fight);
-            node.Event = new Event() { Description = "There Slimy Church!", Choises = choices };
-        }
+        var randomNumber = 1 + rand.Next(2);
+        node.Event = ContentManager_Events.Instance.GetRandomEvent(randomNumber);
+        //Dictionary<string, Action> choices = new Dictionary<string, Action>();
+        //if (randomNumber == 0)
+        //{
+        //    choices.Add("Yes", Action.GetItem);
+        //    choices.Add("No", Action.None);
+        //    node.Event = new Event(){ Description = "Do you want to loot old castle?", Choises = choices };
+        //}
+        //else
+        //{
+        //    choices.Add("FIGHT", Action.Fight);
+        //    node.Event = new Event() { Description = "There Slimy Church!", Choises = choices };
+        //}
 
         return node;
     }

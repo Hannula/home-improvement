@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public FadeToColor fade;
     public string sceneToLoad;
     public float gameSpeedModifier = 1f;
+    public int money;
     public int score;
 
     // Testing

@@ -328,17 +328,17 @@ PrefabInstance:
     - target: {fileID: 2927436300826072985, guid: 37455d48ca06a8f43b147eaf34e1106c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1567137
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927436300826072985, guid: 37455d48ca06a8f43b147eaf34e1106c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.58619684
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927436300826072985, guid: 37455d48ca06a8f43b147eaf34e1106c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.99707
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927436300826072985, guid: 37455d48ca06a8f43b147eaf34e1106c,
         type: 3}
@@ -382,6 +382,140 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37455d48ca06a8f43b147eaf34e1106c, type: 3}
+--- !u!1 &1427423450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427423452}
+  - component: {fileID: 1427423451}
+  m_Layer: 0
+  m_Name: ContentManager_Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1427423451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427423450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336cc432e35c30e458cd0308e2139d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventTypes:
+  - Name: Loot Old Castle
+    Description: Do you want to loot old castle?
+    Choices:
+    - Name: Yes
+      ResultText: You received {0}!
+      Action: 1
+      SkipConfirm: 0
+    - Name: No
+      ResultText: 
+      Action: 7
+      SkipConfirm: 1
+    MustFight: 0
+    Gain:
+      Money: 0
+      RandomItem: 0
+      NewFloor: 1
+    RiskTier: 1
+  - Name: Loot Dusty Tavern
+    Description: Do you want to loot dusty tavern?
+    Choices:
+    - Name: Yes
+      ResultText: You received {0}!
+      Action: 1
+      SkipConfirm: 0
+    - Name: No
+      ResultText: 
+      Action: 7
+      SkipConfirm: 1
+    MustFight: 0
+    Gain:
+      Money: 0
+      RandomItem: 1
+      NewFloor: 0
+    RiskTier: 1
+  - Name: Loot scary prison
+    Description: Do you want to loot scary prison?
+    Choices:
+    - Name: Yes
+      ResultText: You received {0}!
+      Action: 1
+      SkipConfirm: 0
+    - Name: No
+      ResultText: 
+      Action: 7
+      SkipConfirm: 1
+    MustFight: 0
+    Gain:
+      Money: 0
+      RandomItem: 1
+      NewFloor: 0
+    RiskTier: 1
+  - Name: Battle at Slimy Church
+    Description: There Slimy Church!
+    Choices:
+    - Name: FIGHT
+      ResultText: 
+      Action: 0
+      SkipConfirm: 0
+    MustFight: 1
+    Gain:
+      Money: 0
+      RandomItem: 0
+      NewFloor: 1
+    RiskTier: 1
+  - Name: Home
+    Description: You returned home
+    Choices:
+    - Name: OK
+      ResultText: 
+      Action: 7
+      SkipConfirm: 1
+    MustFight: 0
+    Gain:
+      Money: 0
+      RandomItem: 0
+      NewFloor: 0
+    RiskTier: 0
+  - Name: Goal
+    Description: You can continue to next area
+    Choices:
+    - Name: OK
+      ResultText: 
+      Action: 6
+      SkipConfirm: 1
+    MustFight: 0
+    Gain:
+      Money: 0
+      RandomItem: 0
+      NewFloor: 0
+    RiskTier: 0
+--- !u!4 &1427423452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427423450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1439734676
 PrefabInstance:
   m_ObjectHideFlags: 0

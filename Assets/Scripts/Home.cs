@@ -13,7 +13,6 @@ public class Home : MonoBehaviour
 
     public void Awake()
     {
-        Debug.Log("HOME INIT");
         if (PlayerHome)
         {
             homeData = GameManager.Instance.PlayerHome;
@@ -27,7 +26,7 @@ public class Home : MonoBehaviour
 
     public void Start()
     {
-        if (homeData != null)
+        if(homeData != null)
         {
             Floor prevFloor = null;
             for (int i = 0; i < homeData.Floors.Count; i++)
@@ -51,4 +50,35 @@ public class Home : MonoBehaviour
         }
     }
 
+    public void UpdateHome()
+    {
+        if (homeData != null)
+        {
+            Floor prevFloor = null;
+            foreach(Floor f in Floors)
+            {
+                Destroy(f.gameObject);
+            }
+            Floors.Clear();
+
+            for (int i = 0; i < homeData.Floors.Count; i++)
+            {
+                FloorData fd = homeData.Floors[i];
+                Floor floor = GameObject.Instantiate(FloorPrefab, transform).GetComponent<Floor>();
+                floor.FloorData = fd;
+                floor.Index = i;
+                floor.FloorLower = prevFloor;
+                Floors.Add(floor);
+
+                if (prevFloor != null)
+                {
+                    prevFloor.FloorUpper = floor;
+                }
+
+                prevFloor = floor;
+
+            }
+            prevFloor.RoofSprite = RoofSprite;
+        }
+    }
 }

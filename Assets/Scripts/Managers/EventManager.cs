@@ -6,11 +6,6 @@ using data;
 public class EventManager : MonoBehaviour
 {
     /// <summary>
-    /// The currently occupied node.
-    /// </summary>
-    public Node currentNode;
-
-    /// <summary>
     /// Is an event active.
     /// </summary>
     public bool eventActive;
@@ -18,23 +13,19 @@ public class EventManager : MonoBehaviour
     /// <summary>
     /// Is an event ending.
     /// </summary>
-    public bool eventResults;
+    public bool eventResultsSeen;
+
+    public HomeUpgrade itemGain;
 
     private UIManager ui;
-    private SelectableNode[] nodes;
+    private InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     private void Start()
     {
         ui = FindObjectOfType<UIManager>();
         ui.SetEventManager(this);
-        nodes = FindObjectsOfType<SelectableNode>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     public void StartEvent(Node node)
@@ -44,9 +35,15 @@ public class EventManager : MonoBehaviour
             if (!eventActive)
             {
                 eventActive = true;
-                currentNode = node;
-                ui.ShowEventDialog(node.Event);
-                SFXPlayer.Instance.Play(Sound.Alarm);
+                itemGain = (node.Event.Gain.RandomItem ?
+                    ContentManager.Instance.GetRandomHomeUpgrade(node.Event.RiskTier, node.Event.RiskTier) : null);
+                string gainText = GetGainString(node.Event.Gain, node.Event.RiskTier);
+                ui.eventDialog.ShowEvent(node.Event, gainText);
+
+                if (node.Event.MustFight)
+                {
+                    SFXPlayer.Instance.Play(Sound.Alarm);
+                }
             }
         }
         else
@@ -55,34 +52,99 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void EventResults()
+    private void EventResults(EventType actionEvent, int actionIndex)
     {
-        if (GameManager.Instance.State == GameManager.GameState.Map)
+        eventResultsSeen = true;
+        EventChoice choice = actionEvent.Choices[actionIndex];
+
+        switch (choice.Action)
         {
-            ui.ShowResultDialog();
+            case Action.Fight:
+            {
+                GameManager.Instance.LoadBattleScene();
+                break;
+            }
+            case Action.Gain:
+            {
+                if (actionEvent.Gain.Money > 0)
+                {
+                    GameManager.Instance.money += actionEvent.Gain.Money;
+                }
+                else if (actionEvent.Gain.Money < 0)
+                {
+                    GameManager.Instance.money -= actionEvent.Gain.Money;
+                    if (GameManager.Instance.money < 0)
+                    {
+                        GameManager.Instance.money = 0;
+                    }
+                }
+                else if (actionEvent.Gain.RandomItem)
+                {
+                    inventoryManager.AddItem(itemGain);
+                }
+                else if (actionEvent.Gain.NewFloor)
+                {
+                    FloorData fd = new FloorData(
+                        ContentManager.Instance.GetRandomFloorType(actionEvent.RiskTier),
+                        ContentManager.Instance.GetRandomWallType(actionEvent.RiskTier));
+                    GameManager.Instance.PlayerHome.Floors.Add(fd);
+                    GameManager.Instance.home.UpdateHome();
+                    SFXPlayer.Instance.Play(Sound.Repair);
+                }
+                break;
+            }
+            case Action.Advance:
+            {
+                // TODO: Load next map.
+                GameManager.Instance.EndGame(true); // testing
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+
+        if (choice.SkipConfirm)
+        {
+            EndEventWithoutResults();
         }
         else
         {
-            Debug.LogError("Event results can only be viewed in the Map screen.");
+            string confirmText = "OK";
+            string gainText = GetGainString(actionEvent.Gain, actionEvent.RiskTier);
+            ui.eventDialog.ShowResults(choice.ResultText, gainText, confirmText);
         }
-
     }
 
-    public void EndEvent(bool skipConfirm)
+    public void EndEvent(EventType actionEvent, int actionIndex)
     {
-        if (eventActive)
+        if (eventActive && actionEvent != null)
         {
-            if (eventResults || skipConfirm)
-            {
-                eventActive = false;
-                eventResults = false;
-                ui.eventDialog.Close();
-            }
-            else
-            {
-                eventResults = true;
-                EventResults();
-            }
+            EventResults(actionEvent, actionIndex);
+        }
+    }
+
+    public void EndEventWithoutResults()
+    {
+        eventActive = false;
+        eventResultsSeen = false;
+        ui.eventDialog.Close();
+    }
+
+    private string GetGainString(EventGain gain, int tier)
+    {
+        if (gain.Money > 0)
+        {
+            return gain.Money + " Junk";
+        }
+        else if (gain.RandomItem)
+        {
+            return itemGain.GetName();
+        }
+        else
+        {
+            return "nothing";
         }
     }
 }

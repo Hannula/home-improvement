@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Home))
         {
-            GameManager.Instance.eventManager.EndEvent(true);
+            GameManager.Instance.eventManager.EndEventWithoutResults();
         }
         else if (Input.GetKeyDown(KeyCode.End))
         {

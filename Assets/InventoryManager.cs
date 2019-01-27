@@ -12,6 +12,12 @@ public class InventoryManager : MonoBehaviour
 
     public SpriteRenderer FloatingItemRenderer;
 
+    private UpgradeSlot[] upgradeSlots;
+
+    private void Start()
+    {
+        upgradeSlots = FindObjectsOfType<UpgradeSlot>();
+    }
 
     private void Update()
     {
@@ -48,5 +54,30 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryItemName.text = "";
         InventoryItemDescription.text = "";
+    }
+
+    public bool AddItem(HomeUpgrade itemToAdd)
+    {
+        List<HomeUpgrade> inventory = GameManager.Instance.Inventory;
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i] == null)
+            {
+                inventory[i] = itemToAdd;
+                UpdateUpgradeSlots();
+                return true;
+            }
+        }
+
+        Debug.LogWarning("Inventory full!");
+        return false;
+    }
+
+    private void UpdateUpgradeSlots()
+    {
+        foreach (UpgradeSlot us in upgradeSlots)
+        {
+            us.UpdateInventory();
+        }
     }
 }
