@@ -545,6 +545,58 @@ MonoBehaviour:
     BaseDamage:
     - DamageType: 0
       Bonus: 3
+  - Image: {fileID: 21300002, guid: bea6f2be90bf8e94380b571adcba7dd4, type: 3}
+    Name: Dirty Socks
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 11
+      TargetingType: 3
+      Targets: 
+      RandomTargets: 000000000100000002000000
+      RandomHits: 3
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: -8
+      StenchRemovalBonus: -1
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 4
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 3
+  - Image: {fileID: 21300000, guid: bea6f2be90bf8e94380b571adcba7dd4, type: 3}
+    Name: Garbage
+    Tier: 2
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 9
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 010000000200000003000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: -8
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: -1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 5
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 4
   Modifiers:
   - Name: Awesome
     BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}
