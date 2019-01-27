@@ -361,6 +361,7 @@ public class GameManager : MonoBehaviour
     {
         regionNum++;
         Debug.Log("Now entering region " + regionNum);
+        saveData = new SaveDataPackage();
         LoadMapScene();
     }
 
