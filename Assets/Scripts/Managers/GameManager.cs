@@ -370,6 +370,7 @@ public class GameManager : MonoBehaviour
         regionNum++;
         score += 50;
         Debug.Log("Now entering region " + regionNum);
+        saveData = new SaveDataPackage();
         LoadMapScene();
     }
 
@@ -399,4 +400,19 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    #region savingMap
+
+    private SaveDataPackage saveData = new SaveDataPackage();
+    public void SaveMapState(SaveDataPackage saveData)
+    {
+        this.saveData = saveData;
+    }
+
+    public SaveDataPackage LoadMapState()
+    {
+        return saveData;
+    }
+
+    #endregion
 }

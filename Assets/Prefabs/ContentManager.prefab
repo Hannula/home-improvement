@@ -52,7 +52,7 @@ MonoBehaviour:
       ReloadTime: 7
       TargetingType: 1
       Targets: 00000000
-      RandomTargets: ffffffff
+      RandomTargets: ffffffff01000000
       RandomHits: 1
       CanMiss: 1
       HitChance: 75
@@ -140,11 +140,15 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 50
     BonusModule:
-      ComfortBonus: 10
+      ComfortBonus: 20
       StenchRemovalBonus: 0
-      ResistanceBonuses: []
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      - DamageType: 4
+        Bonus: 2
       GlobalDamageBonuses: []
-      GlobalReloadSpeedBonus: 1
+      GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
@@ -197,8 +201,6 @@ MonoBehaviour:
         Bonus: 2
       GlobalDamageBonuses:
       - DamageType: 0
-        Bonus: 2
-      - DamageType: 1
         Bonus: 1
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -248,7 +250,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 0
+      ComfortBonus: 8
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
@@ -261,7 +263,7 @@ MonoBehaviour:
     Sound: 10
     BaseDamage:
     - DamageType: 1
-      Bonus: 15
+      Bonus: 8
   - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Gold Pile
     Tier: 1
@@ -275,7 +277,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 30
+      ComfortBonus: 25
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
@@ -375,7 +377,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 10
+      ComfortBonus: 5
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
@@ -387,6 +389,214 @@ MonoBehaviour:
     BaseDamage:
     - DamageType: 0
       Bonus: 8
+  - Image: {fileID: 21300000, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
+    Name: Oven
+    Tier: 3
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 7
+      TargetingType: 2
+      Targets: 
+      RandomTargets: 00000000fffffffffdffffff
+      RandomHits: 1
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 11
+    BaseDamage:
+    - DamageType: 1
+      Bonus: 6
+  - Image: {fileID: 21300002, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
+    Name: Candles
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 6
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 000000000100000002000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: -1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 10
+    BaseDamage:
+    - DamageType: 1
+      Bonus: 4
+  - Image: {fileID: 21300004, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
+    Name: Boombox
+    Tier: 2
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 7
+      TargetingType: 1
+      Targets: ffffffff01000000
+      RandomTargets: 000000000100000002000000
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 21
+    BaseDamage:
+    - DamageType: 2
+      Bonus: 5
+  - Image: {fileID: 21300006, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
+    Name: Gramophone
+    Tier: 4
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 5
+      TargetingType: 1
+      Targets: feffffffffffffff0100000002000000
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 8
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 23
+    BaseDamage:
+    - DamageType: 2
+      Bonus: 3
+  - Image: {fileID: 21300000, guid: 0b6bcf3fff2b76446b5b3ddcc62d024f, type: 3}
+    Name: Barbell
+    Tier: 2
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 20
+      TargetingType: 1
+      Targets: fffffffffefffffffdffffff
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 14
+    BaseDamage:
+    - DamageType: 0
+      Bonus: 6
+  - Image: {fileID: 21300002, guid: 0b6bcf3fff2b76446b5b3ddcc62d024f, type: 3}
+    Name: Hammer
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 9
+      TargetingType: 1
+      Targets: 
+      RandomTargets: ffffffff0000000001000000
+      RandomHits: 3
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 3
+    BaseDamage:
+    - DamageType: 0
+      Bonus: 3
+  - Image: {fileID: 21300002, guid: bea6f2be90bf8e94380b571adcba7dd4, type: 3}
+    Name: Dirty Socks
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 11
+      TargetingType: 3
+      Targets: 
+      RandomTargets: 000000000100000002000000
+      RandomHits: 3
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: -8
+      StenchRemovalBonus: -1
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 4
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 3
+  - Image: {fileID: 21300000, guid: bea6f2be90bf8e94380b571adcba7dd4, type: 3}
+    Name: Garbage
+    Tier: 2
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 9
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 010000000200000003000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: -8
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: -1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 5
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 4
   Modifiers:
   - Name: Awesome
     BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}

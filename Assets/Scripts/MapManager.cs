@@ -37,9 +37,11 @@ public class MapManager : MonoBehaviour
     private EventManager eventManager;
     private GameObject homeHolder;
     private GameObject lineHolder;
+    private bool loadedSaveData;
 
     void Start()
     {
+        loadedSaveData = false;
         homeHolder = new GameObject();
         homeHolder.name = "HomeHolder";
         lineHolder = new GameObject();
@@ -54,8 +56,23 @@ public class MapManager : MonoBehaviour
         var homeAreaWidthPixels = (int)Math.Round((homeAreaTexture * 32));
         mapWidth = screenWidth - homeAreaWidthPixels;
 
-        mapGenerator.Generate();
-        Nodes = mapGenerator.AllNodes;
+        var savedData = GameManager.Instance.LoadMapState();
+        if (savedData.Nodes.Count() != 0)
+        {
+            mapGenerator.InitializeWithLoadedData(savedData.Nodes);
+            Nodes = savedData.Nodes;
+            advance = savedData.DangerZoneAdvance;
+            LootedNodes = savedData.LootedNodes;
+            DangeredNodes = savedData.DangeredNodes;
+            loadedSaveData = true;
+            currentNode = savedData.CurrentNode;
+            // NodeGameObjects = savedData.NodeGameObjects;
+        }
+        else
+        {
+            mapGenerator.Generate();
+            Nodes = mapGenerator.AllNodes;
+        }
 
         int areaWidth = mapWidth / mapGenerator.totalCountOfAreas;
 
@@ -98,29 +115,9 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        currentNode = mapGenerator.HomeNode;
-
-
-        foreach (var kvp in NodeMapping)
+        if(!loadedSaveData)
         {
-            var neighbourPositions = kvp.Key.Neighbours.Select(n => n.Position).ToArray();
-            foreach (var pos in neighbourPositions)
-            {
-                var s = new GameObject();
-                s.transform.position = kvp.Value.transform.position;
-                s.transform.SetParent(lineHolder.transform);
-                var linerenderer = s.AddComponent<LineRenderer>();
-                linerenderer.startColor = Color.white;
-                linerenderer.endColor = Color.white;
-                linerenderer.widthMultiplier = 0.04f;
-                linerenderer.material = lineMaterial;
-                linerenderer.SetPosition(0, kvp.Value.transform.position);
-                linerenderer.SetPosition(1, pos);
-                linerenderer.sortingLayerName = "Lines";
-                
-            }
-
-            // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
+            currentNode = mapGenerator.HomeNode;
         }
 
         foreach (var node in Nodes)
@@ -131,9 +128,15 @@ public class MapManager : MonoBehaviour
 
         drawNodeCircles();
 
-        var obj = Instantiate(HomeIconPrefab, mapGenerator.HomeNode.Position, Quaternion.identity);
+        var obj = Instantiate(HomeIconPrefab, currentNode.Position, Quaternion.identity);
         HomeIcon = obj.gameObject;
         homeTarget = obj.transform;
+
+        if (loadedSaveData)
+        {
+            advance -= 1;
+            AdvanceDangerZone();
+        }
     }
 
 
@@ -239,7 +242,7 @@ public class MapManager : MonoBehaviour
     {
         // Debug.Log("Advancing!");
         advance = advance + 1;
-        if (advance == 1)
+        if (advance == 1 | loadedSaveData)
         {
             dangerZoneGameObject = new GameObject();
             dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);
@@ -275,7 +278,7 @@ public class MapManager : MonoBehaviour
             Destroy(s);
         }
 
-        dangerCircle = drawCircle(dangerZoneGameObject, 25, 8f + 1.5f * advance, 0.2f, Color.yellow);
+        dangerCircle = drawCircle(dangerZoneGameObject, 40, 8f + 1.5f * advance, 0.6f, Color.yellow);
     }
 
 
@@ -295,6 +298,15 @@ public class MapManager : MonoBehaviour
     {
         AdvanceDangerZone();
         HomeIcon.GetComponent<SpriteRenderer>().sprite = HomeIconIdleSprite;
+        GameManager.Instance.SaveMapState(new SaveDataPackage()
+        {
+            CurrentNode = currentNode,
+            DangeredNodes = DangeredNodes,
+            LootedNodes = LootedNodes,
+            NodeGameObjects = NodeGameObjects,
+            DangerZoneAdvance = advance,
+            Nodes = Nodes
+        });
         eventManager.StartEvent(NodeMapping.Where(kvp => kvp.Value == t.gameObject).Select(kvp => kvp.Key).First());
     }
 
@@ -306,10 +318,40 @@ public class MapManager : MonoBehaviour
             Destroy(line);
         }
 
+        var radius = 0.06f;
+
         foreach (var kvp in NodeMapping)
         {
-            nodeLines.AddRange(drawCircle(kvp.Value, 25, 0.25f, 0.04f, Color.red));
+            var neighbourPositions = kvp.Key.Neighbours.Select(n => n.Position).ToArray();
+            foreach (var pos in neighbourPositions)
+            {
+                var s = new GameObject();
+                s.transform.position = kvp.Value.transform.position;
+                s.transform.SetParent(lineHolder.transform);
+                var linerenderer = s.AddComponent<LineRenderer>();
+                linerenderer.startColor = Color.white;
+                linerenderer.endColor = Color.white;
+                linerenderer.widthMultiplier = 0.08f;
+                linerenderer.material = lineMaterial;
+
+                var radiusStartPos = kvp.Value.transform.position - (kvp.Value.transform.position - pos).normalized * (1+radius/(Vector3.Distance(kvp.Value.transform.position, pos)))/2.3f;
+                var radiusEndPos = pos - (pos - kvp.Value.transform.position).normalized * (1+radius / (Vector3.Distance(kvp.Value.transform.position, pos)))/2.3f;
+                linerenderer.SetPosition(0, radiusStartPos);
+                linerenderer.SetPosition(1, radiusEndPos);
+                linerenderer.sortingLayerName = "Lines";
+                nodeLines.Add(s);
+
+                
+            }
+
+            // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
+        }
+
+        foreach (var kvp in NodeMapping)
+        {
+            nodeLines.AddRange(drawCircle(kvp.Value, 25, 0.25f, 0.12f, Color.red));
             // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
         }
     }
+
 }

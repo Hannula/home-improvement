@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 4857720520312576863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.14, y: 0.83, z: -1.9277344}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 738656107991802559}
   m_RootOrder: 3
@@ -335,7 +335,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 24
+  m_FontSize: 200
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0, type: 3}
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 5366937301555386551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.14, y: 0.2, z: -1.9277344}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 738656107991802559}
   m_RootOrder: 4
@@ -426,7 +426,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 24
+  m_FontSize: 200
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0, type: 3}
@@ -5107,7 +5107,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 400
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -5435,6 +5435,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
 --- !u!114 &5542815436693550475 stripped
@@ -5521,6 +5526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
@@ -5609,6 +5619,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
 --- !u!4 &8761401184728972585 stripped
@@ -5696,6 +5711,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
 --- !u!4 &1179016701838843339 stripped
@@ -5723,11 +5743,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 738656107991802559}
     m_Modifications:
-    - target: {fileID: 5080742381588928543, guid: 0fe045e850788624ba763c50ccec416b,
-        type: 3}
-      propertyPath: m_Name
-      value: ProgressBar
-      objectReference: {fileID: 0}
     - target: {fileID: 5080742381588928541, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5838,16 +5853,6 @@ PrefabInstance:
       propertyPath: maxScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 5080742380418369687, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
       propertyPath: m_Color.g
@@ -5857,6 +5862,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Name
+      value: ProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe045e850788624ba763c50ccec416b, type: 3}
