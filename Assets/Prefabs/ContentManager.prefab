@@ -49,21 +49,17 @@ MonoBehaviour:
     Tier: 1
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 8
+      ReloadTime: 7
       TargetingType: 1
       Targets: 00000000
-      RandomTargets: ffffffff01000000
+      RandomTargets: ffffffff
       RandomHits: 1
       CanMiss: 1
       HitChance: 75
     BonusModule:
       ComfortBonus: 0
       StenchRemovalBonus: 0
-      ResistanceBonuses:
-      - DamageType: 3
-        Bonus: 2
-      - DamageType: 4
-        Bonus: -1
+      ResistanceBonuses: []
       GlobalDamageBonuses:
       - DamageType: 3
         Bonus: 1
@@ -73,21 +69,23 @@ MonoBehaviour:
       GlobalRandomHits: 
     BaseDamage:
     - DamageType: 3
-      Bonus: 4
+      Bonus: 3
+    - DamageType: 4
+      Bonus: 1
   - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Get Rekt Horn
     Tier: 1
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 12
+      ReloadTime: 10
       TargetingType: 1
       Targets: ffffffff0000000001000000
       RandomTargets: ffffffff01000000
-      RandomHits: 1
+      RandomHits: 3
       CanMiss: 1
       HitChance: 75
     BonusModule:
-      ComfortBonus: -2
+      ComfortBonus: -4
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
@@ -97,13 +95,13 @@ MonoBehaviour:
       GlobalRandomHits: 
     BaseDamage:
     - DamageType: 2
-      Bonus: 5
+      Bonus: 4
   - Image: {fileID: 21300000, guid: db70d07d7e9d2024b85c377edbac0efb, type: 3}
     Name: Bunk Bed
     Tier: 1
     IsWeapon: 0
     TargetingModule:
-      ReloadTime: 8
+      ReloadTime: 2
       TargetingType: 1
       Targets: 
       RandomTargets: 
@@ -111,21 +109,271 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 50
     BonusModule:
-      ComfortBonus: 2
+      ComfortBonus: 5
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
-        Bonus: 3
-      - DamageType: 2
         Bonus: 2
+      - DamageType: 2
+        Bonus: 1
       - DamageType: 1
-        Bonus: -2
+        Bonus: -1
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
     BaseDamage: []
+  - Image: {fileID: 21300020, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Trophy Cabinet
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 2
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 50
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 1
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage: []
+  - Image: {fileID: 21300022, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Fish
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 6
+      TargetingType: 2
+      Targets: 00000000
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 3
+      Bonus: 5
+  - Image: {fileID: 21300016, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Statue
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 6
+      TargetingType: 2
+      Targets: 00000000
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 2
+      GlobalDamageBonuses:
+      - DamageType: 0
+        Bonus: 2
+      - DamageType: 1
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 2
+      GlobalRandomHits: ffffffff01000000
+    BaseDamage:
+    - DamageType: 3
+      Bonus: 5
+  - Image: {fileID: 21300018, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Closet
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 6
+      TargetingType: 2
+      Targets: 00000000
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 4
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 3
+      Bonus: 5
+  - Image: {fileID: 21300014, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Fireplace
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 15
+      TargetingType: 1
+      Targets: 
+      RandomTargets: ffffffff0000000001000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 4
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 1
+      Bonus: 15
+  - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Gold Pile
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 15
+      TargetingType: 1
+      Targets: 
+      RandomTargets: ffffffff0000000001000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 30
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage: []
+  - Image: {fileID: 21300010, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Sink
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 15
+      TargetingType: 1
+      Targets: 
+      RandomTargets: ffffffff0000000001000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 2
+      GlobalDamageBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage: []
+  - Image: {fileID: 21300008, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Bucket
+    Tier: 1
+    IsWeapon: 0
+    TargetingModule:
+      ReloadTime: 15
+      TargetingType: 1
+      Targets: 
+      RandomTargets: ffffffff0000000001000000
+      RandomHits: 2
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 1
+        Bonus: 4
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage: []
+  - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Honey
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 15
+      TargetingType: 3
+      Targets: 
+      RandomTargets: 000000000100000002000000
+      RandomHits: 1
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 4
+  - Image: {fileID: 21300002, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Throne
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 9
+      TargetingType: 1
+      Targets: ffffffff
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 0
+      Bonus: 8
   Modifiers:
   - Name: Awesome
     BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}
@@ -147,7 +395,7 @@ MonoBehaviour:
       StenchRemovalBonus: 1
       ResistanceBonuses:
       - DamageType: 4
-        Bonus: 2
+        Bonus: 1
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -157,11 +405,11 @@ MonoBehaviour:
     BlendColor: {r: 0.7961797, g: 0.8207547, b: 0.70848167, a: 0.9098039}
     Tier: 1
     BonusModule:
-      ComfortBonus: -1
+      ComfortBonus: -3
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 3
-        Bonus: 3
+        Bonus: 1
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -171,7 +419,7 @@ MonoBehaviour:
     BlendColor: {r: 0.6037736, g: 0.3227056, b: 0.20790316, a: 1}
     Tier: 1
     BonusModule:
-      ComfortBonus: 5
+      ComfortBonus: 15
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 1
@@ -185,11 +433,11 @@ MonoBehaviour:
     BlendColor: {r: 1, g: 1, b: 1, a: 1}
     Tier: 1
     BonusModule:
-      ComfortBonus: 1
+      ComfortBonus: 3
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 2
-        Bonus: 3
+        Bonus: 2
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -199,7 +447,7 @@ MonoBehaviour:
     BlendColor: {r: 1, g: 1, b: 1, a: 1}
     Tier: 1
     BonusModule:
-      ComfortBonus: 4
+      ComfortBonus: 5
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
@@ -211,11 +459,11 @@ MonoBehaviour:
     BlendColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
     Tier: 1
     BonusModule:
-      ComfortBonus: -2
+      ComfortBonus: -6
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 2
-        Bonus: 4
+        Bonus: 3
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -225,11 +473,11 @@ MonoBehaviour:
     BlendColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
     Tier: 1
     BonusModule:
-      ComfortBonus: 5
+      ComfortBonus: 10
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
-        Bonus: -3
+        Bonus: -2
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -251,13 +499,13 @@ MonoBehaviour:
     BlendColor: {r: 0.8113208, g: 0.66187704, b: 0.60083663, a: 1}
     Tier: 1
     BonusModule:
-      ComfortBonus: -1
+      ComfortBonus: -4
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
-        Bonus: 2
+        Bonus: 1
       - DamageType: 1
-        Bonus: 2
+        Bonus: 1
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -265,9 +513,9 @@ MonoBehaviour:
       GlobalRandomHits: 
   - Name: Absorbent
     BlendColor: {r: 0.88724667, g: 0.9245283, b: 0.31835172, a: 1}
-    Tier: 1
+    Tier: 2
     BonusModule:
-      ComfortBonus: 1
+      ComfortBonus: 2
       StenchRemovalBonus: 1
       ResistanceBonuses:
       - DamageType: 3
@@ -280,17 +528,287 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
   - Name: Glass
-    BlendColor: {r: 0.5707102, g: 0.8892025, b: 0.8962264, a: 0.7764706}
+    BlendColor: {r: 0.5707102, g: 0.8892025, b: 0.8962264, a: 0.6156863}
     Tier: 1
     BonusModule:
-      ComfortBonus: 1
+      ComfortBonus: 0
       StenchRemovalBonus: 1
       ResistanceBonuses:
       - DamageType: 3
         Bonus: 3
       - DamageType: 4
         Bonus: 1
+      - DamageType: 0
+        Bonus: -2
       GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Demonic
+    BlendColor: {r: 0.990566, g: 0.28697488, b: 0.0046724924, a: 1}
+    Tier: 3
+    BonusModule:
+      ComfortBonus: -3
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses:
+      - DamageType: 1
+        Bonus: 2
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Divine
+    BlendColor: {r: 0.9909777, g: 1, b: 0.8537736, a: 1}
+    Tier: 3
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 2
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 5
+      GlobalDamageBonuses:
+      - DamageType: 1
+        Bonus: 2
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Mythical
+    BlendColor: {r: 1, g: 0.5990566, b: 0.9248996, a: 1}
+    Tier: 2
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 1
+      - DamageType: 1
+        Bonus: 3
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Legendary
+    BlendColor: {r: 1, g: 0.9675058, b: 0.75, a: 1}
+    Tier: 2
+    BonusModule:
+      ComfortBonus: 15
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: 3
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Filthy
+    BlendColor: {r: 0.5943396, g: 0.35178438, b: 0.26633143, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: -2
+      GlobalDamageBonuses:
+      - DamageType: 4
+        Bonus: 2
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Gross
+    BlendColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -10
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Noisy
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: -2
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 3
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Jingling
+    BlendColor: {r: 1, g: 0.9404481, b: 0.5235849, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Fluffy
+    BlendColor: {r: 0.8584906, g: 0.7005607, b: 0.755014, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 20
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Burning
+    BlendColor: {r: 0.9150943, g: 0.6351053, b: 0.5222944, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses:
+      - DamageType: 1
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Moist
+    BlendColor: {r: 0.84878963, g: 0.9517893, b: 0.9622642, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 1
+        Bonus: 1
+      GlobalDamageBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Hard
+    BlendColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 2
+      GlobalDamageBonuses:
+      - DamageType: 0
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Red
+    BlendColor: {r: 1, g: 0.13477123, b: 0, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Blue
+    BlendColor: {r: 0, g: 0.5639739, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Ecological
+    BlendColor: {r: 0.20131895, g: 1, b: 0.0047169924, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 1
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Rusty
+    BlendColor: {r: 0.7924528, g: 0.60270774, b: 0.18316127, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -15
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: -1
+      - DamageType: 4
+        Bonus: -1
+      GlobalDamageBonuses:
+      - DamageType: 0
+        Bonus: 1
+      - DamageType: 4
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Shiny
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 1
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0.25
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Ugly
+    BlendColor: {r: 1, g: 0, b: 0.948719, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 1
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
@@ -298,24 +816,22 @@ MonoBehaviour:
   WallTypes:
   - Name: Concrete Wall
     BackgroundImage: {fileID: 21300000, guid: fc33997959d05e8498848259ac37e457, type: 3}
-    HealthBonus: 20
+    HealthBonus: 15
     ComfortBonus: -10
     Bonuses:
       ComfortBonus: 0
       StenchRemovalBonus: -1
       ResistanceBonuses:
       - DamageType: 0
-        Bonus: 4
+        Bonus: 2
       - DamageType: 1
-        Bonus: 3
-      - DamageType: 3
         Bonus: 2
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
-    Tier: 1
+    Tier: 2
   - Name: Wooden Wall
     BackgroundImage: {fileID: 21300002, guid: fc33997959d05e8498848259ac37e457, type: 3}
     HealthBonus: 5
@@ -325,11 +841,11 @@ MonoBehaviour:
       StenchRemovalBonus: -1
       ResistanceBonuses:
       - DamageType: 0
-        Bonus: 2
+        Bonus: 1
       - DamageType: 1
         Bonus: -1
       - DamageType: 2
-        Bonus: 2
+        Bonus: 1
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -363,6 +879,40 @@ MonoBehaviour:
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
+        Bonus: 1
+      - DamageType: 3
+        Bonus: 2
+      - DamageType: 2
+        Bonus: -1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 2
+  - Name: Gold Wall
+    BackgroundImage: {fileID: 21300010, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 0
+    ComfortBonus: 50
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Tier: 3
+  - Name: Ghetto Wall
+    BackgroundImage: {fileID: 21300008, guid: fc33997959d05e8498848259ac37e457, type: 3}
+    HealthBonus: 5
+    ComfortBonus: -5
+    Bonuses:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
         Bonus: 5
       - DamageType: 3
         Bonus: 2
@@ -377,7 +927,7 @@ MonoBehaviour:
   FloorTypes:
   - Name: Bathroom
     BackgroundImage: {fileID: 21300000, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
-    BaseHealth: 50
+    BaseHealth: 40
     BaseComfort: 20
     Bonuses:
       ComfortBonus: 0
@@ -392,7 +942,7 @@ MonoBehaviour:
   - Name: Living Room
     BackgroundImage: {fileID: 21300002, guid: e4b11ae1faa54b7408aa631ba8a1615a, type: 3}
     BaseHealth: 35
-    BaseComfort: 35
+    BaseComfort: 25
     Bonuses:
       ComfortBonus: 0
       StenchRemovalBonus: 0
@@ -405,8 +955,8 @@ MonoBehaviour:
     Tier: 1
   - Name: Granny Room
     BackgroundImage: {fileID: 21300004, guid: 5aef02f256cec2b4d848f9d0c4b74b9a, type: 3}
-    BaseHealth: 20
-    BaseComfort: 50
+    BaseHealth: 30
+    BaseComfort: 30
     Bonuses:
       ComfortBonus: 0
       StenchRemovalBonus: 0

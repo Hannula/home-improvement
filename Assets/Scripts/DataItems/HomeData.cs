@@ -37,9 +37,22 @@ public class HomeData
 
             }
             floorDataList.Add(floorData);
+            floorData.UpdateStats();
         }
         HomeData home = new HomeData();
         home.Floors = floorDataList;
         return home;
+    }
+
+    public void Prune()
+    {
+        for(int i = Floors.Count - 1; i >= 0; i--)
+        {
+            FloorData data = Floors[i];
+            if (data.Health <= 0)
+            {
+                Floors.RemoveAt(i);
+            }
+        }
     }
 }
