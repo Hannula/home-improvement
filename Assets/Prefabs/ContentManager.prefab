@@ -394,7 +394,7 @@ MonoBehaviour:
     Tier: 3
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 4
+      ReloadTime: 7
       TargetingType: 2
       Targets: 
       RandomTargets: 00000000fffffffffdffffff
@@ -446,7 +446,7 @@ MonoBehaviour:
     Tier: 2
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 6
+      ReloadTime: 7
       TargetingType: 1
       Targets: ffffffff01000000
       RandomTargets: 000000000100000002000000
@@ -469,7 +469,7 @@ MonoBehaviour:
     - DamageType: 2
       Bonus: 5
   - Image: {fileID: 21300006, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
-    Name: Gramphone
+    Name: Gramophone
     Tier: 4
     IsWeapon: 1
     TargetingModule:
@@ -525,7 +525,7 @@ MonoBehaviour:
     Tier: 1
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 1
+      ReloadTime: 9
       TargetingType: 1
       Targets: 
       RandomTargets: ffffffff0000000001000000
