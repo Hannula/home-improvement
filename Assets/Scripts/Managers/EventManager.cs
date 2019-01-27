@@ -46,7 +46,11 @@ public class EventManager : MonoBehaviour
                 eventActive = true;
                 currentNode = node;
                 ui.ShowEventDialog(node.Event);
-                SFXPlayer.Instance.Play(Sound.Alarm);
+
+                if (node.Event.MustBattle)
+                {
+                    SFXPlayer.Instance.Play(Sound.Alarm);
+                }
             }
         }
         else
