@@ -31,7 +31,7 @@ public class ContentManager_Events : MonoBehaviour
         List<EventType> tierEvents = new List<EventType>();
         while (riskTier > 0 && tierEvents.Count <= 0)
         {
-            tierEvents = EventTypes.Where(x => x.RiskTier == riskTier).ToList();
+            tierEvents = EventTypes.Where(x => x.Tier == riskTier).ToList();
             riskTier -= 1;
         }
         if (tierEvents.Count <= 0)

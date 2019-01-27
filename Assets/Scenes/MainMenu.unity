@@ -311,162 +311,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7499663103962613753, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 3941926256956258967, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 768295094, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 1047072442, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 1287600045, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 8571701708783225316, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 560138912697975938, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 4621075906365672855, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 169091359807489365, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 6999768812761347047, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 2024792780986956661, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 5714249363629150330, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 4215157303755322329, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f4de51d14b545a648986a1f97d907a8e,
-        type: 3}
-    - target: {fileID: 206868457, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 245924894, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 1910106259, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 4378855690193507810, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 3536766896927698684, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 8567185263307605802, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 4730715102887498370, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 9167016807479810991, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 4706553896077701181, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 7097582185487887130, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 8203938446632256836, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 2782745370796028927, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 573390906373489725, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
-    - target: {fileID: 5814926216400963560, guid: 9a61cea4dff27ee4d8d56f98eb629bf8,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a61cea4dff27ee4d8d56f98eb629bf8, type: 3}
 --- !u!1001 &1201574429
@@ -572,92 +416,104 @@ MonoBehaviour:
     Description: Do you want to loot old castle?
     Choices:
     - Name: Yes
-      ResultText: You received {0}!
+      ResultText: You nicked a floor from the castle!
+      ShowGainNameInResult: 0
       Action: 1
+      Gain:
+        Type: 1
+        Amount: 0
       SkipConfirm: 0
     - Name: No
       ResultText: 
-      Action: 7
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 1
     MustFight: 0
-    Gain:
-      Money: 0
-      RandomItem: 0
-      NewFloor: 1
-    RiskTier: 1
+    Tier: 1
   - Name: Loot Dusty Tavern
     Description: Do you want to loot dusty tavern?
     Choices:
     - Name: Yes
       ResultText: You received {0}!
+      ShowGainNameInResult: 1
       Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 0
     - Name: No
       ResultText: 
-      Action: 7
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 1
     MustFight: 0
-    Gain:
-      Money: 0
-      RandomItem: 1
-      NewFloor: 0
-    RiskTier: 1
+    Tier: 1
   - Name: Loot scary prison
     Description: Do you want to loot scary prison?
     Choices:
     - Name: Yes
-      ResultText: You received {0}!
+      ResultText: Stuff!
+      ShowGainNameInResult: 0
       Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 0
     - Name: No
       ResultText: 
-      Action: 7
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 1
     MustFight: 0
-    Gain:
-      Money: 0
-      RandomItem: 1
-      NewFloor: 0
-    RiskTier: 1
+    Tier: 1
   - Name: Battle at Slimy Church
     Description: There Slimy Church!
     Choices:
     - Name: FIGHT
       ResultText: 
+      ShowGainNameInResult: 0
       Action: 0
-      SkipConfirm: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
     MustFight: 1
-    Gain:
-      Money: 0
-      RandomItem: 0
-      NewFloor: 1
-    RiskTier: 1
+    Tier: 1
   - Name: Home
     Description: You returned home
     Choices:
     - Name: OK
       ResultText: 
+      ShowGainNameInResult: 0
       Action: 7
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 1
     MustFight: 0
-    Gain:
-      Money: 0
-      RandomItem: 0
-      NewFloor: 0
-    RiskTier: 0
+    Tier: 0
   - Name: Goal
     Description: You can continue to next area
     Choices:
     - Name: OK
       ResultText: 
-      Action: 6
+      ShowGainNameInResult: 0
+      Action: 3
+      Gain:
+        Type: 0
+        Amount: 0
       SkipConfirm: 1
     MustFight: 0
-    Gain:
-      Money: 0
-      RandomItem: 0
-      NewFloor: 0
-    RiskTier: 0
+    Tier: 0
 --- !u!4 &1427423452
 Transform:
   m_ObjectHideFlags: 0

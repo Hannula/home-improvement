@@ -7,6 +7,5 @@ public class EventType
     public string Description;
     public List<EventChoice> Choices;
     public bool MustFight;
-    public EventGain Gain;
-    public int RiskTier = 1;
+    public int Tier = 1;
 }

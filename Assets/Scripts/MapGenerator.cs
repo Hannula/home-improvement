@@ -28,6 +28,7 @@ namespace data
     {
         Fight,
         Gain,
+        Lose,
         Advance,
         None
     }

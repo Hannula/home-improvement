@@ -43,13 +43,13 @@ public class EventDialog : UIScreen
         }
     }
 
-    public void ShowResults(string resultText, string gain, string confirmText)
+    public void ShowResults(string resultText, string gainOrLose, string confirmText)
     {
         if (actionEvent != null)
         {
-            if (gain != null && gain.Length > 0)
+            if (gainOrLose != null && gainOrLose.Length > 0)
             {
-                description.text = string.Format(resultText, gain);
+                description.text = string.Format(resultText, gainOrLose);
             }
             else
             {

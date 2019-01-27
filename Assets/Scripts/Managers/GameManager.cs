@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public FadeToColor fade;
     public string sceneToLoad;
     public float gameSpeedModifier = 1f;
+    public int regionNum = 1;
     public int money;
     public int score;
 
@@ -323,6 +324,8 @@ public class GameManager : MonoBehaviour
     private void StartNewGame()
     {
         Debug.Log("New game started");
+        regionNum = 1;
+
         PlayerHome = HomeData.GenerateRandom(2,3,50);
         home.Init(PlayerHome);
 
@@ -350,6 +353,12 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.MainMenu;
         LoadScene(GameState.MainMenu);
+    }
+
+    public void NextRegion()
+    {
+        regionNum++;
+        Debug.Log("Now entering region " + regionNum);
     }
 
     public void EndGame(bool win)

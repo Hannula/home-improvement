@@ -3,7 +3,14 @@
 [System.Serializable]
 public class EventGain
 {
-    public int Money;
-    public bool RandomItem;
-    public bool NewFloor;
+    public enum GainType
+    {
+        Upgrade,
+        Floor,
+        Money,
+        Score
+    }
+
+    public GainType Type;
+    public int Amount;
 }

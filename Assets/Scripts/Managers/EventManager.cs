@@ -15,7 +15,7 @@ public class EventManager : MonoBehaviour
     /// </summary>
     public bool eventResultsSeen;
 
-    public HomeUpgrade itemGain;
+    public HomeUpgrade promisedRewardItem;
 
     private UIManager ui;
     private InventoryManager inventoryManager;
@@ -35,9 +35,9 @@ public class EventManager : MonoBehaviour
             if (!eventActive)
             {
                 eventActive = true;
-                itemGain = (node.Event.Gain.RandomItem ?
-                    ContentManager.Instance.GetRandomHomeUpgrade(node.Event.RiskTier, node.Event.RiskTier) : null);
-                string gainText = GetGainString(node.Event.Gain, node.Event.RiskTier);
+                SetEventRiskTier(node.Event);
+                SetPromisedRewardUpgrade(node.Event);
+                string gainText = GetGainString(node.Event.Choices[0].Gain);
                 ui.eventDialog.ShowEvent(node.Event, gainText);
 
                 if (node.Event.MustFight)
@@ -66,30 +66,44 @@ public class EventManager : MonoBehaviour
             }
             case Action.Gain:
             {
-                if (actionEvent.Gain.Money > 0)
+                if (choice.Gain.Type == EventGain.GainType.Upgrade)
                 {
-                    GameManager.Instance.money += actionEvent.Gain.Money;
+                    //HomeUpgrade newItem = ContentManager.Instance.
+                    //    GetRandomHomeUpgrade(actionEvent.RiskTier, actionEvent.RiskTier);
+                    inventoryManager.AddItem(promisedRewardItem);
                 }
-                else if (actionEvent.Gain.Money < 0)
+                else if (choice.Gain.Type == EventGain.GainType.Floor)
                 {
-                    GameManager.Instance.money -= actionEvent.Gain.Money;
+                    FloorData fd = new FloorData(
+                        ContentManager.Instance.GetRandomFloorType(actionEvent.Tier),
+                        ContentManager.Instance.GetRandomWallType(actionEvent.Tier));
+                    GameManager.Instance.PlayerHome.Floors.Add(fd);
+                    GameManager.Instance.home.UpdateHome();
+                    SFXPlayer.Instance.Play(Sound.Repair);
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Money)
+                {
+                    GameManager.Instance.money += choice.Gain.Amount;
+                }
+                break;
+            }
+            case Action.Lose:
+            {
+                if (choice.Gain.Type == EventGain.GainType.Upgrade)
+                {
+                    // TODO
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Floor)
+                {
+                    // TODO
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Money)
+                {
+                    GameManager.Instance.money -= choice.Gain.Amount;
                     if (GameManager.Instance.money < 0)
                     {
                         GameManager.Instance.money = 0;
                     }
-                }
-                else if (actionEvent.Gain.RandomItem)
-                {
-                    inventoryManager.AddItem(itemGain);
-                }
-                else if (actionEvent.Gain.NewFloor)
-                {
-                    FloorData fd = new FloorData(
-                        ContentManager.Instance.GetRandomFloorType(actionEvent.RiskTier),
-                        ContentManager.Instance.GetRandomWallType(actionEvent.RiskTier));
-                    GameManager.Instance.PlayerHome.Floors.Add(fd);
-                    GameManager.Instance.home.UpdateHome();
-                    SFXPlayer.Instance.Play(Sound.Repair);
                 }
                 break;
             }
@@ -105,6 +119,13 @@ public class EventManager : MonoBehaviour
             }
         }
 
+        ShowConfirmScreen(choice);
+
+        promisedRewardItem = null;
+    }
+
+    private void ShowConfirmScreen(EventChoice choice)
+    {
         if (choice.SkipConfirm)
         {
             EndEventWithoutResults();
@@ -112,8 +133,21 @@ public class EventManager : MonoBehaviour
         else
         {
             string confirmText = "OK";
-            string gainText = GetGainString(actionEvent.Gain, actionEvent.RiskTier);
-            ui.eventDialog.ShowResults(choice.ResultText, gainText, confirmText);
+            string gainOrLostText = "";
+            if (choice.Action == Action.Gain)
+            {
+                gainOrLostText = GetGainString(choice.Gain);
+            }
+            else if (choice.Action == Action.Lose)
+            {
+                gainOrLostText = GetLostString(choice.Gain);
+            }
+
+            if (!choice.ShowGainNameInResult)
+            {
+                gainOrLostText = "";
+            }
+            ui.eventDialog.ShowResults(choice.ResultText, gainOrLostText, confirmText);
         }
     }
 
@@ -132,19 +166,91 @@ public class EventManager : MonoBehaviour
         ui.eventDialog.Close();
     }
 
-    private string GetGainString(EventGain gain, int tier)
+    private void SetEventRiskTier(EventType actionEvent)
     {
-        if (gain.Money > 0)
+        if (actionEvent.Tier > 0)
         {
-            return gain.Money + " Junk";
+            int randomTier = Random.Range(1, GameManager.Instance.regionNum);
+            actionEvent.Tier = randomTier;
         }
-        else if (gain.RandomItem)
+    }
+
+    private void SetPromisedRewardUpgrade(EventType actionEvent)
+    {
+        if (actionEvent.Choices.Count > 0)
         {
-            return itemGain.GetName();
+            if (actionEvent.Choices[0].Action == Action.Gain
+                && actionEvent.Choices[0].Gain.Type == EventGain.GainType.Upgrade)
+            {
+                promisedRewardItem = ContentManager.Instance.
+                    GetRandomHomeUpgrade(actionEvent.Tier, actionEvent.Tier);
+                //Debug.Log("Item promised: " + promisedRewardItem.GetName());
+            }
+            else
+            {
+                promisedRewardItem = null;
+            }
         }
-        else
+    }
+
+    private string GetGainString(EventGain gain)
+    {
+        switch (gain.Type)
         {
-            return "nothing";
+            case EventGain.GainType.Upgrade:
+            {
+                if (promisedRewardItem != null)
+                {
+                    return promisedRewardItem.GetName();
+                }
+                else
+                {
+                    return "[NOT THE PROMISED ITEM]";
+                }
+            }
+            case EventGain.GainType.Floor:
+            {
+                return "a new floor! Wow";
+            }
+            case EventGain.GainType.Money:
+            {
+                return gain.Amount + " Junk";
+            }
+            case EventGain.GainType.Score:
+            {
+                return gain.Amount + " points";
+            }
+            default:
+            {
+                return "nothing";
+            }
+        }
+    }
+
+    private string GetLostString(EventGain lost)
+    {
+        switch (lost.Type)
+        {
+            case EventGain.GainType.Upgrade:
+            {
+                return "[LOST UPGRADE]";
+            }
+            case EventGain.GainType.Floor:
+            {
+                return "[LOST FLOOR]";
+            }
+            case EventGain.GainType.Money:
+            {
+                return "[LOST " + lost.Amount + " JUNK]";
+            }
+            case EventGain.GainType.Score:
+            {
+                return "[LOST " + lost.Amount + " POINTS]";
+            }
+            default:
+            {
+                return "nothing";
+            }
         }
     }
 }
