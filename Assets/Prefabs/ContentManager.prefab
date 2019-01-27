@@ -470,10 +470,10 @@ MonoBehaviour:
       Bonus: 5
   - Image: {fileID: 21300006, guid: 9e397c217c4b08944b8b1813d649d934, type: 3}
     Name: Gramophone
-    Tier: 4
+    Tier: 3
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 5
+      ReloadTime: 12
       TargetingType: 1
       Targets: feffffffffffffff0100000002000000
       RandomTargets: 
