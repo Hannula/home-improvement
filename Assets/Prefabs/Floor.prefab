@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 4857720520312576863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.14, y: 0.83, z: -1.9277344}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 738656107991802559}
   m_RootOrder: 3
@@ -335,7 +335,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 24
+  m_FontSize: 200
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0, type: 3}
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 5366937301555386551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.14, y: 0.2, z: -1.9277344}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 738656107991802559}
   m_RootOrder: 4
@@ -426,7 +426,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 24
+  m_FontSize: 200
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: fd157831520eb53479ae0b1e8d210ea0, type: 3}
@@ -5833,15 +5833,20 @@ PrefabInstance:
       propertyPath: maxScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5080742381588928543, guid: 0fe045e850788624ba763c50ccec416b,
-        type: 3}
-      propertyPath: m_Name
-      value: ProgressBar
-      objectReference: {fileID: 0}
     - target: {fileID: 5080742380418369687, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
       propertyPath: m_Color.g
       value: 0.7327648
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Name
+      value: ProgressBar
       objectReference: {fileID: 0}
     - target: {fileID: 8194870946204566795, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
