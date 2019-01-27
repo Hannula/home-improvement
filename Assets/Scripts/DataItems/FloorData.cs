@@ -143,6 +143,8 @@ public class FloorData
                 }
             }
         }
+        healthDamage = Mathf.Min(10, healthDamage);
+
         Health -= healthDamage;
         Comfort -= comfortDamage;
 

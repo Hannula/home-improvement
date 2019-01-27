@@ -52,7 +52,7 @@ MonoBehaviour:
       ReloadTime: 7
       TargetingType: 1
       Targets: 00000000
-      RandomTargets: ffffffff
+      RandomTargets: ffffffff01000000
       RandomHits: 1
       CanMiss: 1
       HitChance: 75
