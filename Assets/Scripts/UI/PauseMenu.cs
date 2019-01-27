@@ -9,18 +9,6 @@ public class PauseMenu : UIScreen
     public Button restartButton;
     public Button mainMenuButton;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        // TODO
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        // TODO
-    }
-
     public void ResumeGame()
     {
         GameManager.Instance.PauseGame(false);

@@ -25,6 +25,7 @@ public class UpgradeSlot : SelectableItem
     public void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        UpdateInventory();
     }
 
     public void Update()
@@ -70,6 +71,14 @@ public class UpgradeSlot : SelectableItem
             BackgroundSpriteRenderer.color = SelectedColor;
         }
 
+    }
+
+    public void UpdateInventory()
+    {
+        if (ParentFloor == null)
+        {
+            HomeUpgrade = GameManager.Instance.Inventory[InventoryIndex];
+        }
     }
 
     // Insert new upgrade to the slot

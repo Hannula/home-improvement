@@ -6,11 +6,6 @@ using data;
 public class EventManager : MonoBehaviour
 {
     /// <summary>
-    /// The currently occupied node.
-    /// </summary>
-    public Node currentNode;
-
-    /// <summary>
     /// Is an event active.
     /// </summary>
     public bool eventActive;
@@ -18,23 +13,20 @@ public class EventManager : MonoBehaviour
     /// <summary>
     /// Is an event ending.
     /// </summary>
-    public bool eventResults;
+    public bool eventResultsSeen;
+
+    public HomeUpgrade promisedRewardItem;
 
     private UIManager ui;
-    private SelectableNode[] nodes;
+    private InventoryManager inventoryManager;
+    private bool startBattle;
 
     // Start is called before the first frame update
     private void Start()
     {
         ui = FindObjectOfType<UIManager>();
         ui.SetEventManager(this);
-        nodes = FindObjectsOfType<SelectableNode>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     public void StartEvent(Node node)
@@ -44,10 +36,12 @@ public class EventManager : MonoBehaviour
             if (!eventActive)
             {
                 eventActive = true;
-                currentNode = node;
-                ui.ShowEventDialog(node.Event);
+                SetEventRiskTier(node.Event);
+                SetPromisedRewardUpgrade(node.Event);
+                string gainText = GetGainString(node.Event.Choices[0].Gain);
+                ui.eventDialog.ShowEvent(node.Event, gainText);
 
-                if (node.Event.MustBattle)
+                if (node.Event.MustFight)
                 {
                     SFXPlayer.Instance.Play(Sound.Alarm);
                 }
@@ -59,33 +53,232 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void EventResults()
+    private void EventResults(EventType actionEvent, int actionIndex)
     {
-        if (GameManager.Instance.State == GameManager.GameState.Map)
+        eventResultsSeen = true;
+        EventChoice choice = actionEvent.Choices[actionIndex];
+        startBattle = false;
+
+        switch (choice.Action)
         {
-            ui.ShowResultDialog();
+            case Action.Fight:
+            {
+                startBattle = true;
+                break;
+            }
+            case Action.Gain:
+            {
+                if (choice.Gain.Type == EventGain.GainType.Upgrade)
+                {
+                    //HomeUpgrade newItem = ContentManager.Instance.
+                    //    GetRandomHomeUpgrade(actionEvent.RiskTier, actionEvent.RiskTier);
+                    inventoryManager.AddItem(promisedRewardItem);
+                    SFXPlayer.Instance.Play(Sound.Hop1);
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Floor)
+                {
+                    FloorData fd = new FloorData(
+                        ContentManager.Instance.GetRandomFloorType(actionEvent.Tier),
+                        ContentManager.Instance.GetRandomWallType(actionEvent.Tier));
+                    GameManager.Instance.PlayerHome.Floors.Add(fd);
+                    GameManager.Instance.home.UpdateHome();
+                    SFXPlayer.Instance.Play(Sound.Repair);
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Money)
+                {
+                    GameManager.Instance.money += choice.Gain.Amount;
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Score)
+                {
+                    GameManager.Instance.score += choice.Gain.Amount;
+                }
+                break;
+            }
+            case Action.Lose:
+            {
+                if (choice.Gain.Type == EventGain.GainType.Upgrade)
+                {
+                    // TODO
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Floor)
+                {
+                    // TODO
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Money)
+                {
+                    GameManager.Instance.money -= choice.Gain.Amount;
+                    if (GameManager.Instance.money < 0)
+                    {
+                        GameManager.Instance.money = 0;
+                    }
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Score)
+                {
+                    GameManager.Instance.score -= choice.Gain.Amount;
+                    if (GameManager.Instance.score < 0)
+                    {
+                        GameManager.Instance.score = 0;
+                    }
+                }
+                break;
+            }
+            case Action.Advance:
+            {
+                GameManager.Instance.NextRegion();
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+
+        ShowConfirmScreen(choice);
+
+        promisedRewardItem = null;
+    }
+
+    private void ShowConfirmScreen(EventChoice choice)
+    {
+        if (choice.SkipConfirm)
+        {
+            EndEventWithoutResults();
+            if (startBattle)
+            {
+                GameManager.Instance.LoadBattleScene();
+            }
         }
         else
         {
-            Debug.LogError("Event results can only be viewed in the Map screen.");
-        }
+            string confirmText = "OK";
+            string gainOrLostText = "";
+            if (choice.Action == Action.Gain)
+            {
+                gainOrLostText = GetGainString(choice.Gain);
+            }
+            else if (choice.Action == Action.Lose)
+            {
+                gainOrLostText = GetLostString(choice.Gain);
+            }
 
+            if (!choice.ShowGainNameInResult)
+            {
+                gainOrLostText = "";
+            }
+            ui.eventDialog.ShowResults(choice.ResultText, gainOrLostText, confirmText);
+        }
     }
 
-    public void EndEvent(bool skipConfirm)
+    public void EndEvent(EventType actionEvent, int actionIndex)
     {
-        if (eventActive)
+        if (eventActive && actionEvent != null)
         {
-            if (eventResults || skipConfirm)
+            EventResults(actionEvent, actionIndex);
+        }
+    }
+
+    public void EndEventWithoutResults()
+    {
+        eventActive = false;
+        eventResultsSeen = false;
+        ui.eventDialog.Close();
+
+        if (startBattle)
+        {
+            GameManager.Instance.LoadBattleScene();
+        }
+    }
+
+    private void SetEventRiskTier(EventType actionEvent)
+    {
+        if (actionEvent.Tier > 0)
+        {
+            int randomTier = Random.Range(1, GameManager.Instance.regionNum);
+            actionEvent.Tier = randomTier;
+        }
+    }
+
+    private void SetPromisedRewardUpgrade(EventType actionEvent)
+    {
+        if (actionEvent.Choices.Count > 0)
+        {
+            bool itemReward = false;
+            foreach (EventChoice choice in actionEvent.Choices)
             {
-                eventActive = false;
-                eventResults = false;
-                ui.eventDialog.Close();
+                if (choice.Action == Action.Gain
+                    && choice.Gain.Type == EventGain.GainType.Upgrade)
+                {
+                    promisedRewardItem = ContentManager.Instance.
+                        GetRandomHomeUpgrade(actionEvent.Tier, actionEvent.Tier);
+                    itemReward = true;
+                    break;
+                }
             }
-            else
+            
+            if (!itemReward)
             {
-                eventResults = true;
-                EventResults();
+                promisedRewardItem = null;
+            }
+        }
+    }
+
+    private string GetGainString(EventGain gain)
+    {
+        switch (gain.Type)
+        {
+            case EventGain.GainType.Upgrade:
+            {
+                if (promisedRewardItem != null)
+                {
+                    return promisedRewardItem.GetName();
+                }
+                else
+                {
+                    return "[NOT THE PROMISED ITEM]";
+                }
+            }
+            case EventGain.GainType.Floor:
+            {
+                return "a new floor! Wow";
+            }
+            case EventGain.GainType.Money:
+            {
+                return gain.Amount + " Junk";
+            }
+            case EventGain.GainType.Score:
+            {
+                return gain.Amount + " points";
+            }
+            default:
+            {
+                return "nothing";
+            }
+        }
+    }
+
+    private string GetLostString(EventGain lost)
+    {
+        switch (lost.Type)
+        {
+            case EventGain.GainType.Upgrade:
+            {
+                return "[LOST UPGRADE]";
+            }
+            case EventGain.GainType.Floor:
+            {
+                return "[LOST FLOOR]";
+            }
+            case EventGain.GainType.Money:
+            {
+                return "[LOST " + lost.Amount + " JUNK]";
+            }
+            case EventGain.GainType.Score:
+            {
+                return "[LOST " + lost.Amount + " POINTS]";
+            }
+            default:
+            {
+                return "nothing";
             }
         }
     }

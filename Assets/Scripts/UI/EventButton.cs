@@ -6,22 +6,27 @@ using data;
 
 public class EventButton : MonoBehaviour
 {
-    private Action action;
+    private EventType actionEvent;
     private Text text;
+    private int actionIndex;
+    private bool confirmResults;
 
     public void Init()
     {
         text = GetComponentInChildren<Text>();
     }
 
-    public void InitEvent(string title, Action action)
+    public void InitEvent(EventType actionEvent, int index)
     {
-        text.text = title;
-        this.action = action;
+        this.actionEvent = actionEvent;
+        text.text = actionEvent.Choices[index].Name;
+        actionIndex = index;
+        confirmResults = false;
     }
 
     public void InitResults(string title)
     {
+        confirmResults = true;
         text.text = title;
     }
 
@@ -32,34 +37,13 @@ public class EventButton : MonoBehaviour
 
     public void DoAction()
     {
-        if (!GameManager.Instance.eventManager.eventResults)
+        if (confirmResults)
         {
-            switch (action)
-            {
-                case Action.Fight:
-                {
-                    GameManager.Instance.LoadBattleScene();
-                    GameManager.Instance.eventManager.EndEvent(true);
-                    break;
-                }
-                case Action.Loot:
-                {
-                    // TODO: Get loot.
-                    break;
-                }
-                case Action.Advance:
-                {
-                    // TODO: Load next map.
-                    GameManager.Instance.EndGame(true); // testing
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
-            }
+            GameManager.Instance.eventManager.EndEventWithoutResults();
         }
-
-        GameManager.Instance.eventManager.EndEvent(false);
+        else
+        {
+            GameManager.Instance.eventManager.EndEvent(actionEvent, actionIndex);
+        }
     }
 }
