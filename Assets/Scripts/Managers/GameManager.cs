@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public Home home;
     public HomeData PlayerHome;
+    public HomeData EnemyHome;
     public List<HomeUpgrade> Inventory;
     public BattleSkillHandler battleSkillHandler;
 
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviour
     private void Init()
     {
         PlayerHome = HomeData.GenerateRandom(2, 3, 15);
+        EnemyHome = HomeData.GenerateRandom(2, 3, 15);
         State = GameState.MainMenu;
         Transition = SceneTransition.InScene;
         InitScene();

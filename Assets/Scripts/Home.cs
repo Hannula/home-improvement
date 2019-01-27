@@ -16,6 +16,11 @@ public class Home : MonoBehaviour
         if (PlayerHome)
         {
             homeData = GameManager.Instance.PlayerHome;
+            homeData.Prune();
+        }
+        else
+        {
+            homeData = GameManager.Instance.EnemyHome;
         }
     }
 
@@ -36,6 +41,7 @@ public class Home : MonoBehaviour
                 floor.FloorData = fd;
                 floor.Index = i;
                 floor.FloorLower = prevFloor;
+                floor.MyHome = this;
                 Floors.Add(floor);
 
                 if (prevFloor != null)

@@ -11,11 +11,14 @@ public class FloorData
     public Dictionary<DamageTypes, int> Resistances;
     public Dictionary<DamageTypes, int> DamageBonuses;
     public int Comfort;
+    public int BaseComfort;
     public int StenchRemovalBonus;
     public float GlobalReloadSpeedBonus;
     public float GlobalHitChanceBonus;
     public int GlobalRandomHitsBonus;
     public List<int> GlobalRandomHits;
+    public float MaxCooldown;
+    public int StenchLevel;
 
     public FloorData(FloorType floorType, WallType wallType)
     {
@@ -24,12 +27,15 @@ public class FloorData
         WallType = wallType;
         Health = floorType.BaseHealth + wallType.HealthBonus;
         Resistances = new Dictionary<DamageTypes, int>();
+        DamageBonuses = new Dictionary<DamageTypes, int>();
         UpdateStats();
     }
 
     public void UpdateStats()
     {
-        Comfort = Type.BaseComfort + WallType.ComfortBonus + Type.Bonuses.ComfortBonus + WallType.Bonuses.ComfortBonus; ;
+        MaxCooldown = 0f;
+        Comfort = Type.BaseComfort + WallType.ComfortBonus + Type.Bonuses.ComfortBonus + WallType.Bonuses.ComfortBonus;
+        BaseComfort = Comfort;
         StenchRemovalBonus = Type.Bonuses.StenchRemovalBonus + WallType.Bonuses.StenchRemovalBonus;
         GlobalReloadSpeedBonus = Type.Bonuses.GlobalReloadSpeedBonus + WallType.Bonuses.GlobalReloadSpeedBonus;
         GlobalHitChanceBonus =  Type.Bonuses.GlobalHitChanceBonus + WallType.Bonuses.GlobalHitChanceBonus; ;
@@ -44,6 +50,11 @@ public class FloorData
             HomeUpgrade upgrade = HomeUpgrades[i];
             if (upgrade != null)
             {
+                float time = upgrade.UpgradeData.TargetingModule.ReloadTime;
+                if (upgrade.UpgradeData.IsWeapon)
+                {
+                    MaxCooldown = Mathf.Max(time, MaxCooldown);
+                }
                 BonusModule bonusModule = upgrade.UpgradeData.BonusModule;
                 // Comfort
                 Comfort += bonusModule.ComfortBonus;
@@ -84,6 +95,14 @@ public class FloorData
                 }
             }
         }
+        StenchLevel = 0;
+        MaxCooldown -= GlobalReloadSpeedBonus;
+    }
+
+    public void ResetComfort()
+    {
+        StenchLevel = 0;
+        Comfort = BaseComfort;
     }
 
     public void SetResistance(DamageTypes damageType, int resistance)
@@ -98,6 +117,34 @@ public class FloorData
             return Resistances[damageType];
         }
         return 0;
+    }
+
+    public void DealDamage(List<StatBonus> dmg)
+    {
+        int healthDamage = 0;
+        int comfortDamage = 0;
+        foreach (StatBonus stat in dmg)
+        {
+            DamageTypes type = stat.DamageType;
+            int statDamage = stat.Bonus;
+            if (statDamage > 0)
+            {
+                if (type == DamageTypes.Fire || type == DamageTypes.Physical || type == DamageTypes.Water)
+                {
+                    healthDamage += Mathf.Max(0, statDamage - GetResistance(type));
+                }
+                else if (type == DamageTypes.Noise)
+                {
+                    comfortDamage += Mathf.Max(0, statDamage - GetResistance(type));
+                }
+                else
+                {
+                    StenchLevel += Mathf.Max(0, statDamage - GetResistance(type));
+                }
+            }
+        }
+        Health -= healthDamage;
+        Comfort -= comfortDamage;
     }
 }
 

@@ -6,6 +6,8 @@ TextureImporter:
     21300002: wools3_1
     21300004: wools3_2
     21300006: wools3_3
+    21300008: wools3_4
+    21300010: wools3_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -103,6 +105,66 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 80
+        width: 192
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc4f225d2d38594badc6796f09d5204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wools3_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 192
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba68396cc5c1eeb409f964c25119ceac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wools3_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 80
+        width: 192
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b019fa01ed75acb48b3e1e285b33f2c9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wools3_3
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 192
         height: 80
@@ -113,13 +175,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aca939c6210dfe4390e52bd4f759616
+      spriteID: 9aa0106b3aace4a439dc5a4d29e5ca86
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wools3_1
+      name: wools3_4
       rect:
         serializedVersion: 2
         x: 192
@@ -133,13 +195,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac8076fba8701b345acc2af99767628b
+      spriteID: 8bcd9f887d451c54185343524e339538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wools3_2
+      name: wools3_5
       rect:
         serializedVersion: 2
         x: 384
@@ -153,27 +215,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da07c0c8452fd73459070d65f37e8a0c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wools3_3
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 192
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0d4c37738b8c7f4a93b785e10ae76e9
+      spriteID: b77ced6cda3eb1a4fbeeb3065e972cd7
       vertices: []
       indices: 
       edges: []
