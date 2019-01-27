@@ -597,6 +597,31 @@ MonoBehaviour:
     BaseDamage:
     - DamageType: 4
       Bonus: 4
+  - Image: {fileID: 21300000, guid: 7d587be37c34bd74cab3783eebb85a06, type: 3}
+    Name: Punch-in-a-box
+    Tier: 3
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 11
+      TargetingType: 1
+      Targets: 
+      RandomTargets: 010000000200000003000000
+      RandomHits: 1
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    Sound: 14
+    BaseDamage:
+    - DamageType: 0
+      Bonus: 12
   Modifiers:
   - Name: Awesome
     BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}
