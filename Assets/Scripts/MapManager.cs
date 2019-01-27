@@ -36,11 +36,14 @@ public class MapManager : MonoBehaviour
     public bool HomeMoving = false;
     private EventManager eventManager;
     private GameObject homeHolder;
+    private GameObject lineHolder;
 
     void Start()
     {
         homeHolder = new GameObject();
         homeHolder.name = "HomeHolder";
+        lineHolder = new GameObject();
+        lineHolder.name = "LineHolder";
         eventManager = FindObjectOfType<EventManager>();
 
         var mapTexture = GameObject.Find("MapArea").GetComponent<SpriteRenderer>().sprite.texture;
@@ -105,6 +108,7 @@ public class MapManager : MonoBehaviour
             {
                 var s = new GameObject();
                 s.transform.position = kvp.Value.transform.position;
+                s.transform.SetParent(lineHolder.transform);
                 var linerenderer = s.AddComponent<LineRenderer>();
                 linerenderer.startColor = Color.white;
                 linerenderer.endColor = Color.white;
@@ -113,6 +117,7 @@ public class MapManager : MonoBehaviour
                 linerenderer.SetPosition(0, kvp.Value.transform.position);
                 linerenderer.SetPosition(1, pos);
                 linerenderer.sortingLayerName = "Lines";
+                
             }
 
             // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
@@ -135,7 +140,8 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HomeMoving)
+        if (GameManager.Instance.ActiveGame
+            && HomeMoving)
         {
             if (Vector3.Distance(HomeIcon.transform.position, homeTarget.transform.position) > 0.05f)
             {
