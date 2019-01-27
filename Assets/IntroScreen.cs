@@ -34,13 +34,6 @@ public class IntroScreen : MonoBehaviour
                 Disappear();
             }
         }
-
-        if (Input.GetKey(KeyCode.Space) ||
-            Input.GetKey(KeyCode.Return) ||
-            Input.GetKey(KeyCode.Escape))
-        {
-            Disappear();
-        }
     }
 
     private void UpdateImage()
@@ -58,10 +51,10 @@ public class IntroScreen : MonoBehaviour
         }
     }
 
-    void Disappear()
+    public void Disappear()
     {
         GameManager.Instance.ui.mainMenu.Activate(true);
-        MusicPlayer.Instance.Play(0);
+        MusicPlayer.Instance.Play(0, true);
         Destroy(gameObject);
     }
 }
