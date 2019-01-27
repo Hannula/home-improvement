@@ -109,7 +109,7 @@ public class Home : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.LoadMapScene();
+            GameManager.Instance.WinBattle();
         }
     }
 

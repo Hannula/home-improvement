@@ -326,6 +326,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("New game started");
         regionNum = 1;
+        money = 0;
+        score = 0;
 
         PlayerHome = HomeData.GenerateRandom(2,3,50);
         home.Init(PlayerHome);
@@ -351,6 +353,12 @@ public class GameManager : MonoBehaviour
         MusicPlayer.Instance.Play(1, true);
     }
 
+    public void WinBattle()
+    {
+        score += 10;
+        LoadMapScene();
+    }
+
     public void ReturnToMainMenu()
     {
         State = GameState.MainMenu;
@@ -360,6 +368,7 @@ public class GameManager : MonoBehaviour
     public void NextRegion()
     {
         regionNum++;
+        score += 50;
         Debug.Log("Now entering region " + regionNum);
         LoadMapScene();
     }

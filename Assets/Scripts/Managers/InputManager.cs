@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    IntroScreen intro;
+
     // Start is called before the first frame update
     private void Start()
     {
-        
+        intro = FindObjectOfType<IntroScreen>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,27 @@ public class InputManager : MonoBehaviour
 
     private void MainMenuInput()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (intro != null)
+            {
+                intro.Disappear();
+            }
+
+            if (GameManager.Instance.ui.mainMenu.instructionsScreen.activeSelf)
+            {
+                GameManager.Instance.ui.mainMenu.CloseInstructions();
+            }
+        }
+        else if (Input.GetKey(KeyCode.Space) ||
+                 Input.GetKey(KeyCode.Return) ||
+                 Input.GetKey(KeyCode.Escape))
+        {
+            if (intro != null)
+            {
+                intro.Disappear();
+            }
+        }
     }
 
     private void GameInput()

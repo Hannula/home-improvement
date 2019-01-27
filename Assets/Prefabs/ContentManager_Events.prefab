@@ -84,7 +84,7 @@ MonoBehaviour:
     MustFight: 1
     Tier: 1
   - Name: Battle 2
-    Description: A bandit home ambushes you!
+    Description: Bandits, armed to the roof tiles, drive out of the bushes to attack!
     Choices:
     - Name: No choice but to fight
       ResultText: 
@@ -166,7 +166,7 @@ MonoBehaviour:
     MustFight: 0
     Tier: 1
   - Name: Loot 2
-    Description: You find a stray house. Naturally, you'd want to absord a floor.
+    Description: You find a stray house. Naturally, you'd want to absorb a floor.
     Choices:
     - Name: Sure
       ResultText: 
@@ -176,7 +176,7 @@ MonoBehaviour:
         Type: 1
         Amount: 0
       SkipConfirm: 1
-    - Name: No, thanks
+    - Name: Uh, what?
       ResultText: Hmh, it's your loss.
       ShowGainNameInResult: 0
       Action: 4
@@ -187,7 +187,7 @@ MonoBehaviour:
     MustFight: 0
     Tier: 1
   - Name: Loot 3
-    Description: Some home offers you a {0}. Do you take it?
+    Description: People of a fellow motorized home offer you a {0}. Do you take it?
     Choices:
     - Name: Yes
       ResultText: 
@@ -251,6 +251,58 @@ MonoBehaviour:
       SkipConfirm: 0
     MustFight: 0
     Tier: 1
+  - Name: Loot 6
+    Description: Some shady looking character asks you to let him make some adjustments
+      to your home.
+    Choices:
+    - Name: Please do
+      ResultText: Your home has never looked as good as now!
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 1
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Hard pass
+      ResultText: Rude.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 7
+    Description: Yard sale! A certain {0} catches your eye.
+    Choices:
+    - Name: Buy it
+      ResultText: Lucky for you, some people haven't put their homes on wheels yet.
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Help
+      ResultText: You offer some help with running the yard sale. Your kindness is
+        appreciated.
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 3
+        Amount: 200
+      SkipConfirm: 0
+    - Name: Leave
+      ResultText: With a heavy heart you leave the yard sale.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
   - Name: Text 1
     Description: You suddenly feel bored.
     Choices:
@@ -288,6 +340,64 @@ MonoBehaviour:
       ResultText: If it's so important, it will happen again.
       ShowGainNameInResult: 0
       Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Text 3
+    Description: Night falls. You have been standing on the roof for some time now.
+    Choices:
+    - Name: '*Achoo*'
+      ResultText: It's cold out here. Better get inside.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Battle 6
+    Description: The bridge over the river is out! Luckily the river doesn't seem
+      too deep.
+    Choices:
+    - Name: Go around
+      ResultText: Not only do you have to battle with the loss of precious time, but
+        also the local gang.
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Ford the river
+      ResultText: The blasted merfolk launch an assault on you!
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Battle 7
+    Description: 'A person from another motorized home shouts to you: "Hey, wanna
+      battle?"'
+    Choices:
+    - Name: You're on
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    - Name: No, thanks
+      ResultText: '"Well, too bad, chump!"'
+      ShowGainNameInResult: 0
+      Action: 0
       Gain:
         Type: 0
         Amount: 0
