@@ -1,0 +1,296 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7316231061691812639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7316231061691812633}
+  - component: {fileID: 7316231061691812638}
+  m_Layer: 0
+  m_Name: ContentManager_Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7316231061691812633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316231061691812639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7316231061691812638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316231061691812639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336cc432e35c30e458cd0308e2139d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventTypes:
+  - Name: Home
+    Description: You returned home
+    Choices:
+    - Name: OK
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 7
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 0
+    Tier: 0
+  - Name: Goal
+    Description: You drive on to the next area.
+    Choices:
+    - Name: OK
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 3
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 0
+    Tier: 0
+  - Name: Battle 1
+    Description: A challenger approaches!
+    Choices:
+    - Name: Bring it on!
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 1
+    Tier: 1
+  - Name: Battle 2
+    Description: A bandit home ambushes you!
+    Choices:
+    - Name: No choice but to fight
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 1
+    Tier: 1
+  - Name: Battle 3
+    Description: A pile of scrap some people call a home wants to pick up a fight
+      with you.
+    Choices:
+    - Name: Teach them a lesson
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    - Name: Not this time, pal
+      ResultText: They give you a sour look but don't try to follow.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 0
+  - Name: Battle 4
+    Description: A barbarian home ambushes you!
+    Choices:
+    - Name: RRAAAAGGGHH!!
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 1
+    Tier: 1
+  - Name: Battle 5
+    Description: Do you wish to battle for glory and riches?
+    Choices:
+    - Name: Yep
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 2
+        Amount: 10
+      SkipConfirm: 1
+    - Name: Nope
+      ResultText: Smart choice. Take this {0}, it's on the house.
+      ShowGainNameInResult: 1
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 1
+    Description: You find a {0} on side of the road.
+    Choices:
+    - Name: OK
+      ResultText: 
+      ShowGainNameInResult: 1
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 2
+    Description: You find a stray house. Naturally, you'd want to absord a floor.
+    Choices:
+    - Name: Sure
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 1
+        Amount: 0
+      SkipConfirm: 1
+    - Name: No, thanks
+      ResultText: Hmh, it's your loss.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 3
+    Description: Some home offers you a {0}. Do you take it?
+    Choices:
+    - Name: Yes
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    - Name: No
+      ResultText: '"Then you must die!"'
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 4
+    Description: You find an abandoned EKIA. Alas, you can only take one piece of
+      furniture.
+    Choices:
+    - Name: Take
+      ResultText: You must build it yourself...
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Loot 5
+    Description: A home blocks your way. You are very annoyed.
+    Choices:
+    - Name: Steal
+      ResultText: You take a {0}.
+      ShowGainNameInResult: 1
+      Action: 1
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    - Name: STEAL
+      ResultText: Whoa, you stole a whole floor. You're so rad!
+      ShowGainNameInResult: 0
+      Action: 1
+      Gain:
+        Type: 1
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Wait
+      ResultText: 'Mistake! You are now blocking their way and they are even more
+        annoyed. '
+      ShowGainNameInResult: 0
+      Action: 0
+      Gain:
+        Type: 1
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Text 1
+    Description: You suddenly feel bored.
+    Choices:
+    - Name: Eh...
+      ResultText: Times like this make you appreciate interesting furniture more.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Carry on
+      ResultText: In this post-apocalyptic world, mere boredom is a luxury.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 1
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1
+  - Name: Text 2
+    Description: You hear a strange noise from the engine room.
+    Choices:
+    - Name: Check it out
+      ResultText: The wasteland's irradiated soil is not very good for any machinery,
+        especially not one of this caliber.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    - Name: Ignore
+      ResultText: If it's so important, it will happen again.
+      ShowGainNameInResult: 0
+      Action: 4
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 0
+    MustFight: 0
+    Tier: 1

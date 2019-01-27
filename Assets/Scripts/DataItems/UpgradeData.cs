@@ -10,6 +10,7 @@ public class UpgradeData {
     public bool IsWeapon;
     public TargetingModule TargetingModule;
     public BonusModule BonusModule;
+    public Sound Sound = Sound.None;
 
     public List<StatBonus> BaseDamage;
 

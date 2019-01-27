@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
     public HomeData EnemyHome;
     public List<HomeUpgrade> Inventory;
     public BattleSkillHandler battleSkillHandler;
+    public bool gameRunning;
 
     private bool gameJustStarted = true;
-    private bool gameRunning;
 
     public GameState State { get; private set; }
 
@@ -129,12 +129,11 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        PlayerHome = HomeData.GenerateRandom(2, 3, 15);
-        EnemyHome = HomeData.GenerateRandom(2, 3, 15);
+        PlayerHome = HomeData.GenerateRandom(1, 2, 15);
+        EnemyHome = HomeData.GenerateRandom(2, 2, 15);
         State = GameState.MainMenu;
         Transition = SceneTransition.InScene;
         InitScene();
-        ui.mainMenu.Activate(true);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -259,8 +258,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadMapScene()
     {
-        State = GameState.Map;
-        LoadScene(GameState.Map);
+        if (Transition == SceneTransition.InScene)
+        {
+            State = GameState.Map;
+            LoadScene(GameState.Map);
+        }
     }
 
     private void UpdateSceneTransition()
@@ -295,8 +297,8 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
             {
-                ui.mainMenu.Activate(true);
-                MusicPlayer.Instance.Play(0, true);
+                //ui.mainMenu.Activate(true);
+                //MusicPlayer.Instance.Play(0, true);
                 break;
             }
             case GameState.Map:
@@ -312,10 +314,7 @@ public class GameManager : MonoBehaviour
             }
             case GameState.Battle:
             {
-                battleSkillHandler = FindObjectOfType<BattleSkillHandler>();
-                ui.ActivateBattleSkills(true);
-                battleSkillHandler.Init();
-                MusicPlayer.Instance.Play(1, true);
+                StartBattle();
                 break;
             }
         }
@@ -337,18 +336,19 @@ public class GameManager : MonoBehaviour
             Inventory.Add(null);
         }
 
-        GoToMapScene();
         gameRunning = true;
     }
 
     private void StartBattle()
     {
-        // TODO: Add battle starting stuff here.
-    }
-
-    private void GoToMapScene()
-    {
-        // TODO: Add map scene starting stuff here.
+        battleSkillHandler = FindObjectOfType<BattleSkillHandler>();
+        ui.ActivateBattleSkills(true);
+        battleSkillHandler.Init();
+        EnemyHome = HomeData.GenerateRandom(
+            regionNum,
+            Random.Range(2, regionNum + 2),
+            Mathf.Min(60, 20 + 5 * regionNum));
+        MusicPlayer.Instance.Play(1, true);
     }
 
     public void ReturnToMainMenu()
@@ -361,6 +361,7 @@ public class GameManager : MonoBehaviour
     {
         regionNum++;
         Debug.Log("Now entering region " + regionNum);
+        LoadMapScene();
     }
 
     public void EndGame(bool win)

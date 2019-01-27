@@ -87,6 +87,8 @@ public class MusicPlayer : MonoBehaviour
     private float elapsedFadeTime;
     private bool loop;
 
+    private bool playCalled;
+
     public bool IsPlaying
     {
         get
@@ -143,7 +145,7 @@ public class MusicPlayer : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // Starts playing the first track
-        Play();
+        //Play();
     }
 
     /// <summary>
@@ -157,7 +159,7 @@ public class MusicPlayer : MonoBehaviour
             UpdateWhenPlaying();
         }
         // The track is unpaused or over
-        else if (!paused)
+        else if (!paused && playCalled)
         {
             UpdateWhenNotPlaying();
         }
@@ -276,6 +278,11 @@ public class MusicPlayer : MonoBehaviour
     /// <param name="trackNum">the track's number in the rack list</param>
     public void Play(int trackNum, bool loop = false)
     {
+        if (audioSrc.isPlaying && trackNum == currentTrack)
+        {
+            return;
+        }
+
         if (trackNum >= 0 &&
             trackNum < tracks.Count)
         {
@@ -294,6 +301,8 @@ public class MusicPlayer : MonoBehaviour
             audioSrc.Play();
             this.loop = loop;
         }
+
+        playCalled = true;
     }
 
     /// <summary>

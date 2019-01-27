@@ -46,11 +46,12 @@ public class Floor : SelectableItem
             UpgradeSlots[i].ParentFloorSlotIndex = i;
             FloorData.ResetComfort();
         }
+        FloorData.UpdateStats();
     }
 
     public void Update()
     {
-        Cooldown += GameManager.Instance.DeltaTime * FloorData.Comfort / FloorData.BaseComfort ;
+        Cooldown += GameManager.Instance.DeltaTime * FloorData.Comfort / 25f;
         ReloadBar.SetProgress(Cooldown / FloorData.MaxCooldown);
         StenchLevel = FloorData.StenchLevel;
         if (StenchLevel > 0)
@@ -73,7 +74,7 @@ public class Floor : SelectableItem
             ParticleSystem.EmissionModule em = PsysStench.emission;
             em.enabled = false;
         }
-        if ( Cooldown > FloorData.MaxCooldown)
+        if ( Cooldown >= FloorData.MaxCooldown)
         {
             Fire();
         }
@@ -108,8 +109,6 @@ public class Floor : SelectableItem
         BackgroundImage.sortingOrder = Index;
         WallImage.sortingOrder = Index;
 
-
-
         if (Selected)
         {
             BorderImage.color = SelectedColor;
@@ -130,7 +129,10 @@ public class Floor : SelectableItem
         HealthTex.text = FloorData.Health.ToString();
         ComfortText.text = FloorData.Comfort.ToString();
 
-
+        if (GameManager.Instance.State != GameManager.GameState.Battle)
+        {
+            FloorData.ResetComfort();
+        }
     }
 
     public void Fire()
@@ -142,6 +144,11 @@ public class Floor : SelectableItem
                 HomeUpgrade item = slot.HomeUpgrade;
                 if (item != null && item.UpgradeData != null && item.UpgradeData.IsWeapon && item.UpgradeData.BaseDamage != null)
                 {
+                    if (item.UpgradeData.Sound != Sound.None)
+                    {
+                        SFXPlayer.Instance.Play(item.UpgradeData.Sound, volumeFactor: 0.3f);
+                    }
+
                     Home targetHome = FindObjectsOfType<Home>().Where(x => x != MyHome).First();
                     int baseTargetIndex = Index;
                     switch(item.UpgradeData.TargetingModule.TargetingType)
@@ -161,8 +168,8 @@ public class Floor : SelectableItem
                                 baseDamage[i] = new StatBonus(baseDamage[i].DamageType, baseDamage[i].Bonus + FloorData.DamageBonuses[type]);
                                 break;
                             }
-                            baseDamage.Add(new StatBonus(type, FloorData.DamageBonuses[type]));
                         }
+                        baseDamage.Add(new StatBonus(type, FloorData.DamageBonuses[type]));
                     }
                     foreach (int targetIndex in item.UpgradeData.TargetingModule.Targets)
                     {
@@ -214,6 +221,29 @@ public class Floor : SelectableItem
             }
         }
         Destroy(gameObject);
+
+        // Explosion sound effect
+        int rand = Random.Range(1, 3);
+        Sound explSound = Sound.None;
+        switch (rand)
+        {
+            case 1:
+            {
+                explSound = Sound.Explosion1;
+                break;
+            }
+            case 2:
+            {
+                explSound = Sound.Explosion2;
+                break;
+            }
+            case 3:
+            {
+                explSound = Sound.Explosion3;
+                break;
+            }
+        }
+        SFXPlayer.Instance.Play(explSound, volumeFactor: 0.6f);
     }
 
     public void ReduceIndex()

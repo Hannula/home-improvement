@@ -19,6 +19,7 @@ public class EventManager : MonoBehaviour
 
     private UIManager ui;
     private InventoryManager inventoryManager;
+    private bool startBattle;
 
     // Start is called before the first frame update
     private void Start()
@@ -56,12 +57,13 @@ public class EventManager : MonoBehaviour
     {
         eventResultsSeen = true;
         EventChoice choice = actionEvent.Choices[actionIndex];
+        startBattle = false;
 
         switch (choice.Action)
         {
             case Action.Fight:
             {
-                GameManager.Instance.LoadBattleScene();
+                startBattle = true;
                 break;
             }
             case Action.Gain:
@@ -71,6 +73,7 @@ public class EventManager : MonoBehaviour
                     //HomeUpgrade newItem = ContentManager.Instance.
                     //    GetRandomHomeUpgrade(actionEvent.RiskTier, actionEvent.RiskTier);
                     inventoryManager.AddItem(promisedRewardItem);
+                    SFXPlayer.Instance.Play(Sound.Hop1);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Floor)
                 {
@@ -84,6 +87,10 @@ public class EventManager : MonoBehaviour
                 else if (choice.Gain.Type == EventGain.GainType.Money)
                 {
                     GameManager.Instance.money += choice.Gain.Amount;
+                }
+                else if (choice.Gain.Type == EventGain.GainType.Score)
+                {
+                    GameManager.Instance.score += choice.Gain.Amount;
                 }
                 break;
             }
@@ -105,12 +112,19 @@ public class EventManager : MonoBehaviour
                         GameManager.Instance.money = 0;
                     }
                 }
+                else if (choice.Gain.Type == EventGain.GainType.Score)
+                {
+                    GameManager.Instance.score -= choice.Gain.Amount;
+                    if (GameManager.Instance.score < 0)
+                    {
+                        GameManager.Instance.score = 0;
+                    }
+                }
                 break;
             }
             case Action.Advance:
             {
-                // TODO: Load next map.
-                GameManager.Instance.EndGame(true); // testing
+                GameManager.Instance.NextRegion();
                 break;
             }
             default:
@@ -129,6 +143,10 @@ public class EventManager : MonoBehaviour
         if (choice.SkipConfirm)
         {
             EndEventWithoutResults();
+            if (startBattle)
+            {
+                GameManager.Instance.LoadBattleScene();
+            }
         }
         else
         {
@@ -164,6 +182,11 @@ public class EventManager : MonoBehaviour
         eventActive = false;
         eventResultsSeen = false;
         ui.eventDialog.Close();
+
+        if (startBattle)
+        {
+            GameManager.Instance.LoadBattleScene();
+        }
     }
 
     private void SetEventRiskTier(EventType actionEvent)
@@ -179,14 +202,20 @@ public class EventManager : MonoBehaviour
     {
         if (actionEvent.Choices.Count > 0)
         {
-            if (actionEvent.Choices[0].Action == Action.Gain
-                && actionEvent.Choices[0].Gain.Type == EventGain.GainType.Upgrade)
+            bool itemReward = false;
+            foreach (EventChoice choice in actionEvent.Choices)
             {
-                promisedRewardItem = ContentManager.Instance.
-                    GetRandomHomeUpgrade(actionEvent.Tier, actionEvent.Tier);
-                //Debug.Log("Item promised: " + promisedRewardItem.GetName());
+                if (choice.Action == Action.Gain
+                    && choice.Gain.Type == EventGain.GainType.Upgrade)
+                {
+                    promisedRewardItem = ContentManager.Instance.
+                        GetRandomHomeUpgrade(actionEvent.Tier, actionEvent.Tier);
+                    itemReward = true;
+                    break;
+                }
             }
-            else
+            
+            if (!itemReward)
             {
                 promisedRewardItem = null;
             }

@@ -57,6 +57,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e196c0d7b1c20ba47a711e036e667cef, type: 3}
   - {fileID: 8300000, guid: a0038fb1268ec134c8f41b9a8a7151ee, type: 3}
   - {fileID: 8300000, guid: 4c3581c25e331a84588e24a7d1e62dd1, type: 3}
+  - {fileID: 8300000, guid: 4113800bdc34d094f85cd73d47b60c91, type: 3}
+  - {fileID: 8300000, guid: 93b5c49dc2ce41041b8209ba23281280, type: 3}
+  - {fileID: 8300000, guid: 677bc67deff42cd4d901ff317e1d2c6b, type: 3}
+  - {fileID: 8300000, guid: 0ce18b2ce76306044acf20f91e0e88cb, type: 3}
+  - {fileID: 8300000, guid: 0fcf2249daf34ea41b27a0f24b39d197, type: 3}
+  - {fileID: 8300000, guid: 4dce5f285794dd94ca237d81c90f9e69, type: 3}
+  - {fileID: 8300000, guid: 85ce962c6fb7e0a47bcb38bdc3c8cb45, type: 3}
+  - {fileID: 8300000, guid: f31899f5c44ed3e4382d0d4961489cae, type: 3}
+  - {fileID: 8300000, guid: a25f0097920733740928d5acbf9f5191, type: 3}
+  - {fileID: 8300000, guid: b535be6f53ed59844916cba9d764276f, type: 3}
+  - {fileID: 8300000, guid: dabbf587e7576d5419c24d2d373cff93, type: 3}
+  - {fileID: 8300000, guid: 99672e2432cee5d4ebbdf1fa79f9443d, type: 3}
   volume: 1
   audioSrcPoolSize: 20
   flexiblePoolSize: 1

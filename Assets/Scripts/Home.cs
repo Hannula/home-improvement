@@ -11,6 +11,11 @@ public class Home : MonoBehaviour
 
     public HomeData homeData;
 
+    private float deathSoundDelay = 1f;
+    private bool dead;
+    private bool exiting;
+    private AudioSource deathSound;
+
     public void Awake()
     {
         if (PlayerHome)
@@ -53,6 +58,58 @@ public class Home : MonoBehaviour
 
             }
             prevFloor.RoofSprite = RoofSprite;
+        }
+    }
+
+    private void Update()
+    {
+        if (!exiting && Floors.Count == 0)
+        {
+            Die();
+        }
+
+        if (exiting && !deathSound.isPlaying &&
+            GameManager.Instance.gameRunning)
+        {
+            LeaveBattle();
+        }
+    }
+
+    private void Die()
+    {
+        if (!dead)
+        {
+            MusicPlayer.Instance.StartFadeOut();
+        }
+
+        dead = true;
+
+        if (deathSoundDelay > 0f)
+        {
+            deathSoundDelay -= GameManager.Instance.DeltaTime;
+            return;
+        }
+
+        exiting = true;
+        if (PlayerHome)
+        {
+            deathSound = SFXPlayer.Instance.Play(Sound.Asdfghj);
+        }
+        else
+        {
+            deathSound = SFXPlayer.Instance.Play(Sound.GetRekt2);
+        }
+    }
+
+    private void LeaveBattle()
+    {
+        if (PlayerHome)
+        {
+            GameManager.Instance.EndGame(false);
+        }
+        else
+        {
+            GameManager.Instance.LoadMapScene();
         }
     }
 

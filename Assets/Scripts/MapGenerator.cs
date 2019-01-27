@@ -166,18 +166,6 @@ public class MapGenerator
         var node = new Node();
         var randomNumber = 1 + rand.Next(2);
         node.Event = ContentManager_Events.Instance.GetRandomEvent(randomNumber);
-        //Dictionary<string, Action> choices = new Dictionary<string, Action>();
-        //if (randomNumber == 0)
-        //{
-        //    choices.Add("Yes", Action.GetItem);
-        //    choices.Add("No", Action.None);
-        //    node.Event = new Event(){ Description = "Do you want to loot old castle?", Choises = choices };
-        //}
-        //else
-        //{
-        //    choices.Add("FIGHT", Action.Fight);
-        //    node.Event = new Event() { Description = "There Slimy Church!", Choises = choices };
-        //}
 
         return node;
     }

@@ -49,6 +49,10 @@ public class InputManager : MonoBehaviour
         {
             GameManager.Instance.EndGame(false);
         }
+        else if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            GameManager.Instance.LoadMapScene();
+        }
         else if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Break();

@@ -145,6 +145,9 @@ public class FloorData
         }
         Health -= healthDamage;
         Comfort -= comfortDamage;
+
+        //Debug.Log("Took " + healthDamage + " health damage");
+        //Debug.Log("Took " + comfortDamage + " comfort damage");
     }
 }
 

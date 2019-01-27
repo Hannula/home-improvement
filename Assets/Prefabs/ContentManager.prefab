@@ -67,6 +67,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 12
     BaseDamage:
     - DamageType: 3
       Bonus: 3
@@ -74,7 +75,7 @@ MonoBehaviour:
       Bonus: 1
   - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Get Rekt Horn
-    Tier: 1
+    Tier: 3
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 10
@@ -93,6 +94,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 1
     BaseDamage:
     - DamageType: 2
       Bonus: 4
@@ -123,6 +125,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage: []
   - Image: {fileID: 21300020, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Trophy Cabinet
@@ -145,6 +148,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage: []
   - Image: {fileID: 21300022, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Fish
@@ -169,12 +173,13 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 12
     BaseDamage:
     - DamageType: 3
       Bonus: 5
   - Image: {fileID: 21300016, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Statue
-    Tier: 1
+    Tier: 3
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 6
@@ -199,12 +204,13 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 2
       GlobalRandomHits: ffffffff01000000
+    Sound: 13
     BaseDamage:
     - DamageType: 3
       Bonus: 5
   - Image: {fileID: 21300018, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Closet
-    Tier: 1
+    Tier: 2
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 6
@@ -225,12 +231,13 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage:
     - DamageType: 3
       Bonus: 5
   - Image: {fileID: 21300014, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Fireplace
-    Tier: 1
+    Tier: 3
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 15
@@ -251,6 +258,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 10
     BaseDamage:
     - DamageType: 1
       Bonus: 15
@@ -275,10 +283,11 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage: []
   - Image: {fileID: 21300010, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Sink
-    Tier: 1
+    Tier: 2
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 15
@@ -301,6 +310,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage: []
   - Image: {fileID: 21300008, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Bucket
@@ -325,10 +335,11 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 13
     BaseDamage: []
   - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Honey
-    Tier: 1
+    Tier: 2
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 15
@@ -347,12 +358,13 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 5
     BaseDamage:
     - DamageType: 4
       Bonus: 4
   - Image: {fileID: 21300002, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Throne
-    Tier: 1
+    Tier: 3
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 9
@@ -371,6 +383,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
+    Sound: 4
     BaseDamage:
     - DamageType: 0
       Bonus: 8
