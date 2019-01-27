@@ -140,7 +140,8 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HomeMoving)
+        if (GameManager.Instance.ActiveGame
+            && HomeMoving)
         {
             if (Vector3.Distance(HomeIcon.transform.position, homeTarget.transform.position) > 0.05f)
             {

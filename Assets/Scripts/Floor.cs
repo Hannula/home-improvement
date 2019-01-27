@@ -28,6 +28,7 @@ public class Floor : SelectableItem
     void Start()
     {
         BackgroundImage.sprite = FloorData.Type.BackgroundImage;
+        WallImage.sprite = FloorData.WallType.BackgroundImage;
         for(int i = 0; i < FloorData.HomeUpgrades.Length; i++)
         {
             UpgradeSlots[i].HomeUpgrade = FloorData.HomeUpgrades[i];

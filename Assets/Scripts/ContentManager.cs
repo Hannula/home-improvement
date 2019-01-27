@@ -11,11 +11,18 @@ public class ContentManager : MonoBehaviour
 
     public List<ModifierData> Modifiers;
 
+    public List<WallType> WallTypes;
+
     public List<FloorType> FloorTypes;
 
     public UpgradeData GetRandomUpgradeData(int tier)
     {
-        List<UpgradeData> tierUpgrades = Upgrades.Where(x => x.Tier == tier).ToList();
+        List<UpgradeData> tierUpgrades = new List<UpgradeData>();
+        while (tier > 0 && tierUpgrades.Count <= 0)
+        {
+            tierUpgrades = Upgrades.Where(x => x.Tier == tier).ToList();
+            tier -= 1;
+        }
         if (tierUpgrades.Count <= 0)
         {
             return null;
@@ -25,7 +32,42 @@ public class ContentManager : MonoBehaviour
 
     public ModifierData GetRandomModifierData(int tier)
     {
-        List<ModifierData> tierUpgrades = Modifiers.Where(x => x.Tier == tier).ToList();
+        List<ModifierData> tierUpgrades = new List<ModifierData>();
+        while (tier > 0 && tierUpgrades.Count <= 0)
+        {
+            tierUpgrades = Modifiers.Where(x => x.Tier == tier).ToList();
+            tier -= 1;
+        }
+        if (tierUpgrades.Count <= 0)
+        {
+            return null;
+        }
+        return UtilityFunctions.GetRandomElement(tierUpgrades);
+    }
+
+    public WallType GetRandomWallType(int tier)
+    {
+        List<WallType> tierUpgrades = new List<WallType>();
+        while (tier > 0 && tierUpgrades.Count <= 0)
+        {
+            tierUpgrades = WallTypes.Where(x => x.Tier == tier).ToList();
+            tier -= 1;
+        }
+        if (tierUpgrades.Count <= 0)
+        {
+            return null;
+        }
+        return UtilityFunctions.GetRandomElement(tierUpgrades);
+    }
+
+    public FloorType GetRandomFloorType(int tier)
+    {
+        List<FloorType> tierUpgrades = new List<FloorType>();
+        while (tier > 0 && tierUpgrades.Count <= 0)
+        {
+            tierUpgrades = FloorTypes.Where(x => x.Tier == tier).ToList();
+            tier -= 1;
+        }
         if (tierUpgrades.Count <= 0)
         {
             return null;

@@ -22,6 +22,7 @@ namespace data
     {
         public string Description = "[DEFAULT]";
         public Dictionary<string, Action> Choises = new Dictionary<string, Action>();
+        public bool MustBattle;
     }
 
     public enum Action
@@ -171,12 +172,22 @@ public class MapGenerator
         {
             choices.Add("Yes", Action.Loot);
             choices.Add("No", Action.None);
-            node.Event = new Event(){ Description = "Do you want to loot old castle?", Choises = choices };
+            node.Event = new Event()
+            {
+                Description = "Do you want to loot old castle?",
+                Choises = choices,
+                MustBattle = false
+            };
         }
         else
         {
             choices.Add("FIGHT", Action.Fight);
-            node.Event = new Event() { Description = "There Slimy Church!", Choises = choices };
+            node.Event = new Event()
+            {
+                Description = "There Slimy Church!",
+                Choises = choices,
+                MustBattle = true
+            };
         }
 
         return node;
