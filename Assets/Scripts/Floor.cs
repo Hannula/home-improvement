@@ -60,17 +60,18 @@ public class Floor : SelectableItem
             em.rate = 2 * StenchLevel;
 
             StenchTimer += GameManager.Instance.DeltaTime;
-            if (StenchTimer > 8)
+            if (StenchTimer > 4)
             {
                 
                 FloorData.StenchLevel -= Mathf.Max(0, FloorData.StenchRemovalBonus);
                 FloorData.Comfort -= 1;
+                StenchTimer = 0;
             }
         }
         else
         {
             ParticleSystem.EmissionModule em = PsysStench.emission;
-            em.enabled = true;
+            em.enabled = false;
         }
         if ( Cooldown > FloorData.MaxCooldown)
         {
@@ -166,6 +167,18 @@ public class Floor : SelectableItem
                     foreach (int targetIndex in item.UpgradeData.TargetingModule.Targets)
                     {
                         int projectileTargetIndex = targetIndex + baseTargetIndex;
+
+                        Projectile proj = Instantiate(ProjectilePrefab).GetComponent<Projectile>();
+                        proj.transform.position = slot.transform.position;
+                        proj.TargetFloorIndex = projectileTargetIndex;
+                        proj.TargetHome = targetHome;
+                        proj.Damage = baseDamage;
+                    }
+
+                    for(int i = 0; i < item.UpgradeData.TargetingModule.RandomHits; i++)
+                    {
+
+                        int projectileTargetIndex = Utilities.UtilityFunctions.GetRandomElement(item.UpgradeData.TargetingModule.RandomTargets) + baseTargetIndex;
 
                         Projectile proj = Instantiate(ProjectilePrefab).GetComponent<Projectile>();
                         proj.transform.position = slot.transform.position;

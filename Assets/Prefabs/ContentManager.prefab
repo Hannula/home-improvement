@@ -74,7 +74,7 @@ MonoBehaviour:
       Bonus: 1
   - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Get Rekt Horn
-    Tier: 3
+    Tier: 1
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 10
@@ -126,7 +126,7 @@ MonoBehaviour:
     BaseDamage: []
   - Image: {fileID: 21300020, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Trophy Cabinet
-    Tier: 2
+    Tier: 1
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 2
@@ -148,7 +148,7 @@ MonoBehaviour:
     BaseDamage: []
   - Image: {fileID: 21300022, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Fish
-    Tier: 2
+    Tier: 1
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 6
@@ -174,7 +174,7 @@ MonoBehaviour:
       Bonus: 5
   - Image: {fileID: 21300016, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Statue
-    Tier: 3
+    Tier: 1
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 6
@@ -230,7 +230,7 @@ MonoBehaviour:
       Bonus: 5
   - Image: {fileID: 21300014, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Fireplace
-    Tier: 3
+    Tier: 1
     IsWeapon: 1
     TargetingModule:
       ReloadTime: 15
@@ -256,7 +256,7 @@ MonoBehaviour:
       Bonus: 15
   - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Gold Pile
-    Tier: 3
+    Tier: 1
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 15
@@ -278,7 +278,7 @@ MonoBehaviour:
     BaseDamage: []
   - Image: {fileID: 21300010, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Sink
-    Tier: 2
+    Tier: 1
     IsWeapon: 0
     TargetingModule:
       ReloadTime: 15
@@ -326,30 +326,54 @@ MonoBehaviour:
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
     BaseDamage: []
-  - Image: {fileID: 21300008, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
-    Name: Bucket
+  - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Honey
     Tier: 1
-    IsWeapon: 0
+    IsWeapon: 1
     TargetingModule:
       ReloadTime: 15
-      TargetingType: 1
+      TargetingType: 3
       Targets: 
-      RandomTargets: ffffffff0000000001000000
-      RandomHits: 2
+      RandomTargets: 000000000100000002000000
+      RandomHits: 1
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 0
+      ComfortBonus: 10
       StenchRemovalBonus: 0
-      ResistanceBonuses:
-      - DamageType: 1
-        Bonus: 4
+      ResistanceBonuses: []
       GlobalDamageBonuses: []
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
-    BaseDamage: []
+    BaseDamage:
+    - DamageType: 4
+      Bonus: 4
+  - Image: {fileID: 21300002, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
+    Name: Throne
+    Tier: 1
+    IsWeapon: 1
+    TargetingModule:
+      ReloadTime: 9
+      TargetingType: 1
+      Targets: ffffffff
+      RandomTargets: 
+      RandomHits: 0
+      CanMiss: 0
+      HitChance: 100
+    BonusModule:
+      ComfortBonus: 10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+    BaseDamage:
+    - DamageType: 0
+      Bonus: 8
   Modifiers:
   - Name: Awesome
     BlendColor: {r: 0.9262859, g: 1, b: 0.6084906, a: 1}
@@ -578,6 +602,210 @@ MonoBehaviour:
       ResistanceBonuses:
       - DamageType: 4
         Bonus: 3
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Filthy
+    BlendColor: {r: 0.5943396, g: 0.35178438, b: 0.26633143, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: -1
+      ResistanceBonuses:
+      - DamageType: 4
+        Bonus: -2
+      GlobalDamageBonuses:
+      - DamageType: 4
+        Bonus: 2
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Gross
+    BlendColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -10
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Noisy
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: -2
+      GlobalDamageBonuses:
+      - DamageType: 2
+        Bonus: 3
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Jingling
+    BlendColor: {r: 1, g: 0.9404481, b: 0.5235849, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Fluffy
+    BlendColor: {r: 0.8584906, g: 0.7005607, b: 0.755014, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 20
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 3
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Burning
+    BlendColor: {r: 0.9150943, g: 0.6351053, b: 0.5222944, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses:
+      - DamageType: 1
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Moist
+    BlendColor: {r: 0.84878963, g: 0.9517893, b: 0.9622642, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 0
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 1
+        Bonus: 1
+      GlobalDamageBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Hard
+    BlendColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -5
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 0
+        Bonus: 2
+      GlobalDamageBonuses:
+      - DamageType: 0
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Red
+    BlendColor: {r: 1, g: 0.13477123, b: 0, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Blue
+    BlendColor: {r: 0, g: 0.5639739, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Ecological
+    BlendColor: {r: 0.20131895, g: 1, b: 0.0047169924, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 1
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: 1
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Rusty
+    BlendColor: {r: 0.7924528, g: 0.60270774, b: 0.18316127, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -15
+      StenchRemovalBonus: 0
+      ResistanceBonuses:
+      - DamageType: 3
+        Bonus: -1
+      - DamageType: 4
+        Bonus: -1
+      GlobalDamageBonuses:
+      - DamageType: 0
+        Bonus: 1
+      - DamageType: 4
+        Bonus: 1
+      GlobalReloadSpeedBonus: 0
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Shiny
+    BlendColor: {r: 1, g: 1, b: 1, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: 5
+      StenchRemovalBonus: 1
+      ResistanceBonuses: []
+      GlobalDamageBonuses: []
+      GlobalReloadSpeedBonus: 0.25
+      GlobalHitChanceBonus: 0
+      GlobalRandomHitsBonus: 0
+      GlobalRandomHits: 
+  - Name: Ugly
+    BlendColor: {r: 1, g: 0, b: 0.948719, a: 1}
+    Tier: 1
+    BonusModule:
+      ComfortBonus: -10
+      StenchRemovalBonus: 0
+      ResistanceBonuses: []
       GlobalDamageBonuses:
       - DamageType: 2
         Bonus: 1
