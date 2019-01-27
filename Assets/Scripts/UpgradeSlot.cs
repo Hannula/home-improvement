@@ -11,6 +11,7 @@ public class UpgradeSlot : SelectableItem
     public HomeUpgrade HomeUpgrade;
     public SpriteRenderer BackgroundSpriteRenderer;
     public SpriteRenderer ImageSpriteRenderer;
+    public SpriteRenderer IsWeaponRenderer;
 
     public Color SelectedColor;
     public Color EmptyColor;
@@ -30,6 +31,7 @@ public class UpgradeSlot : SelectableItem
 
     public void Update()
     {
+        IsWeaponRenderer.enabled = false;
         if (HomeUpgrade != null && HomeUpgrade.UpgradeData != null)
         {
             ImageSpriteRenderer.sprite = HomeUpgrade.UpgradeData.Image;
@@ -38,6 +40,10 @@ public class UpgradeSlot : SelectableItem
             if (ImageSpriteRenderer.color.a == 0)
             {
                 ImageSpriteRenderer.color = Color.white;
+            }
+            if (HomeUpgrade.UpgradeData.IsWeapon )
+            {
+                IsWeaponRenderer.enabled = true;
             }
         }
         else

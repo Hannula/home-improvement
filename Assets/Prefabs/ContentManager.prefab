@@ -140,11 +140,15 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 50
     BonusModule:
-      ComfortBonus: 10
+      ComfortBonus: 20
       StenchRemovalBonus: 0
-      ResistanceBonuses: []
+      ResistanceBonuses:
+      - DamageType: 2
+        Bonus: 2
+      - DamageType: 4
+        Bonus: 2
       GlobalDamageBonuses: []
-      GlobalReloadSpeedBonus: 1
+      GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
@@ -197,8 +201,6 @@ MonoBehaviour:
         Bonus: 2
       GlobalDamageBonuses:
       - DamageType: 0
-        Bonus: 2
-      - DamageType: 1
         Bonus: 1
       GlobalReloadSpeedBonus: 0
       GlobalHitChanceBonus: 0
@@ -248,7 +250,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 0
+      ComfortBonus: 8
       StenchRemovalBonus: 0
       ResistanceBonuses:
       - DamageType: 0
@@ -261,7 +263,7 @@ MonoBehaviour:
     Sound: 10
     BaseDamage:
     - DamageType: 1
-      Bonus: 15
+      Bonus: 8
   - Image: {fileID: 21300012, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Gold Pile
     Tier: 1
@@ -275,7 +277,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 30
+      ComfortBonus: 25
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
@@ -375,7 +377,7 @@ MonoBehaviour:
       CanMiss: 0
       HitChance: 100
     BonusModule:
-      ComfortBonus: 10
+      ComfortBonus: 5
       StenchRemovalBonus: 0
       ResistanceBonuses: []
       GlobalDamageBonuses: []
