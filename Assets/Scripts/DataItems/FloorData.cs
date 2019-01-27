@@ -16,6 +16,7 @@ public class FloorData
     public float GlobalHitChanceBonus;
     public int GlobalRandomHitsBonus;
     public List<int> GlobalRandomHits;
+    public float MaxCooldown;
 
     public FloorData(FloorType floorType, WallType wallType)
     {
@@ -24,11 +25,13 @@ public class FloorData
         WallType = wallType;
         Health = floorType.BaseHealth + wallType.HealthBonus;
         Resistances = new Dictionary<DamageTypes, int>();
+        DamageBonuses = new Dictionary<DamageTypes, int>();
         UpdateStats();
     }
 
     public void UpdateStats()
     {
+        MaxCooldown = 0f;
         Comfort = Type.BaseComfort + WallType.ComfortBonus + Type.Bonuses.ComfortBonus + WallType.Bonuses.ComfortBonus; ;
         StenchRemovalBonus = Type.Bonuses.StenchRemovalBonus + WallType.Bonuses.StenchRemovalBonus;
         GlobalReloadSpeedBonus = Type.Bonuses.GlobalReloadSpeedBonus + WallType.Bonuses.GlobalReloadSpeedBonus;
@@ -44,6 +47,11 @@ public class FloorData
             HomeUpgrade upgrade = HomeUpgrades[i];
             if (upgrade != null)
             {
+                float time = upgrade.UpgradeData.TargetingModule.ReloadTime;
+                if (upgrade.UpgradeData.IsWeapon)
+                {
+                    MaxCooldown = Mathf.Max(time, MaxCooldown);
+                }
                 BonusModule bonusModule = upgrade.UpgradeData.BonusModule;
                 // Comfort
                 Comfort += bonusModule.ComfortBonus;
@@ -84,6 +92,7 @@ public class FloorData
                 }
             }
         }
+        MaxCooldown -= GlobalReloadSpeedBonus;
     }
 
     public void SetResistance(DamageTypes damageType, int resistance)
@@ -98,6 +107,21 @@ public class FloorData
             return Resistances[damageType];
         }
         return 0;
+    }
+
+    public void DealDamage(List<StatBonus> dmg)
+    {
+        int healthDamage = 0;
+        foreach (StatBonus stat in dmg)
+        {
+            DamageTypes type = stat.DamageType;
+            int statDamage = stat.Bonus;
+            if (statDamage > 0)
+            {
+                healthDamage += Mathf.Max(0, statDamage - GetResistance(type));
+            }
+        }
+        Health -= healthDamage;
     }
 }
 

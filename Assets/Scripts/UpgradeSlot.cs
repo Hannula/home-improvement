@@ -123,9 +123,12 @@ public class UpgradeSlot : SelectableItem
 
     public override void OnClick()
     {
-        HomeUpgrade newUpgrade = inventoryManager.FloatingUpgrade;
-        inventoryManager.FloatingUpgrade = Remove();
-        Insert(newUpgrade);
+        if (GameManager.Instance.State != GameManager.GameState.Battle)
+        {
+            HomeUpgrade newUpgrade = inventoryManager.FloatingUpgrade;
+            inventoryManager.FloatingUpgrade = Remove();
+            Insert(newUpgrade);
+        }
 
     }
 

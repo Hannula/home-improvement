@@ -5,8 +5,9 @@ using UnityEngine;
 public class ParallaxMover : MonoBehaviour
 {
 
-    float scrollSpeed = 0.5f;
+    public float scrollSpeed = 0.5f;
     Renderer rend;
+    private float offset;
 
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class ParallaxMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float offset = GameManager.Instance.DeltaTime * scrollSpeed;
+        offset += GameManager.Instance.DeltaTime * scrollSpeed;
         rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
     }
 }

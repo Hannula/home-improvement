@@ -13,6 +13,7 @@ public class ProgressBar : MonoBehaviour
     public float maxScale;
     public bool horizontal = true;
     public bool reverse;
+    public Transform scaleTransform;
     public GameObject bar;
 
     private SpriteRenderer barSpriteRend;
@@ -20,20 +21,14 @@ public class ProgressBar : MonoBehaviour
     private Vector3 startPosition;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (maxScale == 0)
+        {
+            maxScale = bar.transform.localScale.x;
+        }
         barSpriteRend = bar.GetComponent<SpriteRenderer>();
         defaultScale = bar.transform.localScale;
-
-        startPosition = bar.transform.position;
-        if (horizontal)
-        {
-            startPosition.x += (reverse ? 0.5f : -0.5f) * barSpriteRend.bounds.size.x;
-        }
-        else
-        {
-            startPosition.y += (reverse ? 0.5f : -0.5f) * barSpriteRend.bounds.size.y;
-        }
 
         SetProgress(progress);
     }
@@ -53,18 +48,7 @@ public class ProgressBar : MonoBehaviour
     public void SetProgress(float value)
     {
         progress = Mathf.Clamp01(value);
-        if (horizontal)
-        {
-            Vector3 newScale = new Vector3(Mathf.Lerp(minScale, maxScale, progress), defaultScale.y, defaultScale.z);
-            bar.transform.localScale = newScale;
-        }
-        else
-        {
-            Vector3 newScale = new Vector3(defaultScale.x, Mathf.Lerp(minScale, maxScale, progress), defaultScale.z);
-            bar.transform.localScale = newScale;
-        }
-
-        bar.transform.position = startPosition + GetDifferenceFromStartToCurrPos();
+        scaleTransform.localScale = new Vector3(Mathf.Lerp(minScale, maxScale, progress), scaleTransform.localScale.y);
 
         if (progress == 1f)
         {

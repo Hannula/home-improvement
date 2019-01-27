@@ -127,6 +127,12 @@ public struct StatBonus
 {
     public DamageTypes DamageType;
     public int Bonus;
+
+    public StatBonus(DamageTypes type, int amount)
+    {
+        DamageType = type;
+        Bonus = amount;
+    }
 }
 
 public enum TargetTypes

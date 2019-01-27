@@ -49,7 +49,7 @@ MonoBehaviour:
     Tier: 1
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 8
+      ReloadTime: 4
       TargetingType: 1
       Targets: 00000000
       RandomTargets: ffffffff01000000
@@ -73,13 +73,13 @@ MonoBehaviour:
       GlobalRandomHits: 
     BaseDamage:
     - DamageType: 3
-      Bonus: 4
+      Bonus: 5
   - Image: {fileID: 21300000, guid: a784b5a14d6ae0d42b2ee7926b691760, type: 3}
     Name: Get Rekt Horn
     Tier: 1
     IsWeapon: 1
     TargetingModule:
-      ReloadTime: 12
+      ReloadTime: 2
       TargetingType: 1
       Targets: ffffffff0000000001000000
       RandomTargets: ffffffff01000000
