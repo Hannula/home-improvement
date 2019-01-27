@@ -5435,6 +5435,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
 --- !u!114 &5542815436693550475 stripped
@@ -5521,6 +5526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
@@ -5609,6 +5619,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
 --- !u!4 &8761401184728972585 stripped
@@ -5695,6 +5710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281143161879801277, guid: 4ec8afc24eaeae144bac1edb31d6231e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec8afc24eaeae144bac1edb31d6231e, type: 3}
@@ -5838,6 +5858,11 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.7327648
       objectReference: {fileID: 0}
+    - target: {fileID: 8194870946204566795, guid: 0fe045e850788624ba763c50ccec416b,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
       propertyPath: m_Size.x
@@ -5847,11 +5872,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProgressBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194870946204566795, guid: 0fe045e850788624ba763c50ccec416b,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5080742381475326510, guid: 0fe045e850788624ba763c50ccec416b,
         type: 3}
