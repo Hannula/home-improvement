@@ -6,8 +6,10 @@ TODO
 - Destroyed homes should stop their wheels and drift off to the left
 - Stop wheel animation when the game is paused
 - Don't show an attack reload bar if the room cannot attack
-- Remove floor selection; it does nothing
-- Make the HP, confort and reload times update in the map screen
+- Remove floor selection; it does nothing OR show complete floor stats
+- Show weapon base damage
+- More rapid stench damage
+- Make the HP, comfort and reload times update in the map screen
 - Fix the flee button halfway covering it's charge bar
 - Fix typos (e.g. "strengTHen", "on THE side of the road")
 - Balance items and enemies
