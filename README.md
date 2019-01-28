@@ -17,6 +17,5 @@ Controls:
 Have fun!
 
 
-A game by Alhainen Rappiosaasta Entertainment
-
+A game by Alhainen Rappiosaasta Entertainment    
 Created during Global Game Jam 2019
