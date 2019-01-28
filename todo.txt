@@ -45,3 +45,6 @@ TODO
 - Generate random names for enemies and regions
 - Add visual representation of comfort by adding animated residents to floors
 - Improve event screen visuals
+- Hide empty item slots when in battle
+- Remove unnecessary spaces in item descriptions
+- Preview upcoming fight in map screen so there is time to prepare and plan beforehand
