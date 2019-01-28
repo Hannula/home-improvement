@@ -1,6 +1,7 @@
 # Home Beat Home
 
-Upgrade your mobile home with new furniture and humiliate your foes. The Wasteland is a dangerous place. Here are some life hacks to help you survive:
+Upgrade your mobile home with new furniture and humiliate your foes.
+The Wasteland is a dangerous place. Here are some life hacks to help you survive:
 
 - TRAVEL by clicking on points on the map
 - DISCOVER events in the post-apocalyptic world
