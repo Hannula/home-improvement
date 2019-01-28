@@ -23,14 +23,15 @@ TODO
 - Fix the flee button halfway covering it's charge bar
 - Fix typos (e.g. "strengTHen", "on THE side of the road", "Luckily,")
 - Fix event result text: "They are even more annoyed than you"
-- Tutorial
 - Fix SFX and music volume levels
+- Disable debug controls in build (you can use #if UNITY_EDITOR)
+- Tutorial
 - Options menu: SFX and music volume, credits
 - Balance items and enemies
-- Disable debug controls in build (you can use #if UNITY_EDITOR)
 - Add more items and events
 - Make sure generated homes have some weapons
-- Add rewards to battles
+- Wall upgrades: plywood -> wood -> brick -> ...
+- Add rewards to battles (e.g. new item, wall upgrade or health recovery)
 - Add the possibility to lose items in events
 - Add the possibility to make events unique, meaning that I cannot happen again during the same game session
 - Improvement: Scrap old danger zone and create one with only images upping in scale
@@ -48,3 +49,8 @@ TODO
 - Hide empty item slots when in battle
 - Remove unnecessary spaces in item descriptions
 - Preview upcoming fight in map screen so there is time to prepare and plan beforehand
+- Add/change weapon sounds (e.g. wham.wav to hammer)
+- Fleeing should reduce score
+
+DONE
+...
