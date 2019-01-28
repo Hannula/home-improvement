@@ -42,3 +42,6 @@ TODO
 - Add visual effects to damaged floors
 - Add something beneath health and comfort to make them pop from the background
 - Make health and comfort not cover the item stat screen or be hidden by it
+- Generate random names for enemies and regions
+- Add visual representation of comfort by adding animated residents to floors
+- Improve event screen visuals
