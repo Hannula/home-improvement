@@ -1,0 +1,15 @@
+TODO
+- Show score
+- Attack particle effects should be in front of homes
+- Don't show intro screen when returning to the main menu OR stop playing map/battle music
+- When restarting the game, the player should start in the first node
+- Destroyed homes should stop their wheels and drift off to the left
+- Stop wheel animation when the game is paused
+- Don't show an attack reload bar if the room cannot attack
+- Remove floor selection; it does nothing
+- Make the HP, confort and reload times update in the map screen
+- Fix the flee button halfway covering it's charge bar
+- Fix typos (e.g. "strengTHen", "on THE side of the road")
+- Balance items and enemies
+- Disable debug controls in build (you can use #if UNITY_EDITOR)
+- Add more items and events
