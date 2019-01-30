@@ -45,6 +45,7 @@ public enum Sound
     IuIu = 22,
     Fanfare = 23,
     Asdfghj = 24,
+    Wham = 25,
     None
 }
 

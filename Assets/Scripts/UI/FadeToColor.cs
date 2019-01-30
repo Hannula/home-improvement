@@ -48,14 +48,6 @@ public class FadeToColor : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        CheckForErrors();
-    }
-
-    /// <summary>
-    /// Checks for any missing references and logs the errors.
-    /// </summary>
-    private void CheckForErrors()
-    {
         if (screenCoverImage == null)
         {
             Debug.LogError("Screen cover image is null.");

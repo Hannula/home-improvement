@@ -7,6 +7,7 @@ public class IntroScreen : MonoBehaviour
     public List<Sprite> images;
     public float imageDuration = 0.1f;
     public float timeToDisappear = 1f;
+    public bool stopWhenGameOnPause = true;
 
     private SpriteRenderer sr;
     private float elapsedImageTime;
@@ -24,14 +25,18 @@ public class IntroScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (elapsedDisappearTime < timeToDisappear)
+        if (!GameManager.Instance.GamePaused || !stopWhenGameOnPause)
         {
-            UpdateImage();
-
-            elapsedDisappearTime += Time.deltaTime;
-            if (elapsedDisappearTime >= timeToDisappear)
+            if (elapsedDisappearTime < timeToDisappear)
             {
-                Disappear();
+                UpdateImage();
+
+                elapsedDisappearTime += Time.deltaTime;
+                    //(stopWhenGameOnPause ? GameManager.Instance.DeltaTime : Time.deltaTime);
+                if (elapsedDisappearTime >= timeToDisappear)
+                {
+                    Disappear();
+                }
             }
         }
     }

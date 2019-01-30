@@ -6,6 +6,9 @@ public class MovingPictureAnimation : MonoBehaviour
 {
     public List<Sprite> images;
     public float imageDuration = 0.1f;
+    public GameManager.GameState playInGameState = GameManager.GameState.Battle;
+    public bool playInAnyGameState;
+    public bool stopWhenGameOnPause = true;
 
     private SpriteRenderer sr;
     private float elapsedImageTime;
@@ -22,9 +25,13 @@ public class MovingPictureAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.State == GameManager.GameState.Battle)
+        if (!GameManager.Instance.GamePaused || !stopWhenGameOnPause)
         {
-            UpdateImage();
+            if (playInAnyGameState
+                || GameManager.Instance.State == playInGameState)
+            {
+                UpdateImage();
+            }
         }
     }
 

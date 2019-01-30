@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b535be6f53ed59844916cba9d764276f, type: 3}
   - {fileID: 8300000, guid: dabbf587e7576d5419c24d2d373cff93, type: 3}
   - {fileID: 8300000, guid: 99672e2432cee5d4ebbdf1fa79f9443d, type: 3}
+  - {fileID: 8300000, guid: fb467586f5993bf40b83420ed61d9e2e, type: 3}
   volume: 1
   audioSrcPoolSize: 20
   flexiblePoolSize: 1

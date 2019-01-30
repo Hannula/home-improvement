@@ -541,7 +541,7 @@ MonoBehaviour:
       GlobalHitChanceBonus: 0
       GlobalRandomHitsBonus: 0
       GlobalRandomHits: 
-    Sound: 3
+    Sound: 25
     BaseDamage:
     - DamageType: 0
       Bonus: 3

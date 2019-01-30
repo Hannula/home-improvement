@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 51193080}
   - component: {fileID: 51193079}
   m_Layer: 0
-  m_Name: tittel
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,6 +496,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6dc502fd3fb28e44aa913363d20d1117, type: 3}
   imageDuration: 0.05
   timeToDisappear: 6.5
+  stopWhenGameOnPause: 0
 --- !u!114 &660338971
 MonoBehaviour:
   m_ObjectHideFlags: 0

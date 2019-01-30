@@ -26,6 +26,7 @@ TODO
 - Fix SFX and music volume levels
 - Disable debug controls in build (you can use #if UNITY_EDITOR)
 - Tutorial
+- Give the player more indication to click on a map node when playing the game the first time
 - Options menu: SFX and music volume, credits
 - Balance items and enemies
 - Add more items and events
@@ -49,8 +50,10 @@ TODO
 - Hide empty item slots when in battle
 - Remove unnecessary spaces in item descriptions
 - Preview upcoming fight in map screen so there is time to prepare and plan beforehand
-- Add/change weapon sounds (e.g. wham.wav to hammer)
+- Add/change weapon sounds
 - Fleeing should reduce score
+- Fix one frame of clear fade-out between scene transitions
 
 DONE
-...
+- Stop wheel animation in battles when the game is paused (don't use Time.deltaTime but GM.Instance.DeltaTime)
+- wham.wav sound to hammer
