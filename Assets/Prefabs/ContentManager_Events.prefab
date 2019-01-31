@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventTypes:
   - Name: Home
-    Description: You returned home
+    Description: You returned to the area's beginning. You'd better hurry to the other
+      direction before it's too late.
     Choices:
     - Name: OK
       ResultText: 
@@ -153,9 +154,9 @@ MonoBehaviour:
     MustFight: 0
     Tier: 1
   - Name: Loot 1
-    Description: You find a {0} on side of the road.
+    Description: What do we have here? {0} just laying on the side of the road.
     Choices:
-    - Name: OK
+    - Name: Grab
       ResultText: 
       ShowGainNameInResult: 1
       Action: 1
@@ -212,7 +213,7 @@ MonoBehaviour:
       furniture.
     Choices:
     - Name: Take
-      ResultText: You must build it yourself...
+      ResultText: Some assembly required.
       ShowGainNameInResult: 0
       Action: 1
       Gain:
@@ -241,8 +242,8 @@ MonoBehaviour:
         Amount: 0
       SkipConfirm: 0
     - Name: Wait
-      ResultText: 'Mistake! You are now blocking their way and they are even more
-        annoyed. '
+      ResultText: Mistake! You are now blocking their way and they are even more annoyed
+        than you.
       ShowGainNameInResult: 0
       Action: 0
       Gain:
@@ -360,7 +361,7 @@ MonoBehaviour:
     MustFight: 0
     Tier: 1
   - Name: Battle 6
-    Description: The bridge over the river is out! Luckily the river doesn't seem
+    Description: The bridge over the river is out! Luckily, the river doesn't seem
       too deep.
     Choices:
     - Name: Go around

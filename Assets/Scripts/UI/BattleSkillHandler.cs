@@ -14,6 +14,7 @@ public class BattleSkillHandler : MonoBehaviour
 
     public BattleSkill[] battleSkills;
 
+    private int fleeScorePenalty = -50;
     private float fleeSoundDelay = 1f;
     private bool fleeing;
     private AudioSource fleeSound;
@@ -27,16 +28,19 @@ public class BattleSkillHandler : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!fleeing)
+        if (GameManager.Instance.BattleStatus == GameManager.BattleState.Active)
         {
-            foreach (BattleSkill skill in battleSkills)
+            if (!fleeing)
             {
-                skill.UpdateSkill();
+                foreach (BattleSkill skill in battleSkills)
+                {
+                    skill.UpdateSkill();
+                }
             }
-        }
-        else if (fleeSound != null && !fleeSound.isPlaying)
-        {
-            ExitBattle();
+            else if (fleeSound != null && !fleeSound.isPlaying)
+            {
+                ExitBattle();
+            }
         }
     }
 
@@ -76,8 +80,20 @@ public class BattleSkillHandler : MonoBehaviour
 
     private void ActivateFleeSkill()
     {
-        fleeing = true;
-        fleeSound = SFXPlayer.Instance.Play(Sound.Mamma);
+        if (GameManager.Instance.BattleStatus == GameManager.BattleState.Active)
+        {
+            fleeing = true;
+            GameManager.Instance.ChangeScore(fleeScorePenalty);
+            fleeSound = SFXPlayer.Instance.Play(Sound.Mamma, volumeFactor: 0.8f);
+        }
+    }
+
+    public void SetSkillsActive(bool active)
+    {
+        foreach (BattleSkill skill in battleSkills)
+        {
+            skill.SetButtonInteractable(active);
+        }
     }
 
     private void ExitBattle()

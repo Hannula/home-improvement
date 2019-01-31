@@ -32,7 +32,7 @@ public class GameOverScreen : UIScreen
         }
         else
         {
-            gameOverText.text = string.Format(loseText, GameManager.Instance.score);
+            gameOverText.text = string.Format(loseText, GameManager.Instance.GetScore());
         }
         
         Activate(true);

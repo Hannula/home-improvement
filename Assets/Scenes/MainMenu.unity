@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: 17
-  volume: 1
+  volume: 0.5
 --- !u!1001 &1201574429
 PrefabInstance:
   m_ObjectHideFlags: 0

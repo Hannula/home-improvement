@@ -24,7 +24,9 @@ public class InputManager : MonoBehaviour
             GameInput();
         }
 
+#if UNITY_EDITOR
         DebugInput();
+#endif
     }
 
     private void MainMenuInput()

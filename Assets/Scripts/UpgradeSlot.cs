@@ -102,7 +102,7 @@ public class UpgradeSlot : SelectableItem
                     buildSound.Stop();
                 }
 
-                buildSound = SFXPlayer.Instance.Play(Sound.Repair);
+                buildSound = SFXPlayer.Instance.Play(Sound.Repair, volumeFactor: 0.5f);
             }
         }
         else

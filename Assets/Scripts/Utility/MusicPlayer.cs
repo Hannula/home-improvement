@@ -132,7 +132,7 @@ public class MusicPlayer : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
 
         // Initializes the volume
-        audioSrc.volume = 1f;
+        audioSrc.volume = 0.3f;
         baseVolume = audioSrc.volume;
 
         // Corrects timeBetweenTracks' invalid value

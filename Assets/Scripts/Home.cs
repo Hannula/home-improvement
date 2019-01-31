@@ -63,15 +63,20 @@ public class Home : MonoBehaviour
 
     private void Update()
     {
-        if (!exiting && Floors.Count == 0)
+        if (GameManager.Instance.BattleStatus != GameManager.BattleState.NoBattle)
         {
-            Die();
-        }
+            if (!exiting && Floors.Count == 0)
+            {
+                Die();
+            }
 
-        if (exiting && !deathSound.isPlaying &&
-            GameManager.Instance.gameRunning)
-        {
-            LeaveBattle();
+            if (exiting
+                && !deathSound.isPlaying
+                && GameManager.Instance.gameRunning
+                && !GameManager.Instance.FadeActive)
+            {
+                GameManager.Instance.ExitBattle();
+            }
         }
     }
 
@@ -79,37 +84,36 @@ public class Home : MonoBehaviour
     {
         if (!dead)
         {
+            dead = true;
+            GameManager.Instance.battleSkillHandler.SetSkillsActive(false);
+
+            if (PlayerHome)
+            {
+                GameManager.Instance.BattleStatus = GameManager.BattleState.Lost;
+            }
+            else
+            {
+                GameManager.Instance.BattleStatus = GameManager.BattleState.Won;
+            }
+
             MusicPlayer.Instance.StartFadeOut();
         }
 
-        dead = true;
+        EndBattle();
+    }
 
+    private void EndBattle()
+    {
         if (deathSoundDelay > 0f)
         {
             deathSoundDelay -= GameManager.Instance.DeltaTime;
-            return;
         }
 
-        exiting = true;
-        if (PlayerHome)
+        // The battle is ended only after the death sound delay is over
+        if (deathSoundDelay <= 0f)
         {
-            deathSound = SFXPlayer.Instance.Play(Sound.Asdfghj);
-        }
-        else
-        {
-            deathSound = SFXPlayer.Instance.Play(Sound.GetRekt2);
-        }
-    }
-
-    private void LeaveBattle()
-    {
-        if (PlayerHome)
-        {
-            GameManager.Instance.EndGame(false);
-        }
-        else
-        {
-            GameManager.Instance.WinBattle();
+            exiting = true;
+            deathSound = GameManager.Instance.EndBattle();
         }
     }
 

@@ -52,7 +52,7 @@ MonoBehaviour:
   paused: 0
   fadeOut: 0
   currentTrack: 0
-  fadeTime: 0
+  fadeTime: 0.2
 --- !u!82 &284217294476939671
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,16 +1,14 @@
 TODO
-- Show score and region number
 - Attack particle effects should be in front of homes
-- Don't show intro screen when returning to the main menu OR stop playing map/battle music
-- When restarting the game, reset the map (the player's position, the danger zone)
+- When restarting the game, reset the map (the player's position, the danger zone) and enemy difficulty
 - Events can't be repeated by returning to the node
 - Destroyed homes should stop their wheels and drift off to the left
-- Stop wheel animation in battles when the game is paused (don't use Time.deltaTime but GM.Instance.DeltaTime)
 - Don't show an attack reload bar if the room cannot attack
 - Remove floor selection; it does nothing OR show complete floor stats (damage and dmg types, resistances, hp, comfort, reload time)
 - Show weapon base damage
 - More rapid stench damage
 - Remove damage limit of 10 and fix huge damage bug
+- Improve event screen visuals
 - Possibly hide info panel when no item is selected or hovered
 - Make the HP, comfort and reload times update in the map screen
 - Selecting/hovering nodes should display the name of the event
@@ -18,13 +16,7 @@ TODO
 - Randomize map rotation in each new region
 - Randomize events already when randomizing map
 - Random roof OR roof based on the top floor's wall type OR let the player switch the roof in map screen
-- Make the flee button unusable if the battle is over
 - If the flee button is pressed and the player dies during the delay, make the player lose the game
-- Fix the flee button halfway covering it's charge bar
-- Fix typos (e.g. "strengTHen", "on THE side of the road", "Luckily,")
-- Fix event result text: "They are even more annoyed than you"
-- Fix SFX and music volume levels
-- Disable debug controls in build (you can use #if UNITY_EDITOR)
 - Tutorial
 - Give the player more indication to click on a map node when playing the game the first time
 - Options menu: SFX and music volume, credits
@@ -46,14 +38,22 @@ TODO
 - Make health and comfort not cover the item stat screen or be hidden by it
 - Generate random names for enemies and regions
 - Add visual representation of comfort by adding animated residents to floors
-- Improve event screen visuals
 - Hide empty item slots when in battle
 - Remove unnecessary spaces in item descriptions
 - Preview upcoming fight in map screen so there is time to prepare and plan beforehand
 - Add/change weapon sounds
-- Fleeing should reduce score
 - Fix one frame of clear fade-out between scene transitions
 
 DONE
 - Stop wheel animation in battles when the game is paused (don't use Time.deltaTime but GM.Instance.DeltaTime)
 - wham.wav sound to hammer
+- Fleeing should reduce score
+- Fix SFX and music volume levels
+- Change event screen background
+- Disable debug controls in build (you can use #if UNITY_EDITOR)
+- Make the flee button unusable if the battle is over
+- Fix typos (e.g. "strengTHen", "on THE side of the road", "Luckily,")
+- Fix event result text: "They are even more annoyed than you"
+- Show score and region number
+- Stop playing map/battle music when returning to the main menu
+- Fix the flee button halfway covering it's charge bar

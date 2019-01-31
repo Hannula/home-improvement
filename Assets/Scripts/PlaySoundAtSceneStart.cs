@@ -10,9 +10,16 @@ public class PlaySoundAtSceneStart : MonoBehaviour
     [SerializeField, Range(0f, 2f)]
     private float volume = 1f;
 
+    private AudioSource audioSrc;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        SFXPlayer.Instance.Play(sound, volumeFactor: volume);
+        audioSrc = SFXPlayer.Instance.Play(sound, volumeFactor: volume);
+    }
+
+    public AudioSource GetAudioSource()
+    {
+        return audioSrc;
     }
 }

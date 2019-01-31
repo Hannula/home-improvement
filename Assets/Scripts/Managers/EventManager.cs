@@ -43,7 +43,7 @@ public class EventManager : MonoBehaviour
 
                 if (node.Event.MustFight)
                 {
-                    SFXPlayer.Instance.Play(Sound.Alarm);
+                    SFXPlayer.Instance.Play(Sound.Alarm, volumeFactor: 0.2f);
                 }
             }
         }
@@ -73,7 +73,7 @@ public class EventManager : MonoBehaviour
                     //HomeUpgrade newItem = ContentManager.Instance.
                     //    GetRandomHomeUpgrade(actionEvent.RiskTier, actionEvent.RiskTier);
                     inventoryManager.AddItem(promisedRewardItem);
-                    SFXPlayer.Instance.Play(Sound.Hop1);
+                    SFXPlayer.Instance.Play(Sound.Hop1, volumeFactor: 0.7f);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Floor)
                 {
@@ -82,15 +82,15 @@ public class EventManager : MonoBehaviour
                         ContentManager.Instance.GetRandomWallType(actionEvent.Tier));
                     GameManager.Instance.PlayerHome.Floors.Add(fd);
                     GameManager.Instance.home.UpdateHome();
-                    SFXPlayer.Instance.Play(Sound.Repair);
+                    SFXPlayer.Instance.Play(Sound.Repair, volumeFactor: 0.5f);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Money)
                 {
-                    GameManager.Instance.money += choice.Gain.Amount;
+                    GameManager.Instance.ChangeMoney(choice.Gain.Amount);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Score)
                 {
-                    GameManager.Instance.score += choice.Gain.Amount;
+                    GameManager.Instance.ChangeScore(choice.Gain.Amount);
                 }
                 break;
             }
@@ -106,19 +106,11 @@ public class EventManager : MonoBehaviour
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Money)
                 {
-                    GameManager.Instance.money -= choice.Gain.Amount;
-                    if (GameManager.Instance.money < 0)
-                    {
-                        GameManager.Instance.money = 0;
-                    }
+                    GameManager.Instance.ChangeMoney(-1 * choice.Gain.Amount);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Score)
                 {
-                    GameManager.Instance.score -= choice.Gain.Amount;
-                    if (GameManager.Instance.score < 0)
-                    {
-                        GameManager.Instance.score = 0;
-                    }
+                    GameManager.Instance.ChangeScore(-1 * choice.Gain.Amount);
                 }
                 break;
             }

@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
         Battle = 2
     }
 
+    public enum BattleState
+    {
+        NoBattle = 0,
+        Active = 1,
+        Won = 2,
+        Lost = 3
+    }
+
     public enum SceneTransition
     {
         InScene = 0,
@@ -44,19 +52,6 @@ public class GameManager : MonoBehaviour
     public string sceneToLoad;
     public float gameSpeedModifier = 1f;
     public int regionNum = 1;
-    public int money;
-    public int score;
-
-    // Testing
-    public bool a;
-    public bool b;
-    public bool c;
-    public bool d;
-    public bool e;
-    public bool f;
-    public bool g;
-    public bool h;
-    public bool i;
 
     public Home home;
     public HomeData PlayerHome;
@@ -65,9 +60,13 @@ public class GameManager : MonoBehaviour
     public BattleSkillHandler battleSkillHandler;
     public bool gameRunning;
 
+    private int money;
+    private int score;
     private bool gameJustStarted = true;
 
     public GameState State { get; private set; }
+
+    public BattleState BattleStatus { get; set; }
 
     public SceneTransition Transition { get; private set; }
 
@@ -80,7 +79,15 @@ public class GameManager : MonoBehaviour
             return !GamePaused && Transition == SceneTransition.InScene;
         }
     }
-    
+
+    public bool FadeActive
+    {
+        get
+        {
+            return fade.Active;
+        }
+    }
+
     public float DeltaTime
     {
         get
@@ -152,55 +159,6 @@ public class GameManager : MonoBehaviour
         {
             UpdateSceneTransition();
         }
-        else
-        {
-            // Testing
-            if (a)
-            {
-                SFXPlayer.Instance.Play(Sound.Explosion1);
-                a = false;
-            }
-            if (b)
-            {
-                SFXPlayer.Instance.Play(Sound.Explosion2);
-                b = false;
-            }
-            if (c)
-            {
-                SFXPlayer.Instance.Play(Sound.Explosion3);
-                c = false;
-            }
-            if (d)
-            {
-                SFXPlayer.Instance.Play(Sound.Explosion4);
-                d = false;
-            }
-            if (e)
-            {
-                SFXPlayer.Instance.Play(Sound.Fireball1);
-                e = false;
-            }
-            if (f)
-            {
-                SFXPlayer.Instance.Play(Sound.Fireball2);
-                f = false;
-            }
-            if (g)
-            {
-                SFXPlayer.Instance.Play(Sound.Water);
-                g = false;
-            }
-            if (h)
-            {
-                SFXPlayer.Instance.Play(Sound.Splat1);
-                h = false;
-            }
-            if (i)
-            {
-                SFXPlayer.Instance.Play(Sound.Splat2);
-                i = false;
-            }
-        }
     }
 
     #region SceneManagement
@@ -260,6 +218,7 @@ public class GameManager : MonoBehaviour
     {
         if (Transition == SceneTransition.InScene)
         {
+            BattleStatus = BattleState.NoBattle;
             State = GameState.Map;
             LoadScene(GameState.Map);
         }
@@ -289,6 +248,7 @@ public class GameManager : MonoBehaviour
 
         Transition = SceneTransition.EnteringScene;
         InitScene();
+        ui.OnSceneChanged(State);
         fade.StartFadeIn(false);
 
         SFXPlayer.Instance.InitAudioSrcPool();
@@ -328,6 +288,8 @@ public class GameManager : MonoBehaviour
         regionNum = 1;
         money = 0;
         score = 0;
+        ui.UpdateRegion(regionNum);
+        ui.UpdateScore(score);
 
         PlayerHome = HomeData.GenerateRandom(2,3,50);
         home.Init(PlayerHome);
@@ -341,8 +303,15 @@ public class GameManager : MonoBehaviour
         gameRunning = true;
     }
 
+    public void EndGame(bool win)
+    {
+        gameRunning = false;
+        ui.EndGame(win);
+    }
+
     private void StartBattle()
     {
+        BattleStatus = BattleState.Active;
         battleSkillHandler = FindObjectOfType<BattleSkillHandler>();
         ui.ActivateBattleSkills(true);
         battleSkillHandler.Init();
@@ -353,31 +322,93 @@ public class GameManager : MonoBehaviour
         MusicPlayer.Instance.Play(1, true);
     }
 
-    public void WinBattle()
+    public AudioSource EndBattle()
     {
-        score += 10;
-        LoadMapScene();
+        if (BattleStatus == BattleState.Lost)
+        {
+            Debug.Log("Battle lost!");
+            return SFXPlayer.Instance.Play(Sound.Asdfghj, volumeFactor: 0.4f);
+        }
+        else if (BattleStatus == BattleState.Won)
+        {
+            WinBattle();
+            return SFXPlayer.Instance.Play(Sound.GetRekt2, volumeFactor: 0.4f);
+        }
+        else
+        {
+            BattleStatus = BattleState.NoBattle;
+            Debug.LogError("Battle ended without winner");
+            return null;
+        }
     }
 
-    public void ReturnToMainMenu()
+    public void WinBattle()
     {
-        State = GameState.MainMenu;
-        LoadScene(GameState.MainMenu);
+        Debug.Log("Battle won!");
+        ChangeScore(20);
+    }
+
+    public void ExitBattle()
+    {
+        if (BattleStatus == BattleState.Lost)
+        {
+            EndGame(false);
+        }
+        else if (BattleStatus == BattleState.Won)
+        {
+            LoadMapScene();
+        }
     }
 
     public void NextRegion()
     {
         regionNum++;
-        score += 50;
+        ChangeScore(50, false);
         Debug.Log("Now entering region " + regionNum);
         saveData = new SaveDataPackage();
         LoadMapScene();
     }
 
-    public void EndGame(bool win)
+    public int GetMoney()
     {
-        gameRunning = false;
-        ui.EndGame(win);
+        return money;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void ChangeMoney(int moneyChange)
+    {
+        money += moneyChange;
+        if (money < 0)
+        {
+            money = 0;
+        }
+
+        //ui.UpdateMoney(money);
+    }
+
+    public void ChangeScore(int scoreChange, bool updateUIImmediately = true)
+    {
+        score += scoreChange;
+        if (score < 0)
+        {
+            score = 0;
+        }
+
+        if (updateUIImmediately)
+        {
+            ui.UpdateScore(score);
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        State = GameState.MainMenu;
+        MusicPlayer.Instance.Stop();
+        LoadScene(GameState.MainMenu);
     }
 
     public void PauseGame(bool pause)

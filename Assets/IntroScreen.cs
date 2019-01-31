@@ -10,20 +10,22 @@ public class IntroScreen : MonoBehaviour
     public bool stopWhenGameOnPause = true;
 
     private SpriteRenderer sr;
+    private PlaySoundAtSceneStart playSound;
     private float elapsedImageTime;
     private float elapsedDisappearTime;
     private int currentImage;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentImage = 0;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = images[currentImage];
+        playSound = GetComponent<PlaySoundAtSceneStart>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!GameManager.Instance.GamePaused || !stopWhenGameOnPause)
         {
@@ -59,6 +61,16 @@ public class IntroScreen : MonoBehaviour
     public void Disappear()
     {
         GameManager.Instance.ui.mainMenu.Activate(true);
+
+        if (playSound != null)
+        {
+            AudioSource audioSrc = playSound.GetAudioSource();
+            if (audioSrc != null)
+            {
+                audioSrc.Stop();
+            }
+        }
+
         MusicPlayer.Instance.Play(0, true);
         Destroy(gameObject);
     }

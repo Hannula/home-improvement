@@ -223,7 +223,7 @@ public class Floor : SelectableItem
         Destroy(gameObject);
 
         // Explosion sound effect
-        int rand = Random.Range(1, 3);
+        int rand = Random.Range(0, 4) + 1;
         Sound explSound = Sound.None;
         switch (rand)
         {
@@ -242,8 +242,13 @@ public class Floor : SelectableItem
                 explSound = Sound.Explosion3;
                 break;
             }
+            case 4:
+            {
+                explSound = Sound.Explosion4;
+                break;
+            }
         }
-        SFXPlayer.Instance.Play(explSound, volumeFactor: 0.6f);
+        SFXPlayer.Instance.Play(explSound, volumeFactor: 0.4f);
     }
 
     public void ReduceIndex()

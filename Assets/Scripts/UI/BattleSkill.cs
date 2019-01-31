@@ -40,6 +40,11 @@ public class BattleSkill : MonoBehaviour
         GameManager.Instance.battleSkillHandler.ActivateSkill(skillType);
     }
 
+    public void SetButtonInteractable(bool interactable)
+    {
+        button.interactable = interactable;
+    }
+
     public void PutSkillOnCooldown()
     {
         if (cooldownTime > 0f)
