@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventTypes:
   - Name: Home
-    Description: You returned to the area's beginning. You'd better hurry to the other
-      direction before it's too late.
+    Description: The area starts here. You'd better hurry to the other direction before
+      it's too late.
     Choices:
     - Name: OK
       ResultText: 
@@ -65,6 +65,19 @@ MonoBehaviour:
       ResultText: 
       ShowGainNameInResult: 0
       Action: 3
+      Gain:
+        Type: 0
+        Amount: 0
+      SkipConfirm: 1
+    MustFight: 0
+    Tier: 0
+  - Name: Visited
+    Description: There's nothing here anymore.
+    Choices:
+    - Name: OK
+      ResultText: 
+      ShowGainNameInResult: 0
+      Action: 4
       Gain:
         Type: 0
         Amount: 0
@@ -226,7 +239,8 @@ MonoBehaviour:
     Description: A home blocks your way. You are very annoyed.
     Choices:
     - Name: Steal
-      ResultText: You take a {0}.
+      ResultText: Nobody notices you or the stolen {0} in your pocket while you sneak
+        in and out.
       ShowGainNameInResult: 1
       Action: 1
       Gain:

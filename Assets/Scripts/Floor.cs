@@ -137,7 +137,9 @@ public class Floor : SelectableItem
 
     public void Fire()
     {
-        if (FloorData.MaxCooldown > 0 && GameManager.Instance.State == GameManager.GameState.Battle)
+        if (FloorData.MaxCooldown > 0
+            && GameManager.Instance.State == GameManager.GameState.Battle
+            && !GameManager.Instance.FadeActive)
         {
             foreach (UpgradeSlot slot in UpgradeSlots)
             {
@@ -248,7 +250,7 @@ public class Floor : SelectableItem
                 break;
             }
         }
-        SFXPlayer.Instance.Play(explSound, volumeFactor: 0.4f);
+        SFXPlayer.Instance.Play(explSound, volumeFactor: 0.3f);
     }
 
     public void ReduceIndex()

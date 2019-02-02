@@ -75,7 +75,6 @@ public class ContentManager : MonoBehaviour
         return UtilityFunctions.GetRandomElement(tierUpgrades);
     }
 
-
     public HomeUpgrade GetRandomHomeUpgrade(int furnitureTier, int modifierTier)
     {
         return new HomeUpgrade(GetRandomUpgradeData(furnitureTier), GetRandomModifierData(modifierTier));

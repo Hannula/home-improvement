@@ -16,7 +16,15 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        upgradeSlots = FindObjectsOfType<UpgradeSlot>();
+        Init();
+    }
+    
+    private void Init()
+    {
+        if (upgradeSlots == null)
+        {
+            upgradeSlots = FindObjectsOfType<UpgradeSlot>();
+        }
     }
 
     private void Update()
@@ -69,15 +77,34 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("Inventory full!");
+        Debug.LogWarning("Inventory is full");
         return false;
+    }
+
+    public HomeUpgrade CreateNewRandomItem(int furnitureTier, int modifierTier)
+    {
+        HomeUpgrade newItem = ContentManager.Instance.
+            GetRandomHomeUpgrade(furnitureTier, modifierTier);
+        bool itemAddedToInv = AddItem(newItem);
+        if (itemAddedToInv)
+        {
+            return newItem;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private void UpdateUpgradeSlots()
     {
-        foreach (UpgradeSlot us in upgradeSlots)
+        // Initializing because this may be
+        // called from GameManager before Start()
+        Init();
+
+        foreach (UpgradeSlot slot in upgradeSlots)
         {
-            us.UpdateInventory();
+            slot.UpdateInventory();
         }
     }
 }

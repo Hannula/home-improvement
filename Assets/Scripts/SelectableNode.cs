@@ -31,7 +31,7 @@ public class SelectableNode : SelectableItem
         }
         else
         {
-            Debug.Log("Unreachable Node.");
+            Debug.LogWarning("Unreachable Node.");
         }
     }
 

@@ -7,8 +7,10 @@ public class MainMenu : UIScreen
 {
     public Button startButton;
     public Button instructionsButton;
+    public Button creditsButton;
     public Button quitButton;
     public GameObject instructionsScreen;
+    public GameObject creditsScreen;
 
     public void StartGame()
     {
@@ -23,6 +25,16 @@ public class MainMenu : UIScreen
     public void CloseInstructions()
     {
         instructionsScreen.SetActive(false);
+    }
+
+    public void OpenCredits()
+    {
+        creditsScreen.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        creditsScreen.SetActive(false);
     }
 
     public void QuitGame()

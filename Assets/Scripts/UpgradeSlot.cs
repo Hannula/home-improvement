@@ -18,8 +18,9 @@ public class UpgradeSlot : SelectableItem
     public Color HoverColor;
     public Color FilledColor;
 
-    private bool previouslyHovered;
     private InventoryManager inventoryManager;
+    private bool previouslyHovered;
+    private bool hidden;
 
     private AudioSource buildSound;
 
@@ -29,8 +30,26 @@ public class UpgradeSlot : SelectableItem
         UpdateInventory();
     }
 
-    public void Update()
+    public bool HideIfEmpty()
     {
+        if (IsEmpty)
+        {
+            EmptyColor = Color.clear;
+            Update();
+            hidden = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    public virtual void Update()
+    {
+        if (hidden)
+        {
+            return;
+        }
+
         IsWeaponRenderer.enabled = false;
         if (HomeUpgrade != null && HomeUpgrade.UpgradeData != null)
         {

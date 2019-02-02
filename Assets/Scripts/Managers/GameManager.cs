@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,12 +45,15 @@ public class GameManager : MonoBehaviour
         EnteringScene = 2
     }
 
+    public const int InventorySize = 12;
+
     public UIManager ui;
     public EventManager eventManager;
     public FadeToColor fade;
     public string sceneToLoad;
     public float gameSpeedModifier = 1f;
     public int regionNum = 1;
+    public int currentEventTier;
 
     public Home home;
     public HomeData PlayerHome;
@@ -60,9 +62,14 @@ public class GameManager : MonoBehaviour
     public BattleSkillHandler battleSkillHandler;
     public bool gameRunning;
 
+    private InventoryManager inventoryManager;
     private int money;
     private int score;
     private bool gameJustStarted = true;
+    private bool sceneJustStarted;
+
+    private int waitFramesBeforeHidingUpgSlots = 3;
+    private int framesWaited = 0;
 
     public GameState State { get; private set; }
 
@@ -152,12 +159,54 @@ public class GameManager : MonoBehaviour
         home = FindObjectOfType<Home>();
     }
 
+    private void InitInventory()
+    {
+        Inventory = new List<HomeUpgrade>(InventorySize);
+        for (int i = 0; i < InventorySize; i++)
+        {
+            Inventory.Add(null);
+        }
+    }
+
+    private bool HideEmptyUpgradeSlots()
+    {
+        bool hidden = false;
+        UpgradeSlot[] invSlots = FindObjectsOfType<UpgradeSlot>();
+        foreach (UpgradeSlot upgSlot in invSlots)
+        {
+            hidden = upgSlot.HideIfEmpty();
+        }
+
+        return hidden;
+    }
+
     // Update is called once per frame
     private void Update()
     {
         if (Transition != SceneTransition.InScene)
         {
             UpdateSceneTransition();
+
+            if (Transition == SceneTransition.EnteringScene
+                && sceneJustStarted)
+            {
+                if (State == GameState.Battle)
+                {
+                    if (framesWaited < waitFramesBeforeHidingUpgSlots)
+                    {
+                        framesWaited++;
+                    }
+                    else
+                    {
+                        HideEmptyUpgradeSlots();
+                        sceneJustStarted = false;
+                    }
+                }
+                else
+                {
+                    sceneJustStarted = false;
+                }
+            }
         }
     }
 
@@ -218,7 +267,6 @@ public class GameManager : MonoBehaviour
     {
         if (Transition == SceneTransition.InScene)
         {
-            BattleStatus = BattleState.NoBattle;
             State = GameState.Map;
             LoadScene(GameState.Map);
         }
@@ -250,6 +298,8 @@ public class GameManager : MonoBehaviour
         InitScene();
         ui.OnSceneChanged(State);
         fade.StartFadeIn(false);
+        sceneJustStarted = true;
+        framesWaited = 0;
 
         SFXPlayer.Instance.InitAudioSrcPool();
 
@@ -268,7 +318,15 @@ public class GameManager : MonoBehaviour
                     StartNewGame();
                 }
 
-                eventManager = new GameObject("EventManager").AddComponent<EventManager>();
+                eventManager = FindObjectOfType<EventManager>();
+                inventoryManager = FindObjectOfType<InventoryManager>();
+
+                if (BattleStatus != BattleState.NoBattle)
+                {
+                    HandleBattleAftermath();
+                }
+
+                currentEventTier = 1;
                 MusicPlayer.Instance.Play(0, true);
                 break;
             }
@@ -293,12 +351,7 @@ public class GameManager : MonoBehaviour
 
         PlayerHome = HomeData.GenerateRandom(2,3,50);
         home.Init(PlayerHome);
-
-        Inventory = new List<HomeUpgrade>(20);
-        for(int i = 0; i < 20; i++)
-        {
-            Inventory.Add(null);
-        }
+        InitInventory();
 
         gameRunning = true;
     }
@@ -360,6 +413,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void HandleBattleAftermath()
+    {
+        if (BattleStatus == BattleState.Won)
+        {
+            GetRandomItems(1, currentEventTier, currentEventTier);
+        }
+        else
+        {
+            Debug.Log("Got no item");
+        }
+
+        BattleStatus = BattleState.NoBattle;
+    }
+
     public void NextRegion()
     {
         regionNum++;
@@ -367,6 +434,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("Now entering region " + regionNum);
         saveData = new SaveDataPackage();
         LoadMapScene();
+    }
+
+    public bool GetRandomItems(int itemCount, int furnitureTier, int modifierTier)
+    {
+        for (int i = 0; i < itemCount; i++)
+        {
+            HomeUpgrade receivedItem = inventoryManager.
+                CreateNewRandomItem(furnitureTier, modifierTier);
+            if (receivedItem != null)
+            {
+                Debug.Log("Got item [" + receivedItem + "] of tier " + furnitureTier);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public int GetMoney()

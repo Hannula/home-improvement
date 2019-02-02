@@ -15,10 +15,9 @@ public class EventManager : MonoBehaviour
     /// </summary>
     public bool eventResultsSeen;
 
-    public HomeUpgrade promisedRewardItem;
-
     private UIManager ui;
     private InventoryManager inventoryManager;
+    private HomeUpgrade promisedRewardItem;
     private bool startBattle;
 
     // Start is called before the first frame update
@@ -45,6 +44,9 @@ public class EventManager : MonoBehaviour
                 {
                     SFXPlayer.Instance.Play(Sound.Alarm, volumeFactor: 0.2f);
                 }
+
+                Debug.Log("Started event [" + node.Event.Name + "] of tier "
+                          + node.Event.Tier);
             }
         }
         else
@@ -70,9 +72,9 @@ public class EventManager : MonoBehaviour
             {
                 if (choice.Gain.Type == EventGain.GainType.Upgrade)
                 {
-                    //HomeUpgrade newItem = ContentManager.Instance.
-                    //    GetRandomHomeUpgrade(actionEvent.RiskTier, actionEvent.RiskTier);
                     inventoryManager.AddItem(promisedRewardItem);
+                    Debug.Log("Got item [" + promisedRewardItem + "] of tier "
+                        + promisedRewardItem.UpgradeData.Tier);
                     SFXPlayer.Instance.Play(Sound.Hop1, volumeFactor: 0.7f);
                 }
                 else if (choice.Gain.Type == EventGain.GainType.Floor)
@@ -187,6 +189,7 @@ public class EventManager : MonoBehaviour
         {
             int randomTier = Random.Range(1, GameManager.Instance.regionNum);
             actionEvent.Tier = randomTier;
+            GameManager.Instance.currentEventTier = randomTier;
         }
     }
 

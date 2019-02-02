@@ -1,48 +1,60 @@
 TODO
-- Attack particle effects should be in front of homes
+
+Map
 - When restarting the game, reset the map (the player's position, the danger zone) and enemy difficulty
-- Events can't be repeated by returning to the node
-- Destroyed homes should stop their wheels and drift off to the left
-- Don't show an attack reload bar if the room cannot attack
-- Remove floor selection; it does nothing OR show complete floor stats (damage and dmg types, resistances, hp, comfort, reload time)
-- Show weapon base damage
-- More rapid stench damage
-- Remove damage limit of 10 and fix huge damage bug
-- Improve event screen visuals
-- Possibly hide info panel when no item is selected or hovered
-- Make the HP, comfort and reload times update in the map screen
-- Selecting/hovering nodes should display the name of the event
-- Make unreachable and previously visited nodes visually different
 - Randomize map rotation in each new region
 - Randomize events already when randomizing map
-- Random roof OR roof based on the top floor's wall type OR let the player switch the roof in map screen
-- If the flee button is pressed and the player dies during the delay, make the player lose the game
-- Tutorial
 - Give the player more indication to click on a map node when playing the game the first time
-- Options menu: SFX and music volume, credits
+- Improvement: Scrap old danger zone and create one with only images upping in scale
+- Animate inside of danger zone
+- Preview upcoming fight in map screen so there is time to prepare and plan beforehand
+
+Events
+- Events can't be repeated by returning to the node
+- Improve event screen visuals
+- Selecting/hovering nodes should display the name of the event
+- Add the possibility to lose items in events
+- Add the possibility to make events unique, meaning that it cannot happen again during the same game session
+
+Items
 - Balance items and enemies
 - Add more items and events
 - Make sure generated homes have some weapons
-- Wall upgrades: plywood -> wood -> brick -> ...
-- Add rewards to battles (e.g. new item, wall upgrade or health recovery)
-- Add the possibility to lose items in events
-- Add the possibility to make events unique, meaning that I cannot happen again during the same game session
-- Improvement: Scrap old danger zone and create one with only images upping in scale
-- Animate inside of danger zone
-- Animate home movement in the map. In idle it could bounce little.
-- Make homes sway up and down, left and right in battles
 - Add padding (8 pixel ~ish) under and left of inventory and make so that map can be seen under it
 - Hovering and selecting items would show bigger image of that item in info panel next to stats
-- Add visual effects to damaged floors
+- Add/change weapon sounds
+- Make hammer's particles more visible
+
+Home & Stats
+- Don't show an attack reload bar if the room cannot attack
+- Remove floor selection; it does nothing OR show complete floor stats (damage and dmg types, resistances, hp, comfort, reload time)
+- Show weapon base damage
+- Possibly hide info panel when no item is selected or hovered
+- Make the HP, comfort and reload times update in the map screen
+- Random roof OR roof based on the top floor's wall type OR let the player switch the roof in map screen
+- Wall upgrades: plywood -> wood -> brick -> ...
+- Animate home movement in the map. In idle it could bounce little.
+- Make homes sway up and down, left and right in battles
 - Add something beneath health and comfort to make them pop from the background
 - Make health and comfort not cover the item stat screen or be hidden by it
-- Generate random names for enemies and regions
 - Add visual representation of comfort by adding animated residents to floors
-- Hide empty item slots when in battle
-- Remove unnecessary spaces in item descriptions
-- Preview upcoming fight in map screen so there is time to prepare and plan beforehand
-- Add/change weapon sounds
+
+Battle
+- Attack particle effects should be in front of homes
+- Destroyed homes should stop their wheels and drift off to the left
+- The battle's winner should stop attacking
+- More rapid stench damage
+- Remove damage limit of 10 and fix huge damage bug
+- If the flee button is pressed and the player dies during the delay, make the player lose the game
+- Improve battle rewards (e.g. new item, wall upgrade or health recovery)
+- Add visual effects to damaged floors
+
+Other
+- Tutorial
+- Options menu: SFX and music volume, credits
+- Generate random names for enemies and regions
 - Fix one frame of clear fade-out between scene transitions
+- Indicate change in score and region number with a flying number
 
 DONE
 - Stop wheel animation in battles when the game is paused (don't use Time.deltaTime but GM.Instance.DeltaTime)
@@ -57,3 +69,10 @@ DONE
 - Show score and region number
 - Stop playing map/battle music when returning to the main menu
 - Fix the flee button halfway covering it's charge bar
+- Change flee charge time to 30s
+- Add rewards to battles: new item
+- Make unreachable and previously visited nodes visually different
+- Remove unnecessary spaces in item descriptions
+- Credits screen
+- Fix weapons firing in the map screen when fading out to the battle scene
+- Hide empty item slots when in battle

@@ -158,6 +158,13 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    private void SetNodeVisuals(LineRenderer lr, float width, Color color)
+    {
+        lr.widthMultiplier = width;
+        lr.startColor = color;
+        lr.endColor = color;
+    }
+
     private List<GameObject> drawCircle(GameObject go, int segments, float radius, float width, Color col)
     {
         var lineObjects = new List<GameObject>();
@@ -169,29 +176,28 @@ public class MapManager : MonoBehaviour
         linerenderer.endColor = col;
         linerenderer.widthMultiplier = width;
 
+        var node = new Node();
         if (go == NodeMapping[currentNode])
         {
             radius = 2 * radius;
-            linerenderer.widthMultiplier = 2 * linerenderer.widthMultiplier;
+            SetNodeVisuals(linerenderer, 1.6f * linerenderer.widthMultiplier, Color.white);
         }
-
-        var node = new Node();
-        if (GoToNodeMapping.TryGetValue(go, out node))
+        else if (GoToNodeMapping.TryGetValue(go, out node))
         {
-            if (LootedNodes.Contains(node) | !allowedNodesToMoveTo().Contains(node))
-            {
-                radius = radius * 0.8f;
-                linerenderer.widthMultiplier = width;
-                linerenderer.startColor = Color.gray;
-                linerenderer.endColor = Color.gray;
-            }
-
             if (DangeredNodes.Contains(node))
             {
                 radius = radius * 0.8f;
-                linerenderer.widthMultiplier = width;
-                linerenderer.startColor = new Color(0.5f, 0, 0.3f);
-                linerenderer.endColor = new Color(0.5f, 0, 0.3f);
+                SetNodeVisuals(linerenderer, width, new Color(0.5f, 0, 0.3f));
+            }
+            else if (!allowedNodesToMoveTo().Contains(node))
+            {
+                radius = radius * 0.8f;
+                SetNodeVisuals(linerenderer, width, Color.gray);
+            }
+            else if (LootedNodes.Contains(node))
+            {
+                radius = radius * 0.8f;
+                SetNodeVisuals(linerenderer, width, Color.blue);
             }
         }
        
@@ -242,7 +248,7 @@ public class MapManager : MonoBehaviour
     {
         // Debug.Log("Advancing!");
         advance = advance + 1;
-        if (advance == 1 | loadedSaveData)
+        if (advance == 1 || loadedSaveData)
         {
             dangerZoneGameObject = new GameObject();
             dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);

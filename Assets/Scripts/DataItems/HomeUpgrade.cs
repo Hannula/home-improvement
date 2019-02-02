@@ -66,6 +66,7 @@ public class HomeUpgrade
         string desc = "";
         if (UpgradeData.IsWeapon)
         {
+            List<int> targets;
             desc += "<color=#ffffff>" + UpgradeData.TargetingModule.ReloadTime + "s Reload</color>, ";
             switch (UpgradeData.TargetingModule.TargetingType)
             {
@@ -81,9 +82,11 @@ public class HomeUpgrade
                     }
             }
             string floorsText = "<color=#214aff>Shoots at floors</color> <color=#ffffff>[";
-            foreach(int i in UpgradeData.TargetingModule.Targets)
+            targets = UpgradeData.TargetingModule.Targets;
+            for (int i = 0; i < targets.Count; i++)
             {
-                floorsText += i + " ";
+                // (adds a space only if not currently handling the last item in the list)
+                floorsText += targets[i] + (i < targets.Count - 1 ? " " : "");
             }
             if (UpgradeData.TargetingModule.Targets.Count > 0)
             {
@@ -91,9 +94,11 @@ public class HomeUpgrade
             }
 
             string randomFloorsText = "<color=#214aff>Shoots</color> <color=#ffffff>" + UpgradeData.TargetingModule.RandomHits + "</color> <color=#214aff> times  randomly at floors</color> <color=#ffe36b>[";
-            foreach (int i in UpgradeData.TargetingModule.RandomTargets)
+            targets = UpgradeData.TargetingModule.RandomTargets;
+            for (int i = 0; i < targets.Count; i++)
             {
-                randomFloorsText += i + " ";
+                // (adds a space only if not currently handling the last item in the list)
+                randomFloorsText += targets[i] + (i < targets.Count - 1 ? " " : "");
             }
             if (UpgradeData.TargetingModule.RandomTargets.Count > 0)
             {
@@ -183,5 +188,10 @@ public class HomeUpgrade
         }
 
         return desc;
+    }
+
+    public override string ToString()
+    {
+        return GetName();
     }
 }
