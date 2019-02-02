@@ -1754,6 +1754,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5aa65defcbf6ef64199e6d72b5b960ed,
         type: 3}
+    - target: {fileID: 2236412820647239870, guid: 90e6607c1ed5ef943b47315a6aefdd15,
+        type: 3}
+      propertyPath: Dangerzone
+      value: 
+      objectReference: {fileID: 425151909350053415, guid: 3bd11e1ab24c551409c65c9b6263875d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e6607c1ed5ef943b47315a6aefdd15, type: 3}
 --- !u!4 &1627889292 stripped

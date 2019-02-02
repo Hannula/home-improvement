@@ -4,26 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using data;
+using static Assets.Scripts.LineDrawer;
+using Assets.Scripts;
 
 public class MapManager : MonoBehaviour
 {
-    public int mapWidth;
-    public int mapHeight;
+    private readonly int screenWidth = 640;
+    private readonly System.Random rand = new System.Random();
+
     public MapGenerator mapGenerator = new MapGenerator();
+    public LineDrawer lineDrawer;
+
     public List<data.Node> Nodes = new List<Node>();
     public List<GameObject> NodeGameObjects = new List<GameObject>();
     public List<data.Node> LootedNodes = new List<Node>();
     public List<data.Node> DangeredNodes = new List<Node>();
 
-    public Dictionary<data.Node, GameObject> NodeMapping = new Dictionary<Node, GameObject>();
-    public Dictionary<GameObject, data.Node> GoToNodeMapping = new Dictionary< GameObject, data.Node>();
+    public Dictionary<data.Node, GameObject> NodeToGameobjectMapping = new Dictionary<Node, GameObject>();
+    public Dictionary<GameObject, data.Node> GameobjectToNodeMapping = new Dictionary< GameObject, data.Node>();
+
+    public int mapHeight;
+    public int mapWidth;
 
     public Transform nodePrefab;
 
-    private System.Random rand = new System.Random();
     public Material lineMaterial;
 
-    public int screenWidth = 640;
+    public Transform Dangerzone;
 
     public Node currentNode;
 
@@ -41,6 +48,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        lineDrawer = new LineDrawer(lineMaterial);
         loadedSaveData = false;
         homeHolder = new GameObject();
         homeHolder.name = "HomeHolder";
@@ -103,12 +111,10 @@ public class MapManager : MonoBehaviour
                 yPosition = yPosition / 32;
                 node.Position = new Vector3(xPosition, yPosition, 0);
 
-                //Debug.Log($"x:{xPosition}, y:{yPosition}");
-
                 var homeGo = Instantiate(nodePrefab, node.Position, Quaternion.identity);
                 NodeGameObjects.Add(homeGo.gameObject);
-                NodeMapping.Add(node, homeGo.gameObject);
-                GoToNodeMapping.Add(homeGo.gameObject, node);
+                NodeToGameobjectMapping.Add(node, homeGo.gameObject);
+                GameobjectToNodeMapping.Add(homeGo.gameObject, node);
                 homeGo.gameObject.GetComponent<SelectableNode>().setNode(node);
                 homeGo.SetParent(homeHolder.transform);
                 homeGo.name = "HomeNode";
@@ -119,18 +125,12 @@ public class MapManager : MonoBehaviour
         {
             currentNode = mapGenerator.HomeNode;
         }
-
-        foreach (var node in Nodes)
-        {
-            //Debug.Log(string.Format("NodeId: {0}, NodeArea:{1}, Connecting to: {2}", node.id, node.Area, string.Join(", ", node.Neighbours.Select(n => string.Format("Id:{0} Area:{1}", n.id, n.Area)))));
-
-        }
-
+        
         drawNodeCircles();
 
-        var obj = Instantiate(HomeIconPrefab, currentNode.Position, Quaternion.identity);
-        HomeIcon = obj.gameObject;
-        homeTarget = obj.transform;
+        var homeObj = Instantiate(HomeIconPrefab, currentNode.Position, Quaternion.identity);
+        HomeIcon = homeObj.gameObject;
+        homeTarget = homeObj.transform;
 
         if (loadedSaveData)
         {
@@ -143,8 +143,7 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.ActiveGame
-            && HomeMoving)
+        if (GameManager.Instance.ActiveGame && HomeMoving)
         {
             if (Vector3.Distance(HomeIcon.transform.position, homeTarget.transform.position) > 0.05f)
             {
@@ -158,73 +157,8 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private void SetNodeVisuals(LineRenderer lr, float width, Color color)
-    {
-        lr.widthMultiplier = width;
-        lr.startColor = color;
-        lr.endColor = color;
-    }
 
-    private List<GameObject> drawCircle(GameObject go, int segments, float radius, float width, Color col)
-    {
-        var lineObjects = new List<GameObject>();
-        var s = new GameObject();
-        s.transform.position = go.transform.position;
-        lineObjects.Add(s);
-        var linerenderer = s.AddComponent<LineRenderer>();
-        linerenderer.startColor = col;
-        linerenderer.endColor = col;
-        linerenderer.widthMultiplier = width;
-
-        var node = new Node();
-        if (go == NodeMapping[currentNode])
-        {
-            radius = 2 * radius;
-            SetNodeVisuals(linerenderer, 1.6f * linerenderer.widthMultiplier, Color.white);
-        }
-        else if (GoToNodeMapping.TryGetValue(go, out node))
-        {
-            if (DangeredNodes.Contains(node))
-            {
-                radius = radius * 0.8f;
-                SetNodeVisuals(linerenderer, width, new Color(0.5f, 0, 0.3f));
-            }
-            else if (!allowedNodesToMoveTo().Contains(node))
-            {
-                radius = radius * 0.8f;
-                SetNodeVisuals(linerenderer, width, Color.gray);
-            }
-            else if (LootedNodes.Contains(node))
-            {
-                radius = radius * 0.8f;
-                SetNodeVisuals(linerenderer, width, Color.blue);
-            }
-        }
-       
-        linerenderer.material = lineMaterial;
-
-        linerenderer.positionCount = segments + 1;
-        linerenderer.useWorldSpace = false;
-        linerenderer.sortingLayerName = "Lines";
-
-        float x;
-        float y;
-        float z;
-
-        float angle = 20f;
-
-        for (int i = 0; i < (segments + 1); i++)
-        {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-
-            linerenderer.SetPosition(i, new Vector3(x, y, 0));
-
-            angle += (360f / segments);
-        }
-
-        return lineObjects;
-    }
+    
 
     public List<Node> allowedNodesToMoveTo()
     {
@@ -241,7 +175,8 @@ public class MapManager : MonoBehaviour
         return list;
     }
 
-    private GameObject dangerZoneGameObject;
+    private Transform dangerZoneGameObject;
+    private Transform dangerZoneTarget;
     private int advance = 0;
     private List<GameObject> dangerCircle = new List<GameObject>();
     public void AdvanceDangerZone()
@@ -250,33 +185,41 @@ public class MapManager : MonoBehaviour
         advance = advance + 1;
         if (advance == 1 || loadedSaveData)
         {
-            dangerZoneGameObject = new GameObject();
-            dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);
+            dangerZoneGameObject = Instantiate(Dangerzone, new Vector3(-200/32, 0, 0), Quaternion.identity);
+            dangerZoneTarget = dangerZoneGameObject.transform;
+
+            //dangerZoneGameObject.transform.position = new Vector3(-400 / 32, -20 /32, 0);
         }
 
         if (advance == 2)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[1]);
+            dangerZoneGameObject.transform.position = new Vector3(-150 / 32, 0, 0);
         }
         else if (advance == 4)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[2]);
+            dangerZoneGameObject.transform.position = new Vector3(-100 / 32, 0, 0);
         }
         else if (advance == 6)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[3]);
+            dangerZoneGameObject.transform.position = new Vector3(-50 / 32, 0, 0);
         }
         else if (advance == 8)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[4]);
+            dangerZoneGameObject.transform.position = new Vector3(0, 0, 0);
         }
         else if (advance == 10)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[5]);
+            dangerZoneGameObject.transform.position = new Vector3(50 / 32, 0, 0);
         }
         else if (advance == 12)
         {
             DangeredNodes.AddRange(mapGenerator.AreaToNodeMapping[6]);
+            dangerZoneGameObject.transform.position = new Vector3(100 / 32, 0, 0);
         }
 
         foreach (var s in dangerCircle)
@@ -284,7 +227,7 @@ public class MapManager : MonoBehaviour
             Destroy(s);
         }
 
-        dangerCircle = drawCircle(dangerZoneGameObject, 40, 8f + 1.5f * advance, 0.6f, Color.yellow);
+        //dangerCircle = drawCircle(dangerZoneGameObject, 40, 8f + 1.5f * advance, 0.6f, Color.yellow);
     }
 
 
@@ -292,7 +235,7 @@ public class MapManager : MonoBehaviour
     {
         LootedNodes.Add(currentNode);
         currentNode = node;
-        homeTarget = NodeMapping[node].transform;
+        homeTarget = NodeToGameobjectMapping[node].transform;
         drawNodeCircles();
         var sprite = HomeIcon.GetComponent<SpriteRenderer>().sprite;
         HomeIconIdleSprite = sprite;
@@ -313,7 +256,7 @@ public class MapManager : MonoBehaviour
             DangerZoneAdvance = advance,
             Nodes = Nodes
         });
-        eventManager.StartEvent(NodeMapping.Where(kvp => kvp.Value == t.gameObject).Select(kvp => kvp.Key).First());
+        eventManager.StartEvent(NodeToGameobjectMapping.Where(kvp => kvp.Value == t.gameObject).Select(kvp => kvp.Key).First());
     }
 
     private List<GameObject> nodeLines = new List<GameObject>();
@@ -324,40 +267,51 @@ public class MapManager : MonoBehaviour
             Destroy(line);
         }
 
-        var radius = 0.06f;
-
-        foreach (var kvp in NodeMapping)
+        // Draw line from node to node. Skip if already drawn from other direction
+        foreach (var kvp in NodeToGameobjectMapping)
         {
-            var neighbourPositions = kvp.Key.Neighbours.Select(n => n.Position).ToArray();
-            foreach (var pos in neighbourPositions)
+            foreach (var neighbour in kvp.Key.Neighbours)
             {
-                var s = new GameObject();
-                s.transform.position = kvp.Value.transform.position;
-                s.transform.SetParent(lineHolder.transform);
-                var linerenderer = s.AddComponent<LineRenderer>();
-                linerenderer.startColor = Color.white;
-                linerenderer.endColor = Color.white;
-                linerenderer.widthMultiplier = 0.08f;
-                linerenderer.material = lineMaterial;
-
-                var radiusStartPos = kvp.Value.transform.position - (kvp.Value.transform.position - pos).normalized * (1+radius/(Vector3.Distance(kvp.Value.transform.position, pos)))/2.3f;
-                var radiusEndPos = pos - (pos - kvp.Value.transform.position).normalized * (1+radius / (Vector3.Distance(kvp.Value.transform.position, pos)))/2.3f;
-                linerenderer.SetPosition(0, radiusStartPos);
-                linerenderer.SetPosition(1, radiusEndPos);
-                linerenderer.sortingLayerName = "Lines";
-                nodeLines.Add(s);
-
-                
+                // TODO dont draw twice by mapping what pairs have already been drawn. 
+                // Really unnecessary improvement at the moment though
+                var allowed = allowedNodesToMoveTo().Contains(kvp.Key) && (currentNode == kvp.Key || currentNode == neighbour);
+                nodeLines.Add(lineDrawer.DrawLine(kvp.Value, neighbour.Position, lineHolder, allowed));
             }
-
-            // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
         }
 
-        foreach (var kvp in NodeMapping)
+        // Draw circle for node
+        foreach (var kvp in NodeToGameobjectMapping)
         {
-            nodeLines.AddRange(drawCircle(kvp.Value, 25, 0.25f, 0.12f, Color.red));
-            // Debug.Log(string.Format("Drawing line NodeId: {0}, NodeArea:{1}, Connecting to: {2}", kvp.Key.id, kvp.Key.Area, string.Join(", ", kvp.Key.Neighbours.Select(n => string.Format("Id:{0} Area:{1} Pos:{2}", n.id, n.Area, n.Position.x*32)))));
+            var type = getNodeType(kvp.Value);
+            nodeLines.AddRange(lineDrawer.drawNodeCircle(kvp.Value, type, LootedNodes.Contains(kvp.Key), lineMaterial));
         }
     }
 
+    private NodeType getNodeType(GameObject go)
+    {
+        var node = new Node();
+        if (go == NodeToGameobjectMapping[currentNode])
+        {
+            return NodeType.CurrentlyStanding;
+        }
+        else if (GameobjectToNodeMapping.TryGetValue(go, out node))
+        {
+            if (DangeredNodes.Contains(node))
+            {
+                return NodeType.InDangerZone;
+            }
+            else if (!allowedNodesToMoveTo().Contains(node))
+            {
+                return NodeType.TooFar;
+            }
+            else
+            {
+                return NodeType.AllowedToMove;
+            }
+        }
+        else
+        {
+            return NodeType.AllowedToMove;
+        }
+    }
 }
