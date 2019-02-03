@@ -48,10 +48,11 @@ Battle
 - If the flee button is pressed and the player dies during the delay, make the player lose the game
 - Improve battle rewards (e.g. new item, wall upgrade or health recovery)
 - Add visual effects to damaged floors
+- Fix the roof of a destroyed home staying in the air if the last floors were destroyed at the same time
 
 Other
 - Tutorial
-- Options menu: SFX and music volume, credits
+- Options menu: SFX and music volume
 - Generate random names for enemies and regions
 - Fix one frame of clear fade-out between scene transitions
 - Indicate change in score and region number with a flying number
