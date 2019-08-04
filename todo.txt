@@ -5,7 +5,6 @@ Map
 - Randomize map rotation in each new region
 - Randomize events already when randomizing map
 - Give the player more indication to click on a map node when playing the game the first time
-- Improvement: Scrap old danger zone and create one with only images upping in scale
 - Animate inside of danger zone
 - Preview upcoming fight in map screen so there is time to prepare and plan beforehand
 
@@ -77,3 +76,4 @@ DONE
 - Credits screen
 - Fix weapons firing in the map screen when fading out to the battle scene
 - Hide empty item slots when in battle
+- Improvement: Scrap old danger zone and create a proper threat (angry mob)
